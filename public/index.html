@@ -16,7 +16,7 @@
     <meta name="twitter:site" content="@jareddantis" />
     <meta name="twitter:title" content="GWA Calc" />
     <meta name="twitter:description" content="The quick, responsive GWA calculator." />
-    <meta name="twitter:image" content="https://illustra.github.io/gwa/favicon/android-chrome-512x512.png" />
+    <meta name="twitter:image" content="https://jareddantis.github.io/gwa-calc/favicon/android-chrome-512x512.png" />
 
     <!-- Resource prioritization for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +35,7 @@
     <meta name="theme-color" content="#37474f">
 
     <!-- Chrome PWA -->
-    <link rel="manifest" href="<%= BASE_URL %>site.webmanifest">
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json">
 
     <!-- iOS PWA -->
     <meta name="apple-mobile-web-app-title" content="GWA Calc">
@@ -69,6 +69,19 @@
       <strong>This page requires JavaScript to work. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+    <!-- Service worker -->
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator) {
+        // Register service worker
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(reg) {
+            console.log("[sw] Registered with scope " + reg.scope);
+          })
+          .catch(function(error) {
+            console.error("[sw] Error while registering: " + error);
+          });
+      }
+    </script>
   </body>
 </html>

@@ -24,5 +24,15 @@ module.exports = {
   },
   publicPath: process.env.NODE_ENV === 'production'
     ? '/gwa-calc/'
-    : '/'
+    : '/',
+  pwa: {
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: 'src/service-worker.js',
+      exclude: [
+        /\.map$/,
+        /manifest\.json$/
+      ],
+    },
+  },
 };
