@@ -69,19 +69,5 @@
       <strong>This page requires JavaScript to work. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-
-    <!-- Service worker -->
-    <script type="text/javascript">
-      if ('serviceWorker' in navigator) {
-        // Register service worker
-        navigator.serviceWorker.register('service-worker.js')
-          .then(function(reg) {
-            console.log("[sw] Registered with scope " + reg.scope);
-          })
-          .catch(function(error) {
-            console.error("[sw] Error while registering: " + error);
-          });
-      }
-    </script>
   </body>
 </html>
