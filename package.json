@@ -1,7 +1,7 @@
 {
   "name": "gwa",
+  "license": "AGPL-3.0-only",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,12 +10,13 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "localforage": "^1.7.3",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
-    "vue-class-component": "^7.0.2",
-    "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuetify": "^1.5.16",
+    "vuex": "^3.0.1",
+    "vuex-persist": "^2.0.1"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
@@ -26,10 +27,17 @@
     "@vue/cli-service": "^3.8.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
-    "less": "^3.0.4",
-    "less-loader": "^4.1.0",
+    "google-fonts-webpack-plugin": "^0.4.4",
+    "jest": "^24.8.0",
+    "material-shadows": "^3.0.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "ts-jest": "^23.0.0",
     "typescript": "^3.4.3",
-    "vue-template-compiler": "^2.6.10"
+    "vue-bus-ts": "^1.0.8",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.1",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2"
   }
 }

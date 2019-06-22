@@ -1,15 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>gwa</title>
+    <title>GWA Calculator</title>
+    <meta name="charset" content="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO -->
+    <meta name="author" content="Jared Dantis">
+    <meta name="description" content="The quick, responsive GWA calculator.">
+    <meta name="application-name" content="GWA Calc">
+    <meta name="google-site-verification" content="p0Fu9-tXUf3pvy4hm8wMygwsTztnjr4R-uqTyED2qtg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@jareddantis" />
+    <meta name="twitter:title" content="GWA Calc" />
+    <meta name="twitter:description" content="The quick, responsive GWA calculator." />
+    <meta name="twitter:image" content="https://illustra.github.io/gwa/favicon/android-chrome-512x512.png" />
+
+    <!-- Resource prioritization for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Material+Icons|Roboto+Mono&display=swap" as="style">
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Material+Icons|Roboto+Mono&display=swap">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= BASE_URL %>favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= BASE_URL %>favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="<%= BASE_URL %>favicon/safari-pinned-tab.svg" color="#e65100">
+    <link rel="shortcut icon" href="<%= BASE_URL %>favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#37474f">
+    <meta name="msapplication-config" content="<%= BASE_URL %>favicon/browserconfig.xml">
+    <meta name="theme-color" content="#37474f">
+
+    <!-- Chrome PWA -->
+    <link rel="manifest" href="<%= BASE_URL %>site.webmanifest">
+
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-title" content="GWA Calc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="<%= BASE_URL %>favicon/iPadProIcon.png" sizes="167x167" rel="apple-touch-icon">
+    <link href="<%= BASE_URL %>favicon/iPhoneSmallIcon.png" sizes="120x120" rel="apple-touch-icon">
+    <link href="<%= BASE_URL %>favicon/iPhoneLargeIcon.png" sizes="180x180" rel="apple-touch-icon">
+    <link href="<%= BASE_URL %>favicon/iPadIcon.png" sizes="152x152" rel="apple-touch-icon">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPhoneSE.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPhone.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPhonePlus.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPhoneX.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPad.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPadProSmall.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="<%= BASE_URL %>splash/iPadProBig.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+
+    <!-- GitHub Pages SPA deploy -->
+    <script type="text/javascript">
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but gwa doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>This page requires JavaScript to work. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->

@@ -1,0 +1,74 @@
+@require '../global'
+
+// Grid areas
+$row-meta = b(row-meta)
+$row-grade = b(row-grade)
+$col-left = b(col-left)
+$col-right = b(col-right)
+
+.subject
+  width: 100%
+  border-radius: 4px
+  z-depth()
+
+  // Show edit button on hover
+  &:hover .controls .edit
+    opacity: 1
+
+  // Full width for transmute
+  &.full-width
+    max-width: 100%
+
+.subject-content
+  display: grid
+  padding: 1rem
+  grid-template-rows: $row-meta auto $row-grade auto
+  grid-template-columns: $col-left auto $col-right auto
+
+  .label
+    grid-column: col-left / span 2
+    grid-row: row-meta
+    font-weight: 500
+
+    span.units
+      color: gray
+
+  .value
+    grid-column: col-left / col-right
+    grid-row: row-grade
+
+    h2
+      font-size: 2rem
+      line-height: 2.5rem
+
+  .controls
+    grid-column: col-right
+    grid-row: row-grade
+    display: flex
+    flex-direction: row
+    align-items: flex-end
+    justify-content: flex-end
+
+    .button
+      width: 2.5rem
+      height: 2.5rem
+      margin-left: 1rem
+      cursor: pointer
+      display: flex
+      align-items: center
+      justify-content: center
+      border-radius: 50%
+      background: $orange['lighten-4']
+
+      i
+        color: $orange['darken-4']
+
+    .edit
+      opacity: 0
+      transition: opacity 150ms linear
+
+.subject-content[dark=true] .button
+  background: $orange['darken-3']
+
+  i
+    color: #303030
