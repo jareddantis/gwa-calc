@@ -1,12 +1,14 @@
 {
   "name": "gwa",
+  "homepage": "https://jareddantis.github.io/gwa-calc",
   "license": "AGPL-3.0-only",
   "version": "0.1.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^2.6.5",

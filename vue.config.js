@@ -21,5 +21,8 @@ module.exports = {
     plugins: [
       new VuetifyLoaderPlugin()
     ]
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/gwa-calc/'
+    : '/'
 };
