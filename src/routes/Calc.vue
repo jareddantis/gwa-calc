@@ -10,7 +10,7 @@
             <v-icon>school</v-icon>
             <span>{{ currentSet }}</span>
           </div>
-          <div class="button clear" @click="$store.dispatch('clearGrades')" v-ripple>
+          <div class="button clear" @click="onClearClicked" v-ripple>
             <v-icon>delete</v-icon>
             <span>clear</span>
           </div>
@@ -31,6 +31,10 @@
 <!--      Dialog -->
       <grade-picker-dialog :transmute="false"/>
       <set-picker-dialog/>
+
+<!--      Snackbar -->
+      <v-snackbar v-model="clearedGrades"
+                  :top="true" :timeout="3000">Cleared grades</v-snackbar>
     </div>
 </template>
 
@@ -58,6 +62,11 @@ import GradePickerDialog from '@/components/GradePickerDialog.vue'
 export default class Calculator extends Vue {
   public currentSet!: string
   public isDarkMode!: boolean
+  public clearedGrades: boolean = false
+
+  public onClearClicked() {
+    this.$store.dispatch('clearGrades').then(() => this.clearedGrades = true)
+  }
 
   get average(): number {
     let total = 0
