@@ -9,7 +9,7 @@
           <span class="overline">Appearance</span>
 
           <div class="setting">
-            <span class="name subheading" @click="isDarkMode = !isDarkMode">Enable dark mode</span>
+            <span class="subheading" @click="isDarkMode = !isDarkMode">Enable dark mode</span>
             <v-switch :hide-details="true" color="orange" v-model="isDarkMode"></v-switch>
           </div>
         </v-card-text>
@@ -19,11 +19,11 @@
           <span class="overline">Data</span>
 
           <div class="setting">
-            <span class="name subheading">Manage custom subjects</span>
+            <span class="subheading">Manage custom subjects</span>
           </div>
 
           <div class="setting">
-            <span class="name subheading"
+            <span class="subheading text"
                   :class="isDarkMode ? 'pink--text' : 'red--text'">Delete all data and reset</span>
           </div>
         </v-card-text>
@@ -43,15 +43,19 @@
           </div>
 
           <div class="setting">
-            <span class="name subheading">Report a bug or send feedback</span>
+            <span class="subheading">Report a bug or send feedback</span>
           </div>
+        </v-card-text>
+      </v-card>
+      <v-card class="donate">
+        <v-card-text>
+          <span class="overline">donate</span>
 
-          <v-divider></v-divider>
-
-          <div class="bottom">
-            <v-btn flat>paypal</v-btn>
-            <v-btn flat>ko-fi</v-btn>
-            <v-btn flat>bitcoin</v-btn>
+          <div class="setting">
+            <a href="//paypal.me/jareddantis" target="_blank" rel="noopener" class="text--primary subheading">PayPal</a>
+          </div>
+          <div class="setting">
+            <a href="//ko-fi.com/dantis" target="_blank" rel="noopener" class="text--primary subheading">Ko-fi</a>
           </div>
         </v-card-text>
       </v-card>

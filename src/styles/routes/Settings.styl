@@ -39,8 +39,11 @@
     &:last-child
       margin-bottom: 0
 
-    span
+    span, a
       font-weight: 500
+
+    a
+      text-decoration: none
 
     .v-input
       flex: 0
@@ -67,13 +70,6 @@
         &.invert
           filter: invert(100%)
 
-  .bottom
-    display: grid
-    grid-template-columns: 1fr 1fr 1fr
-    grid-template-rows: 1fr
-    grid-column-gap: 1rem
-    margin-top: 1rem
-
 // Breakpoints
 @media screen and (max-width: 600px)
   .settings
@@ -82,3 +78,6 @@
 
     .content
       max-width: calc(100% - 2.5rem)
+
+  .donate > div
+    grid-template-columns: 1fr
