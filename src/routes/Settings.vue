@@ -23,7 +23,8 @@
           </div>
 
           <div class="setting">
-            <span class="name subheading red--text">Delete all data and reset</span>
+            <span class="name subheading"
+                  :class="isDarkMode ? 'pink--text' : 'red--text'">Delete all data and reset</span>
           </div>
         </v-card-text>
       </v-card>
