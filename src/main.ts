@@ -8,6 +8,9 @@ import './components'
 
 // Custom filters for grades and averages
 Vue.filter('asGrade', (value: number) => {
+  if (typeof value === undefined) {
+    return '1.00'
+  }
   return value.toFixed(2)
 })
 Vue.filter('asAverage', (value: number) => {
