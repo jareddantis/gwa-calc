@@ -21,16 +21,12 @@
   justify-content: flex-start
   border-radius: 3px
   cursor: pointer
-  transition: max-width 100ms ease
-  will-change: max-width
-  max-width: 5rem
+  max-width: 6.5rem
   height: 4rem
   position: relative
   text-decoration: none
 
   &.router-link-exact-active
-    max-width: 7rem
-
     i
       transform: translateY(-90%)
       color: black
@@ -42,7 +38,7 @@
   i, span
     pointer-events: none
     will-change: opacity, transform
-    transition: all 100ms ease
+    transition: all 100ms $ease
 
   i
     will-change: transform
