@@ -11,19 +11,29 @@ const vuexLocal = new VuexPersist({
   storage: localforage,
 })
 
-export default new Vuex.Store({
-  plugins: [ vuexLocal.plugin ],
-  state: {
+function getInitialState(): { [key: string]: any } {
+  return {
     currentSet: 'PSHS Grade 7',
     customSets: new Map(),
     grades: new Array(9).fill(1),
     transmuteGrades: new Array(2).fill(1),
     isDarkMode: false,
-  },
+  }
+}
+
+export default new Vuex.Store({
+  plugins: [ vuexLocal.plugin ],
+  state: getInitialState(),
   mutations: {
     deleteSet: (state: any, key) => state.customSets.delete(key),
     saveNewSet: (state, { name, subjects }) => state.customSets.set(name, subjects),
     popGrade: (state) => state.grades.pop(),
+    reset: (state) => {
+      const initialState = getInitialState()
+      Object.keys(initialState).forEach((key) => {
+        Vue.set(state, key, initialState[key])
+      })
+    },
     updateCurrentSet: (state, set) => state.currentSet = set,
     updateDarkMode: (state, mode) => state.isDarkMode = mode,
     updateGrade: (state, { id, grade }) => Vue.set(state.grades, id, grade),
@@ -42,6 +52,7 @@ export default new Vuex.Store({
     pshsSets: () => setNames,
   },
   actions: {
+    clearAllData: ({ commit }) => commit('reset'),
     decrement({ commit, state }, { id, inTransmuteMode }) {
       let grade = (inTransmuteMode ? state.transmuteGrades : state.grades)[id]
 

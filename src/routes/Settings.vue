@@ -22,7 +22,7 @@
             <span class="subheading">Manage custom subjects</span>
           </div>
 
-          <div class="setting">
+          <div class="setting" @click="showClearDialog = true">
             <span class="subheading text"
                   :class="isDarkMode ? 'pink--text' : 'red--text'">Delete all data and reset</span>
           </div>
@@ -60,6 +60,27 @@
         </v-card-text>
       </v-card>
     </div>
+
+<!--    Clear data -->
+    <v-snackbar v-model="clearedData" color="success"
+                :top="true" :timeout="3000">Deleted all data</v-snackbar>
+    <v-dialog class="clear-dialog" v-model="showClearDialog">
+      <v-card>
+        <v-card-title>
+          <span class="title">Delete all data</span>
+        </v-card-title>
+
+        <v-card-text>
+          <p class="body-1 red--text">This process is irreversible. Continue?</p>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn flat @click="showClearDialog = false">Cancel</v-btn>
+          <v-btn flat @click="clearAllData">Clear</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -73,6 +94,17 @@ import { Component } from 'vue-property-decorator'
 
 @Component
 export default class Settings extends Vue {
+  public showClearDialog: boolean = false
+  public clearedData: boolean = false
+
+  public clearAllData() {
+    this.showClearDialog = false
+    this.$store.dispatch('clearAllData').then(() => {
+      // Show confirmation snackbar
+      this.clearedData = true
+    })
+  }
+
   get isDarkMode(): boolean {
     return this.$store.getters.isDarkMode
   }

@@ -15,9 +15,11 @@
   div.title
     padding: 3rem 0
     text-align: center
+    user-select: none
 
-.v-card
+.settings .content > .v-card
   user-select: none
+  border-radius: 4px
   margin-bottom: 1.5rem
 
   span.overline
@@ -69,6 +71,10 @@
 
         &.invert
           filter: invert(100%)
+
+.clear-dialog p
+  font-weight: 700
+  font-size: 1rem
 
 // Breakpoints
 @media screen and (max-width: 600px)
