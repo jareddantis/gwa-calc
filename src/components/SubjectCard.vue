@@ -13,10 +13,10 @@
         <div class="button edit" @click="onEditClicked" v-ripple>
           <v-icon>edit</v-icon>
         </div>
-        <div class="button minus" @click="$store.dispatch('decrement', subjectId)" v-ripple>
+        <div class="button minus" @click="$store.dispatch('decrement', { id: subjectId, inTransmuteMode })" v-ripple>
           <v-icon>remove</v-icon>
         </div>
-        <div class="button plus" @click="$store.dispatch('increment', subjectId)" v-ripple>
+        <div class="button plus" @click="$store.dispatch('increment', { id: subjectId, inTransmuteMode })" v-ripple>
           <v-icon>add</v-icon>
         </div>
       </div>
@@ -42,7 +42,6 @@ export default class SubjectCard extends Vue {
   @Prop({ default: 0 })     public readonly units: number | undefined
 
   public isDarkMode!: boolean
-  private transmuteGrade: number = 1
 
   public created() {
     this.$bus.$on('grade-picked', (payload: any) => {
@@ -50,7 +49,7 @@ export default class SubjectCard extends Vue {
 
       // Check if we're meant to be receiving this
       if (this.subjectId === subjectId && this.inTransmuteMode === transmute) {
-        this.$store.commit('updateGrade', { id: subjectId, grade: value })
+        this.$store.commit(transmute ? 'updateTransmuteGrade' : 'updateGrade', { id: subjectId, grade: value })
       }
     })
   }
@@ -60,11 +59,8 @@ export default class SubjectCard extends Vue {
   }
 
   get grade(): number {
-    if (!this.inTransmuteMode) {
-      return this.$store.getters.grades[this.subjectId!]
-    } else {
-      return this.transmuteGrade
-    }
+    return (this.inTransmuteMode ? this.$store.getters.transmuteGrades
+                                 : this.$store.getters.grades)[this.subjectId!]
   }
   get inTransmuteMode(): boolean {
     return this.$route.fullPath.includes('/transmute')

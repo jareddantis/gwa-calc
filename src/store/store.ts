@@ -17,6 +17,7 @@ export default new Vuex.Store({
     currentSet: 'PSHS Grade 7',
     customSets: new Map(),
     grades: new Array(9).fill(1),
+    transmuteGrades: new Array(2).fill(1),
     isDarkMode: false,
   },
   mutations: {
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     updateCurrentSet: (state, set) => state.currentSet = set,
     updateDarkMode: (state, mode) => state.isDarkMode = mode,
     updateGrade: (state, { id, grade }) => Vue.set(state.grades, id, grade),
+    updateTransmuteGrade: (state, { id, grade }) => Vue.set(state.transmuteGrades, id, grade),
   },
   getters: {
     currentSet: (state) => state.currentSet,
@@ -35,12 +37,13 @@ export default new Vuex.Store({
     },
     customSets: (state) => Array.from(Object.keys(state.customSets)),
     grades: (state) => state.grades,
+    transmuteGrades: (state) => state.transmuteGrades,
     isDarkMode: (state) => state.isDarkMode,
     pshsSets: () => setNames,
   },
   actions: {
-    decrement({ commit, state }, id) {
-      let grade = state.grades[id]
+    decrement({ commit, state }, { id, inTransmuteMode }) {
+      let grade = (inTransmuteMode ? state.transmuteGrades : state.grades)[id]
 
       // Decrease value (i.e. higher grade)
       if (grade > 1) {
@@ -50,11 +53,11 @@ export default new Vuex.Store({
           grade -= 0.25
         }
 
-        commit('updateGrade', { id, grade })
+        commit(inTransmuteMode ? 'updateTransmuteGrade' : 'updateGrade', { id, grade })
       }
     },
-    increment({ commit, state }, id) {
-      let grade = state.grades[id]
+    increment({ commit, state }, { id, inTransmuteMode }) {
+      let grade = (inTransmuteMode ? state.transmuteGrades : state.grades)[id]
 
       // Increase value (i.e. lower grade)
       if (grade < 5) {
@@ -64,7 +67,7 @@ export default new Vuex.Store({
           grade += 0.25
         }
 
-        commit('updateGrade', { id, grade })
+        commit(inTransmuteMode ? 'updateTransmuteGrade' : 'updateGrade', { id, grade })
       }
     },
     clearGrades({ commit, state }, set) {

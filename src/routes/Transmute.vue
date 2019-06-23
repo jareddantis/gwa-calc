@@ -32,7 +32,6 @@ import GradePickerDialog from '@/components/GradePickerDialog.vue'
   computed: mapState(['isDarkMode']),
 })
 export default class Transmute extends Vue {
-  public grades: number[] = [1, 1]
   public isDarkMode!: boolean
 
   public created() {
@@ -40,6 +39,10 @@ export default class Transmute extends Vue {
       const {id, newGrade} = payload
       this.$set(this.grades, id, newGrade)
     })
+  }
+
+  get grades(): number[] {
+    return this.$store.getters.transmuteGrades
   }
 
   get finalGrade(): number {
