@@ -3,12 +3,12 @@
     <div class="content">
       <div class="final-grade" :dark="isDarkMode">
         <h1 class="monospaced">{{ finalGrade | asGrade }}</h1>
-        <p>final grade</p>
+        <p>Final grade</p>
       </div>
       <subject-card :subject-id="0"
-                    :subject="'Previous quarter grade'"/>
+                    :subject="'Previous quarter'"/>
       <subject-card :subject-id="1"
-                    :subject="'Current tentative grade'"/>
+                    :subject="'Current tentative'"/>
     </div>
 
     <grade-picker-dialog :transmute="true"/>

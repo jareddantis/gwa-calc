@@ -55,7 +55,12 @@ export default class SubjectCard extends Vue {
   }
 
   public onEditClicked() {
-    this.$bus.$emit('show-grade-picker-dialog', { id: this.subjectId, transmute: this.inTransmuteMode })
+    this.$bus.$emit('show-grade-picker-dialog', {
+      id: this.subjectId,
+      name: this.subject,
+      transmute: this.inTransmuteMode,
+      grade: this.grade,
+    })
   }
 
   get grade(): number {
