@@ -1,12 +1,15 @@
 import { createLocalVue } from '@vue/test-utils'
 import Vue from 'vue'
+import Vuetify from 'vuetify/lib'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 
-// Local Vue instance
 Vue.config.ignoredElements = [
   'grade-picker-dialog', 'subject-card', 'set-picker-dialog',
 ]
+Vue.use(Vuetify)
+
+// Local Vue instance
 const localVue = createLocalVue()
 localVue.use({
   install(v) {

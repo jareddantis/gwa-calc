@@ -41,13 +41,9 @@ export default class Transmute extends Vue {
     })
   }
 
-  get grades(): number[] {
-    return this.$store.getters.transmuteGrades
-  }
-
-  get finalGrade(): number {
-    const prev = this.grades[0] / 3          // Previous grade makes 1/3 of final
-    const curr = (this.grades[1] * 2) / 3    // Current grade makes 2/3 of final
+  public compute(prevGrade: number, currGrade: number) {
+    const prev = prevGrade / 3          // Previous grade makes 1/3 of final
+    const curr = (currGrade * 2) / 3    // Current grade makes 2/3 of final
     const final = prev + curr
 
     if (final > 3) {
@@ -58,6 +54,14 @@ export default class Transmute extends Vue {
       // Round to nearest 0.25
       return Math.round(final * 4) / 4
     }
+  }
+
+  get grades(): number[] {
+    return this.$store.getters.transmuteGrades
+  }
+
+  get finalGrade(): number {
+    return this.compute(this.grades[0], this.grades[1])
   }
 }
 </script>

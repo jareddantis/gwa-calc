@@ -21,7 +21,10 @@ describe('Transmute.vue', () => {
   let store: any
 
   beforeEach(() => {
-    store = new Vuex.Store({ state: { isDarkMode: false } })
+    store = new Vuex.Store({
+      state: { isDarkMode: false },
+      getters: { transmuteGrades: () => [1, 1] },
+    })
   })
 
   for (let i = 0; i < values.length; i++) {
@@ -32,16 +35,9 @@ describe('Transmute.vue', () => {
       const expectedFinal = expected[i][j]
 
       it(`Prev ${previous}, Curr ${current}, Exp ${expectedFinal}`, () => {
-        const wrapper = shallowMount(Transmute, {
-          localVue, store,
-          propsData: {
-            accent: 'orange',
-          },
-        })
-        const vm = wrapper.vm as any
-        vm.grades = [previous, current]
-
-        expect(vm.finalGrade).toEqual(expectedFinal)
+        const wrapper = shallowMount(Transmute, { localVue, store })
+        // @ts-ignore
+        expect(wrapper.vm.compute(previous, current)).toEqual(expectedFinal)
       })
     }
   }
