@@ -34,8 +34,8 @@
 
           <div class="setting">
             <div class="left">
-              <span class="subheading">GWA Calc build 15.0-20190701</span>
-              <span class="caption">&copy; 2015-2019 Jared Dantis. All rights reserved.</span>
+              <span class="subheading">GWA Calc build 20190701</span>
+              <span class="caption">&copy; 2019 Jared Dantis. All rights reserved.</span>
             </div>
             <div class="right">
               <img :src="require('../assets/jared-dantis.svg')"
