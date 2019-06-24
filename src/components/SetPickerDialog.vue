@@ -33,8 +33,14 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
+import { VCard, VCardTitle, VDialog, VDivider, VList, VListTile, VListTileContent,
+  VListTileTitle, VSubheader } from 'vuetify/lib'
 
 @Component({
+  components: {
+    VCard, VCardTitle, VDialog, VDivider, VList, VListTile, VListTileContent,
+    VListTileTitle, VSubheader,
+  },
   computed: mapState(['currentSet']),
 })
 export default class SetPickerDialog extends Vue {

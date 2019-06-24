@@ -37,6 +37,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { VApp } from 'vuetify/lib'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
 import Navbar from '@/components/Navbar.vue'
@@ -44,6 +45,7 @@ import Navbar from '@/components/Navbar.vue'
 @Component({
   components: {
     Navbar,
+    VApp,
   },
   computed: mapState(['isDarkMode']),
 })

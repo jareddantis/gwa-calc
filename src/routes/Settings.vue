@@ -91,8 +91,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
+  VSnackbar, VSpacer, VSwitch } from 'vuetify/lib'
 
-@Component
+@Component({
+  components: {
+    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
+    VSnackbar, VSpacer, VSwitch,
+  },
+})
 export default class Settings extends Vue {
   public showClearDialog: boolean = false
   public clearedData: boolean = false

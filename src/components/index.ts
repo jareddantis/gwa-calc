@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
-import '../styles/global.styl'
+import Vuetify from 'vuetify/lib'
 import 'vuetify/src/stylus/app.styl'
+import '../styles/global.styl'
 
 // Custom components
 Vue.component('navbar', () => import('./Navbar.vue'))

@@ -27,8 +27,12 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component, Prop } from 'vue-property-decorator'
+import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VSelect, VSpacer } from 'vuetify/lib'
 
 @Component({
+  components: {
+    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VSelect, VSpacer,
+  },
   computed: mapState(['isDarkMode']),
 })
 export default class GradePickerDialog extends Vue {

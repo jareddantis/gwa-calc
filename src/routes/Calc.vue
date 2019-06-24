@@ -50,12 +50,13 @@ import { Subject } from '@/store/subjects'
 import SubjectCard from '@/components/SubjectCard.vue'
 import SetPickerDialog from '@/components/SetPickerDialog.vue'
 import GradePickerDialog from '@/components/GradePickerDialog.vue'
+import { VIcon, VSnackbar } from 'vuetify/lib'
 
 @Component({
   components: {
-    GradePickerDialog,
-    SetPickerDialog,
-    SubjectCard,
+    GradePickerDialog, SetPickerDialog, SubjectCard,
+    // Vuetify
+    VIcon, VSnackbar,
   },
   computed: mapState(['currentSet', 'isDarkMode']),
 })

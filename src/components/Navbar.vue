@@ -1,15 +1,15 @@
 <template>
   <div class="navbar" :dark="isDarkMode">
     <router-link to="/" class="tab">
-      <i class="material-icons">functions</i>
+      <v-icon>functions</v-icon>
       <span>Calculator</span>
     </router-link>
     <router-link to="/transmute" class="tab">
-      <i class="material-icons">merge_type</i>
+      <v-icon>merge_type</v-icon>
       <span>Transmutation</span>
     </router-link>
     <router-link to="/settings" class="tab">
-      <i class="material-icons">settings</i>
+      <v-icon>settings</v-icon>
       <span>Settings</span>
     </router-link>
   </div>
@@ -23,8 +23,10 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
+import { VIcon } from 'vuetify/lib'
 
 @Component({
+  components: { VIcon },
   computed: mapState(['isDarkMode']),
 })
 export default class Navbar extends Vue {
