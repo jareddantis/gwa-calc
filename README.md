@@ -1,5 +1,7 @@
 # gwa
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jareddantis/gwa-calc.svg?token=a91dfe7cfad88ec5ad086a050390e5c67085487dfe3e5f30a5727131b90d8ea8&ts=1561351669547)](https://greenkeeper.io/)
+
 ## Project setup
 ```
 npm install
