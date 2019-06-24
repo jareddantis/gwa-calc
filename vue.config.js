@@ -5,6 +5,7 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 module.exports = {
   configureWebpack: {
@@ -39,6 +40,7 @@ module.exports = {
       new MiniCSSExtractPlugin({
         filename: '[name].css',
       }),
+      new PreloadWebpackPlugin(),
     ],
     module: {
       rules: [
