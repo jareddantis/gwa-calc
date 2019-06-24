@@ -8,13 +8,6 @@ function resolve (dir) {
 }
 
 module.exports = {
-  devServer: {
-    https: {
-      cert: fs.readFileSync('./ssl/localhost.crt'),
-      key: fs.readFileSync('./ssl/localhost.key'),
-      ca: fs.readFileSync('./ssl/ca.pem'),
-    },
-  },
   chainWebpack: (config) => {
     config.resolve.alias.set('~', resolve('node_modules/'));
   },
