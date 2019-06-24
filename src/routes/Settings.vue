@@ -38,12 +38,15 @@
               <span class="caption">&copy; 2015-2019 Jared Dantis. All rights reserved.</span>
             </div>
             <div class="right">
-              <img src="/img/name.svg" alt="Jared Dantis" :class="isDarkMode ? 'invert' : ''">
+              <img :src="require('@/assets/jared-dantis.svg')"
+                   alt="Jared Dantis" :class="isDarkMode ? 'invert' : ''">
             </div>
           </div>
 
           <div class="setting">
-            <span class="subheading">Report a bug or send feedback</span>
+            <a href="http://server.jared.gq/feedback/?subject=GWACalc-Vue"
+               target="_blank" rel="noopener"
+               class="text--primary subheading">Report a bug or send feedback</a>
           </div>
         </v-card-text>
       </v-card>
