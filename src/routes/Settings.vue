@@ -38,7 +38,7 @@
               <span class="caption">&copy; 2015-2019 Jared Dantis. All rights reserved.</span>
             </div>
             <div class="right">
-              <img :src="require('@/assets/jared-dantis.svg')"
+              <img :src="require('../assets/jared-dantis.svg')"
                    alt="Jared Dantis" :class="isDarkMode ? 'invert' : ''">
             </div>
           </div>
@@ -55,10 +55,14 @@
           <span class="overline">donate</span>
 
           <div class="setting">
-            <a href="//paypal.me/jareddantis" target="_blank" rel="noopener" class="text--primary subheading">PayPal</a>
+            <a href="//paypal.me/jareddantis"
+               target="_blank" rel="noopener"
+               class="text--primary subheading">PayPal</a>
           </div>
           <div class="setting">
-            <a href="//ko-fi.com/dantis" target="_blank" rel="noopener" class="text--primary subheading">Ko-fi</a>
+            <a href="//ko-fi.com/dantis"
+               target="_blank" rel="noopener"
+               class="text--primary subheading">Ko-fi</a>
           </div>
         </v-card-text>
       </v-card>
