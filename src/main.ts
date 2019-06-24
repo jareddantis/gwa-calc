@@ -7,17 +7,19 @@ import './registerServiceWorker'
 import './components'
 
 // Custom filters for grades and averages
-Vue.filter('asGrade', (value: number) => {
-  if (typeof value === undefined) {
+Vue.filter('asGrade', (value?: number) => {
+  if (value === undefined) {
     return '1.00'
+  } else {
+    return value.toFixed(2)
   }
-  return value.toFixed(2)
 })
-Vue.filter('asAverage', (value: number) => {
-  if (typeof value === undefined) {
+Vue.filter('asAverage', (value?: number) => {
+  if (value === undefined) {
     return '1.000'
+  } else {
+    return value.toFixed(6).substring(0, 5)
   }
-  return value.toFixed(6).substring(0, 5)
 })
 
 // Event bus
