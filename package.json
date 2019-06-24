@@ -1,6 +1,7 @@
 {
   "name": "gwa",
   "homepage": "https://jareddantis.github.io/gwa-calc",
+  "repository": "https://github.com/jareddantis/gwa-calc",
   "license": "AGPL-3.0-only",
   "version": "0.1.0",
   "scripts": {
@@ -40,6 +41,7 @@
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.1",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.2.2"
+    "vuetify-loader": "^1.2.2",
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }

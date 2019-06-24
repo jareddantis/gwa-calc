@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function resolve (dir) {
   return path.join(__dirname, dir);
@@ -19,7 +20,8 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      new VuetifyLoaderPlugin()
+      new VuetifyLoaderPlugin(),
+      new BundleAnalyzer()
     ]
   },
   publicPath: process.env.NODE_ENV === 'production'
