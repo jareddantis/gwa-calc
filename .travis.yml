@@ -4,7 +4,7 @@ branches:
     - master
 node_js:
   - "node"
-script
+script:
   - npm run test:unit
   - npm run build
 deploy:
