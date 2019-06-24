@@ -1,39 +1,72 @@
+const glob = require('glob');
 const path = require('path');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
-const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-function resolve (dir) {
-  return path.join(__dirname, dir);
-}
-
-function getPlugins() {
-  if (process.env.NODE_ENV === 'production') {
-    return [ new VuetifyLoaderPlugin() ]
-  } else {
-    return [
-      new VuetifyLoaderPlugin(),
-      new BundleAnalyzer()
-    ]
-  }
-}
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 
 module.exports = {
-  chainWebpack: (config) => {
-    config.resolve.alias.set('~', resolve('node_modules/'));
-  },
   configureWebpack: {
-    plugins: getPlugins()
+    optimization: {
+      minimizer: [
+        new OptimizeCSSPlugin(),
+        new TerserPlugin({ parallel: true }),
+      ],
+      splitChunks: {
+        cacheGroups: {
+          vendors: {
+            name: 'vendor',
+            test: /[\\/]node_modules[\\/]/,
+            chunks: 'all',
+          },
+          styles: {
+            name: 'styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      },
+    },
+    plugins: [
+      new VuetifyLoaderPlugin(),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        openAnalyzer: false,
+        generateStatsFile: true
+      }),
+      new MiniCSSExtractPlugin({
+        filename: '[name].css',
+      }),
+      new PurgeCSSPlugin({
+        paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true })
+      }),
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [MiniCSSExtractPlugin.loader, 'css-loader'],
+        },
+      ],
+    },
+    resolve: {
+      alias: {
+        '~': 'node_modules/',
+      },
+    },
   },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/gwa-calc/'
-    : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/gwa-calc/' : '/',
   pwa: {
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
       swSrc: 'src/service-worker.js',
       exclude: [
         /\.map$/,
-        /manifest\.json$/
+        /manifest\.json$/,
+        /stats\.json$/
       ],
     },
   },
