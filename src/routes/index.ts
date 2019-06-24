@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Calc from './Calc.vue'
 
 Vue.use(Router)
 
@@ -11,7 +10,7 @@ export default new Router({
     {
       path: '/',
       name: 'calc',
-      component: Calc,
+      component: () => import(/* webpackChunkName: "calc" */ './Calc.vue'),
     },
     {
       path: '/transmute',
