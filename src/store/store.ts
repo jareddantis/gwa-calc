@@ -26,7 +26,11 @@ export default new Vuex.Store({
   state: getInitialState(),
   mutations: {
     deleteSet: (state: any, key) => Vue.delete(state.customSets, key),
-    saveSet: (state, { name, subjects }) => Vue.set(state.customSets, name, subjects),
+    saveSet(state, { name, subjects }) {
+      Vue.set(state.customSets, name, subjects.map((subject: any) => {
+        return { name: subject.name, units: parseFloat(subject.units) }
+      }))
+    },
     popGrade: (state) => state.grades.pop(),
     reset: (state) => {
       const initialState = getInitialState()
