@@ -28,9 +28,10 @@
         </transition-group>
       </div>
 
-<!--      Dialog -->
+<!--      Dialogs -->
       <grade-picker-dialog :transmute="false"/>
       <set-picker-dialog/>
+      <set-creator-dialog/>
 
 <!--      Snackbar -->
       <v-snackbar v-model="clearedGrades"
@@ -50,11 +51,12 @@ import { Subject } from '@/store/subjects'
 import SubjectCard from '@/components/SubjectCard.vue'
 import SetPickerDialog from '@/components/SetPickerDialog.vue'
 import GradePickerDialog from '@/components/GradePickerDialog.vue'
+import SetCreatorDialog from '@/components/SetCreatorDialog.vue'
 import { VIcon, VSnackbar } from 'vuetify/lib'
 
 @Component({
   components: {
-    GradePickerDialog, SetPickerDialog, SubjectCard,
+    GradePickerDialog, SetCreatorDialog, SetPickerDialog, SubjectCard,
     // Vuetify
     VIcon, VSnackbar,
   },

@@ -23,6 +23,19 @@
           <v-list-tile-content>
             <v-list-tile-title v-text="set"></v-list-tile-title>
           </v-list-tile-content>
+
+          <v-list-tile-action v-if="set !== placeholder">
+            <v-btn icon ripple
+                   @click.stop="editSet(set)">
+              <v-icon color="grey lighten-1">edit</v-icon>
+            </v-btn>
+          </v-list-tile-action>
+          <v-list-tile-action v-if="set !== placeholder">
+            <v-btn icon ripple
+                   @click.stop="deleteSet(set)">
+              <v-icon color="grey lighten-1">delete</v-icon>
+            </v-btn>
+          </v-list-tile-action>
         </v-list-tile>
       </v-list>
     </v-card>
@@ -33,13 +46,13 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import { VCard, VCardTitle, VDialog, VDivider, VList, VListTile, VListTileContent,
-  VListTileTitle, VSubheader } from 'vuetify/lib'
+import { VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
+  VListTileAction,  VListTileContent, VListTileTitle, VSubheader } from 'vuetify/lib'
 
 @Component({
   components: {
-    VCard, VCardTitle, VDialog, VDivider, VList, VListTile, VListTileContent,
-    VListTileTitle, VSubheader,
+    VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
+    VListTileAction, VListTileContent, VListTileTitle, VSubheader,
   },
   computed: mapState(['currentSet']),
 })
@@ -47,17 +60,27 @@ export default class SetPickerDialog extends Vue {
   public currentSet!: string
   public dialog: boolean = false
 
-  private readonly customPlaceholder: string = 'Define new custom set...'
+  private readonly placeholder: string = 'Define new custom set...'
 
   public created() {
     this.$bus.$on('show-set-picker-dialog', () => this.dialog = true)
   }
 
+  public editSet(set: string) {
+    this.$bus.$emit('edit-custom-set', set)
+  }
+
+  public deleteSet(set: string) {
+    this.$store.dispatch('deleteSet', set)
+  }
+
   public save(set: string) {
-    this.dialog = false
-    if (set !== this.customPlaceholder) {
+    if (set !== this.placeholder) {
       this.$store.dispatch('updateCurrentSet', set)
+    } else {
+      this.$bus.$emit('create-new-set')
     }
+    this.dialog = false
   }
 
   get pshsSets(): string[] {
@@ -65,12 +88,13 @@ export default class SetPickerDialog extends Vue {
   }
 
   get customSets(): string[] {
-    const available = this.$store.getters.customSets
+    const sets = this.$store.getters.customSets
 
-    if (!available.length) {
-      return [this.customPlaceholder]
+    if (sets.length < 5) {
+      return [this.placeholder].concat(sets)
+    } else {
+      return sets
     }
-    return available
   }
 }
 </script>
