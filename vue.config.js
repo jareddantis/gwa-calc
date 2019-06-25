@@ -29,7 +29,7 @@ function getPlugins(mode) {
 }
 
 module.exports = {
-  devServer: {
+  devServer: process.env.NODE_ENV === 'development' ? {
     compress: true,
     http2: true,
     https: {
@@ -37,7 +37,7 @@ module.exports = {
       cert: fs.readFileSync('./ssl/localhost.crt'),
       ca: fs.readFileSync('./ssl/ca.pem'),
     },
-  },
+  } : {},
   configureWebpack: {
     optimization: process.env.NODE_ENV === 'production' ? {
       minimizer: [
