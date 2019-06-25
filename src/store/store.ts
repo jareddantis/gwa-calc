@@ -14,7 +14,7 @@ const vuexLocal = new VuexPersist({
 function getInitialState(): { [key: string]: any } {
   return {
     currentSet: 'PSHS Grade 7',
-    customSets: new Map(),
+    customSets: {},
     grades: new Array(9).fill(1),
     transmuteGrades: new Array(2).fill(1),
     isDarkMode: false,
@@ -25,8 +25,8 @@ export default new Vuex.Store({
   plugins: [ vuexLocal.plugin ],
   state: getInitialState(),
   mutations: {
-    deleteSet: (state: any, key) => state.customSets.delete(key),
-    saveNewSet: (state, { name, subjects }) => state.customSets.set(name, subjects),
+    deleteSet: (state: any, key) => Vue.delete(state.customSets, key),
+    saveSet: (state, { name, subjects }) => Vue.set(state.customSets, name, subjects),
     popGrade: (state) => state.grades.pop(),
     reset: (state) => {
       const initialState = getInitialState()
@@ -43,8 +43,9 @@ export default new Vuex.Store({
     currentSet: (state) => state.currentSet,
     currentSetSubjects(state) {
       const set = state.currentSet
-      return Subjects.has(set) ? Subjects.get(set) : state.customSets.get(set)
+      return Subjects.has(set) ? Subjects.get(set) : state.customSets[set]
     },
+    allCustomSets: (state) => state.customSets,
     customSets: (state) => Array.from(Object.keys(state.customSets)),
     grades: (state) => state.grades,
     transmuteGrades: (state) => state.transmuteGrades,
@@ -53,6 +54,15 @@ export default new Vuex.Store({
   },
   actions: {
     clearAllData: ({ commit }) => commit('reset'),
+    deleteSet({ state, commit, dispatch }, set) {
+      if (state.currentSet === set) {
+        dispatch('updateCurrentSet', 'PSHS Grade 7').then(() => {
+          commit('deleteSet', set)
+        })
+      } else {
+        commit('deleteSet', set)
+      }
+    },
     decrement({ commit, state }, { id, inTransmuteMode }) {
       let grade = (inTransmuteMode ? state.transmuteGrades : state.grades)[id]
 
