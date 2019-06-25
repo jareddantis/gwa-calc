@@ -8,7 +8,6 @@
  */
 
 export interface Subject { name: string, units: number }
-interface SubjectSet { name: string, subjects: Subject[] }
 
 const sets = [
   {
