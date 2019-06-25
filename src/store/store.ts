@@ -99,7 +99,7 @@ export default new Vuex.Store({
 
       // Then repopulate with ones
       const newSet = set || state.currentSet
-      const setLength = (Subjects.has(newSet) ? Subjects.get(newSet) : state.customSets.get(newSet)).length
+      const setLength = (Subjects.has(newSet) ? Subjects.get(newSet) : state.customSets[newSet]).length
       for (let id = 0; id < setLength; id++) {
         commit('updateGrade', { id, grade: 1 })
       }
