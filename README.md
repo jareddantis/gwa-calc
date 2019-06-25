@@ -1,4 +1,4 @@
-# gwa-calc [![Build Status](https://travis-ci.com/jareddantis/gwa-calc.svg?branch=master)](https://travis-ci.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
+# gwa-calc [![Build Status](https://travis-ci.com/jareddantis/gwa-calc.svg?branch=master)](https://travis-ci.com/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
 
 A quick, responsive general weighted average calculator for the modern web. Built with Vue.js and Typescript, by a student, for students.
 
@@ -33,7 +33,7 @@ npm run serve
 When you're done, test and build the calculator:
 
 ```bash
-npm run unit:test && npm run build
+npm run test:unit && npm run build
 ```
 
 Then serve the resulting `dist` directory in your [SPA](https://en.wikipedia.org/wiki/Single-page_application) compliant web server of choice.
