@@ -23,19 +23,6 @@
           <v-list-tile-content>
             <v-list-tile-title v-text="set"></v-list-tile-title>
           </v-list-tile-content>
-
-          <v-list-tile-action v-if="set !== placeholder">
-            <v-btn icon ripple
-                   @click.stop="editSet(set)">
-              <v-icon color="grey lighten-1">edit</v-icon>
-            </v-btn>
-          </v-list-tile-action>
-          <v-list-tile-action v-if="set !== placeholder">
-            <v-btn icon ripple
-                   @click.stop="deleteSet(set)">
-              <v-icon color="grey lighten-1">delete</v-icon>
-            </v-btn>
-          </v-list-tile-action>
         </v-list-tile>
       </v-list>
     </v-card>
@@ -75,14 +62,6 @@ export default class SetPickerDialog extends Vue {
 
   public created() {
     this.$bus.$on('show-set-picker-dialog', () => this.dialog = true)
-  }
-
-  public editSet(set: string) {
-    this.$bus.$emit('edit-custom-set', set)
-  }
-
-  public deleteSet(set: string) {
-    this.$store.dispatch('deleteSet', set)
   }
 
   public save(set: string) {

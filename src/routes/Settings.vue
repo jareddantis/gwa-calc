@@ -18,8 +18,8 @@
         <v-card-text>
           <span class="overline">Data</span>
 
-          <div class="setting">
-            <span class="subheading">Manage custom subjects</span>
+          <div class="setting" @click="$bus.$emit('show-set-manager-dialog')">
+            <span class="subheading">Manage custom subject sets</span>
           </div>
 
           <div class="setting" @click="showClearDialog = true">
@@ -67,6 +67,9 @@
         </v-card-text>
       </v-card>
     </div>
+
+<!--    Custom subject set manager -->
+    <set-manager-dialog/>
 
 <!--    Clear data -->
     <v-snackbar v-model="clearedData" color="success"
