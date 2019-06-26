@@ -23,12 +23,8 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import GradePickerDialog from '@/components/GradePickerDialog.vue'
 
 @Component({
-  components: {
-    GradePickerDialog,
-  },
   computed: mapState(['isDarkMode']),
 })
 export default class Transmute extends Vue {
