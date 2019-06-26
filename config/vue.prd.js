@@ -1,3 +1,4 @@
+const path = require('path');
 const { DefinePlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
@@ -13,6 +14,7 @@ module.exports = {
         new OptimizeCSSPlugin(),
         new TerserPlugin({ parallel: true }),
       ],
+      runtimeChunk: 'single',
       splitChunks: {
         chunks: 'all',
         cacheGroups: {
@@ -35,19 +37,40 @@ module.exports = {
     module: {
       rules: [
         {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+          include: [ path.resolve( __dirname, 'src') ]
+        },
+        {
+          test: /\.(js|ts|tsx)$/,
+          loader: 'babel-loader',
+        },
+        {
+          test: /\.styl$/,
+          loader: 'stylus-loader',
+        },
+        {
           test: /\.css$/,
           use: [
             MiniCSSExtractPlugin.loader,
             'css-loader',
-          ],
-        },
-        {
-          test: /\.styl$/,
-          use: [
-            MiniCSSExtractPlugin.loader,
-            'stylus-loader',
-          ],
-        },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [
+                  require('autoprefixer')(),
+                  require('cssnano')({
+                    preset: ['default', {
+                      discardComments: {
+                        removeAll: true,
+                      },
+                    }],
+                  }),
+                ]
+              }
+            }
+          ]
+        }
       ],
     },
 
@@ -73,9 +96,6 @@ module.exports = {
         analyzerMode: 'disabled',
         openAnalyzer: false,
         generateStatsFile: true
-      }),
-      new MiniCSSExtractPlugin({
-        filename: 'style.css',
       }),
       new PreloadWebpackPlugin(),
     ],
