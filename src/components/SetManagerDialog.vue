@@ -6,20 +6,19 @@
       </v-card-title>
 
       <v-list>
-        <v-list-tile v-if="customSets.length > 0"
-                     v-for="set in customSets" :key="set">
+        <v-list-tile v-for="set in customSets" :key="set">
           <v-list-tile-content>
             <v-list-tile-title v-text="set"></v-list-tile-title>
           </v-list-tile-content>
 
           <v-list-tile-action v-if="set !== placeholder">
-            <v-btn icon ripple @click.stop="editSet(set)">
+            <v-btn icon ripple @click.stop="$bus.$emit('confirm-edit-custom-set', set)">
               <v-icon color="grey lighten-1">edit</v-icon>
             </v-btn>
           </v-list-tile-action>
 
           <v-list-tile-action v-if="set !== placeholder">
-            <v-btn icon ripple @click.stop="deleteSet(set)">
+            <v-btn icon ripple @click.stop="$bus.$emit('delete-custom-set', set)">
               <v-icon color="grey lighten-1">delete</v-icon>
             </v-btn>
           </v-list-tile-action>
@@ -27,6 +26,8 @@
       </v-list>
 
       <v-card-actions>
+        <v-btn v-if="customSets.length < 5"
+               flat @click="$bus.$emit('create-new-set', false)">New</v-btn>
         <v-spacer></v-spacer>
         <v-btn flat @click="dialog = false">Done</v-btn>
       </v-card-actions>
@@ -65,18 +66,10 @@ export default class SetManagerDialog extends Vue {
     this.$bus.$on('show-set-manager-dialog', () => this.dialog = true)
   }
 
-  public editSet(set: string) {
-    this.$bus.$emit('edit-custom-set', set)
-  }
-
-  public deleteSet(set: string) {
-    this.$store.dispatch('deleteSet', set)
-  }
-
   get customSets(): string[] {
     const sets = this.$store.getters.customSets
 
-    if (sets.length < 5) {
+    if (sets.length === 0) {
       return [this.placeholder]
     } else {
       return sets

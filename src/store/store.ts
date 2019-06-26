@@ -6,6 +6,8 @@ import Subjects, { setNames } from './subjects'
 
 Vue.use(Vuex)
 
+interface SubjectSets { [key: string]: any[] }
+
 const vuexLocal = new VuexPersist({
   key: 'gwa-calc',
   storage: localforage,
@@ -26,17 +28,17 @@ export default new Vuex.Store({
   state: getInitialState(),
   mutations: {
     deleteSet: (state: any, key) => Vue.delete(state.customSets, key),
-    saveSet(state, { name, subjects }) {
-      Vue.set(state.customSets, name, subjects.map((subject: any) => {
-        return { name: subject.name, units: parseFloat(subject.units) }
-      }))
-    },
     popGrade: (state) => state.grades.pop(),
     reset: (state) => {
       const initialState = getInitialState()
       Object.keys(initialState).forEach((key) => {
         Vue.set(state, key, initialState[key])
       })
+    },
+    saveSet(state, { name, subjects }) {
+      Vue.set(state.customSets, name, subjects.map((subject: any) => {
+        return { name: subject.name, units: parseFloat(subject.units) }
+      }))
     },
     updateCurrentSet: (state, set) => state.currentSet = set,
     updateDarkMode: (state, mode) => state.isDarkMode = mode,
@@ -65,6 +67,40 @@ export default new Vuex.Store({
         })
       } else {
         commit('deleteSet', set)
+      }
+    },
+    editSet({ state, dispatch }, { oldName, newName, subjects }) {
+      const oldSets = state.customSets as SubjectSets
+      const newSets: SubjectSets = {}
+
+      Object.keys(oldSets).map((name: string) => {
+        if (name === oldName) {
+          // Push new renamed/edited set
+          newSets[newName] = subjects.map((subject: any) => {
+            return { name: subject.name, units: parseFloat(subject.units) }
+          })
+        } else {
+          // Push old set
+          newSets[name] = oldSets[name]
+        }
+      })
+
+      // Save new sets
+      for (const set of Object.keys(newSets)) {
+        Vue.set(state.customSets, set, newSets[set])
+      }
+
+      // Switch to new set if current set is the old one
+      if (state.currentSet === oldName) {
+        dispatch('updateCurrentSet', newName)
+      }
+    },
+    saveSet({ state, commit, dispatch }, { name, subjects }) {
+      commit('saveSet', { name, subjects })
+
+      // Clear grades in case subjects were changed
+      if (state.currentSet === name) {
+        dispatch('clearGrades', name)
       }
     },
     decrement({ commit, state }, { id, inTransmuteMode }) {

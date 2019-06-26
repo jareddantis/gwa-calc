@@ -68,7 +68,7 @@ export default class SetPickerDialog extends Vue {
     if (set !== this.placeholder) {
       this.$store.dispatch('updateCurrentSet', set)
     } else {
-      this.$bus.$emit('create-new-set')
+      this.$bus.$emit('create-new-set', true)
     }
     this.dialog = false
   }

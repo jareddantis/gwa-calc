@@ -68,26 +68,43 @@
       </v-card>
     </div>
 
-<!--    Custom subject set manager -->
-    <set-manager-dialog/>
-
-<!--    Clear data -->
-    <v-snackbar v-model="clearedData" color="success"
-                :top="true" :timeout="3000">Deleted all data</v-snackbar>
-    <v-dialog class="clear-dialog" v-model="showClearDialog">
+<!--    Edit subject confirmation -->
+    <v-dialog class="confirm-dialog" v-model="showEditConfirmDialog">
       <v-card>
         <v-card-title>
-          <span class="title">Delete all data</span>
+          <span class="title">Edit {{ setToEdit }}?</span>
         </v-card-title>
 
         <v-card-text>
-          <p class="body-1 red--text">This process is irreversible. Continue?</p>
+          <p class="body-1 red--text">This will clear your grades for this subject set.</p>
+          <p class="body-1">It's recommended that you back up your currently entered grades first (e.g. through screenshots) before continuing.</p>
         </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat @click="showClearDialog = false">Cancel</v-btn>
-          <v-btn flat @click="clearAllData">Clear</v-btn>
+          <v-btn flat @click="showEditConfirmDialog = false">Cancel</v-btn>
+          <v-btn flat @click="editConfirmedHandler">Edit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+<!--    Clear data -->
+    <v-snackbar v-model="deleteSuccessful" color="success"
+                :top="true" :timeout="3000">Deleted {{ garbage }}</v-snackbar>
+    <v-dialog class="confirm-dialog" v-model="showClearDialog">
+      <v-card>
+        <v-card-title>
+          <span class="title">Delete {{ garbage }}?</span>
+        </v-card-title>
+
+        <v-card-text>
+          <p class="body-1 red--text">This process is irreversible!</p>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn flat @click="resetState">Cancel</v-btn>
+          <v-btn flat @click="clearHandler">Clear</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -111,15 +128,45 @@ import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
   },
 })
 export default class Settings extends Vue {
+  public deleteSuccessful: boolean = false
+  public garbage: string = 'all data'
+  public isClearingSet: boolean = false
+  public setToEdit: string = ''
   public showClearDialog: boolean = false
-  public clearedData: boolean = false
+  public showEditConfirmDialog: boolean = false
 
-  public clearAllData() {
-    this.showClearDialog = false
-    this.$store.dispatch('clearAllData').then(() => {
-      // Show confirmation snackbar
-      this.clearedData = true
+  public created() {
+    this.$bus.$on('delete-custom-set', (set: string) => {
+      this.garbage = set
+      this.isClearingSet = true
+      this.showClearDialog = true
     })
+    this.$bus.$on('confirm-edit-custom-set', (set: string) => {
+      this.setToEdit = set
+      this.showEditConfirmDialog = true
+    })
+  }
+
+  public clearHandler() {
+    this.resetState()
+
+    if (this.isClearingSet) {
+      this.$store.dispatch('deleteSet', this.garbage).then(() => this.deleteSuccessful = true)
+    } else {
+      this.$store.dispatch('clearAllData').then(() => this.deleteSuccessful = true)
+    }
+  }
+
+  public editConfirmedHandler() {
+    this.$bus.$emit('edit-custom-set', this.setToEdit)
+    this.setToEdit = ''
+    this.showEditConfirmDialog = false
+  }
+
+  public resetState() {
+    this.isClearingSet = false
+    this.showClearDialog = false
+    this.garbage = 'all data'
   }
 
   get isDarkMode(): boolean {

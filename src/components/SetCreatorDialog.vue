@@ -60,11 +60,14 @@ import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
     VIcon, VTextField, VSpacer },
 })
 export default class SetCreatorDialog extends Vue {
-  public subjects: any[] = []
-  public ids: string[] = []
-  public name: string = ''
-  public updating: boolean = false
   public dialog: boolean = false
+  public ids: string[] = []
+  public initialName: string = ''
+  public name: string = ''
+  public showPickerAfter: boolean = false
+  public subjects: any[] = []
+  public updating: boolean = false
+
   public rules = {
     required: (value: any) => !!value || 'Required',
     setName: (value: string) => {
@@ -92,10 +95,10 @@ export default class SetCreatorDialog extends Vue {
   }
 
   public created() {
-    this.$bus.$on('create-new-set', () => {
+    this.$bus.$on('create-new-set', (showPickerAfter: boolean) => {
       this.resetState()
       this.addSubject()
-      this.name = ''
+      this.showPickerAfter = showPickerAfter
       this.updating = false
       this.dialog = true
     })
@@ -103,6 +106,7 @@ export default class SetCreatorDialog extends Vue {
       this.resetState()
       this.populate(set)
       this.name = set
+      this.showPickerAfter = false
       this.updating = true
       this.dialog = true
     })
@@ -123,6 +127,7 @@ export default class SetCreatorDialog extends Vue {
 
   public populate(set: string) {
     const subjects = this.$store.getters.allCustomSets[set]
+    this.initialName = set
 
     for (const subject of subjects) {
       this.subjects.push(subject)
@@ -131,6 +136,9 @@ export default class SetCreatorDialog extends Vue {
   }
 
   public resetState() {
+    this.name = ''
+    this.initialName = ''
+
     // Empty subjects in case dialog is shown again
     for (const subject of this.subjects) {
       this.subjects.pop()
@@ -155,18 +163,11 @@ export default class SetCreatorDialog extends Vue {
   }
 
   public save() {
-    const { name, subjects } = this
-
-    // Name must not be blank
-    if (name.length === 0) {
-      (this.$refs.setname as HTMLElement).focus()
-      return
-    }
-
     // All fields must be valid
-    const nameFields = this.$refs.subjectname as any[]
-    const unitFields = this.$refs.subjectunits as any[]
-    const fields = nameFields.concat(unitFields)
+    const setNameField = [this.$refs.setname]
+    const nameFields = this.$refs.subjectname
+    const unitFields = this.$refs.subjectunits
+    const fields = setNameField.concat(nameFields, unitFields) as any[]
     for (const field of fields) {
       if (!field.validate()) {
         field.focus()
@@ -174,9 +175,27 @@ export default class SetCreatorDialog extends Vue {
       }
     }
 
-    this.$store.commit('saveSet', { name, subjects })
-    this.$bus.$emit('show-set-picker-dialog')
+    // Save set if valid
+    const { name, subjects } = this
+    if (this.initialName === '' || name === this.initialName) {
+      // New set or old set with new subjects
+      this.$store.dispatch('saveSet', { name, subjects })
+    } else {
+      // Old set with new name (possibly also new subjects)
+      this.$store.dispatch('editSet', {
+        oldName: this.initialName,
+        newName: name,
+        subjects,
+      })
+    }
+
+    // Dismiss and reset dialog
     this.dialog = false
+    this.resetState()
+    if (this.showPickerAfter) {
+      // Show set picker again if invoked from there
+      this.$bus.$emit('show-set-picker-dialog')
+    }
   }
 
   get subjectNames(): string[] {
