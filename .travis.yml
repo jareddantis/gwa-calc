@@ -5,6 +5,7 @@ branches:
 node_js:
   - "node"
 script:
+  - npm run test:unit
   - npm run build
 deploy:
   provider: pages
