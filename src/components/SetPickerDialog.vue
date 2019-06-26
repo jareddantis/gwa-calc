@@ -45,7 +45,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { Component } from 'vue-property-decorator'
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
+import { Component, Watch } from 'vue-property-decorator'
 import { VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
   VListTileAction,  VListTileContent, VListTileTitle, VSubheader } from 'vuetify/lib'
 
@@ -61,6 +62,16 @@ export default class SetPickerDialog extends Vue {
   public dialog: boolean = false
 
   private readonly placeholder: string = 'Define new custom set...'
+
+  @Watch('dialog')
+  public onDialogToggle(newVal: boolean, oldVal: boolean) {
+    const rootEl = this.$root.$el as HTMLElement
+    if (newVal) {
+      disableBodyScroll(rootEl)
+    } else {
+      enableBodyScroll(rootEl)
+    }
+  }
 
   public created() {
     this.$bus.$on('show-set-picker-dialog', () => this.dialog = true)

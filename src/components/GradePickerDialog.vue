@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showDialog" max-width="500">
+  <v-dialog v-model="dialog" max-width="500">
     <v-card>
       <v-card-title>
         <span class="title">Pick a grade for {{ subjectName }}</span>
@@ -16,7 +16,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn flat @click="showDialog = false">Close</v-btn>
+        <v-btn flat @click="dialog = false">Close</v-btn>
         <v-btn flat @click="onValueSave">Save</v-btn>
       </v-card-actions>
     </v-card>
@@ -26,7 +26,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { Component, Prop } from 'vue-property-decorator'
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
+import { Component, Prop, Watch } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VSelect, VSpacer } from 'vuetify/lib'
 
 @Component({
@@ -43,7 +44,17 @@ export default class GradePickerDialog extends Vue {
   public subjectName: string = ''
   public subjectId: number = 0
   public value: string = '1.00'
-  public showDialog: boolean = false
+  public dialog: boolean = false
+
+  @Watch('dialog')
+  public onDialogToggle(newVal: boolean, oldVal: boolean) {
+    const rootEl = this.$root.$el as HTMLElement
+    if (newVal) {
+      disableBodyScroll(rootEl)
+    } else {
+      enableBodyScroll(rootEl)
+    }
+  }
 
   public created() {
     this.$bus.$on('show-grade-picker-dialog', (payload: any) => {
@@ -54,7 +65,7 @@ export default class GradePickerDialog extends Vue {
         this.subjectName = name
         this.subjectId = id
         this.value = grade.toFixed(2)
-        this.showDialog = true
+        this.dialog = true
       }
     })
   }
@@ -67,7 +78,7 @@ export default class GradePickerDialog extends Vue {
     const { subjectId, transmute, value } = this
 
     this.$bus.$emit('grade-picked', { subjectId, transmute, value: parseFloat(value) })
-    this.showDialog = false
+    this.dialog = false
   }
 }
 </script>

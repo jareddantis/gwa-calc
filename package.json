@@ -11,6 +11,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "body-scroll-lock": "^2.6.1",
     "core-js": "^2.6.5",
     "localforage": "^1.7.3",
     "register-service-worker": "^1.6.2",
@@ -22,6 +23,7 @@
     "vuex-persist": "^2.0.1"
   },
   "devDependencies": {
+    "@types/body-scroll-lock": "^2.6.0",
     "@types/jest": "^23.1.4",
     "@types/sortablejs": "^1.7.2",
     "@vue/cli-plugin-babel": "^3.8.0",
