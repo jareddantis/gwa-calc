@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {DefinePlugin} = require('webpack');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
@@ -7,9 +8,27 @@ const TerserPlugin = require('terser-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 function getPlugins(mode) {
+  const plugins = [
+    new VuetifyLoaderPlugin(),
+
+    // Build date in app
+    new DefinePlugin({
+      'process.env': {
+        BUILD_DATE: (() => {
+          const now = new Date();
+          const year = now.getFullYear();
+          let month = now.getMonth() + 1;
+          let day = now.getDate();
+          if (month < 10) { month = '0' + month }
+          if (day < 10) { day = '0' + day }
+          return year.toString() + month + day
+        })(),
+      },
+    }),
+  ];
+
   if (mode === 'production') {
-    return [
-      new VuetifyLoaderPlugin(),
+    plugins.concat([
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
         openAnalyzer: false,
@@ -19,13 +38,10 @@ function getPlugins(mode) {
         filename: '[name].css',
       }),
       new PreloadWebpackPlugin(),
-    ]
-  } else {
-    return [
-      new VuetifyLoaderPlugin(),
-      new BundleAnalyzerPlugin(),
-    ]
+    ])
   }
+
+  return plugins
 }
 
 module.exports = {

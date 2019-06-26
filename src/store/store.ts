@@ -46,6 +46,7 @@ export default new Vuex.Store({
     updateTransmuteGrade: (state, { id, grade }) => Vue.set(state.transmuteGrades, id, grade),
   },
   getters: {
+    appVersion: () => process.env.BUILD_DATE,
     currentSet: (state) => state.currentSet,
     currentSetSubjects(state) {
       const set = state.currentSet

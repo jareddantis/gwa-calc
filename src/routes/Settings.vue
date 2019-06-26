@@ -34,7 +34,7 @@
 
           <div class="setting">
             <div class="left">
-              <span class="subheading">GWA Calc build 20190701</span>
+              <span class="subheading">GWA Calc build {{ appVersion }}</span>
               <span class="caption">&copy; 2019 Jared Dantis. All rights reserved.</span>
             </div>
             <div class="right">
@@ -169,6 +169,9 @@ export default class Settings extends Vue {
     this.garbage = 'all data'
   }
 
+  get appVersion(): string {
+    return this.$store.getters.appVersion
+  }
   get isDarkMode(): boolean {
     return this.$store.getters.isDarkMode
   }
