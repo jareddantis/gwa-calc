@@ -61,11 +61,13 @@ module.exports = {
         new TerserPlugin({ parallel: true }),
       ],
       splitChunks: {
+        chunks: 'all',
         cacheGroups: {
           vendors: {
             name: 'vendor',
             test: /[\\/]node_modules[\\/]/,
             chunks: 'all',
+            enforce: true,
           },
           styles: {
             name: 'styles',
