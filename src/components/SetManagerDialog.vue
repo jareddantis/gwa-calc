@@ -1,29 +1,31 @@
 <template>
-  <v-dialog v-model="dialog">
+  <v-dialog v-model="dialog" :scrollable="true">
     <v-card>
       <v-card-title>
         <span class="title">Manage custom subject sets</span>
       </v-card-title>
 
-      <v-list>
-        <v-list-tile v-for="set in customSets" :key="set">
-          <v-list-tile-content>
-            <v-list-tile-title v-text="set"></v-list-tile-title>
-          </v-list-tile-content>
+      <v-card-text>
+        <v-list>
+          <v-list-tile v-for="set in customSets" :key="set">
+            <v-list-tile-content>
+              <v-list-tile-title v-text="set"></v-list-tile-title>
+            </v-list-tile-content>
 
-          <v-list-tile-action v-if="set !== placeholder">
-            <v-btn icon ripple @click.stop="$bus.$emit('confirm-edit-custom-set', set)">
-              <v-icon color="grey lighten-1">edit</v-icon>
-            </v-btn>
-          </v-list-tile-action>
+            <v-list-tile-action v-if="set !== placeholder">
+              <v-btn icon ripple @click.stop="$bus.$emit('confirm-edit-custom-set', set)">
+                <v-icon color="grey lighten-1">edit</v-icon>
+              </v-btn>
+            </v-list-tile-action>
 
-          <v-list-tile-action v-if="set !== placeholder">
-            <v-btn icon ripple @click.stop="$bus.$emit('delete-custom-set', set)">
-              <v-icon color="grey lighten-1">delete</v-icon>
-            </v-btn>
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list>
+            <v-list-tile-action v-if="set !== placeholder">
+              <v-btn icon ripple @click.stop="$bus.$emit('delete-custom-set', set)">
+                <v-icon color="grey lighten-1">delete</v-icon>
+              </v-btn>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list>
+      </v-card-text>
 
       <v-card-actions>
         <v-btn v-if="customSets.length < 5"

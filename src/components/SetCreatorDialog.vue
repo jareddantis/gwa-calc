@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500">
+  <v-dialog v-model="dialog" :scrollable="true">
     <v-card>
       <v-card-title>
         <span class="title">{{ updating ? 'Edit subject set'
@@ -116,6 +116,9 @@ export default class SetCreatorDialog extends Vue {
     const table = document.querySelector('.set-body') as HTMLDivElement
     Sortable.create(table, {
       handle: '.subject-handle',
+      scroll: true,
+      scrollSensitivity: 70,
+      scrollSpeed: 20,
       onEnd: ({ oldIndex, newIndex }) => {
         const movedSubject = this.subjects.splice(oldIndex!, 1)[0]
         const movedId = this.ids.splice(oldIndex!, 1)[0]

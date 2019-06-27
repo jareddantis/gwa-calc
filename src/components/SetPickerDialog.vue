@@ -1,30 +1,36 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500">
+  <v-dialog v-model="dialog" :scrollable="true">
     <v-card>
       <v-card-title>
         <span class="title">Subject sets</span>
       </v-card-title>
-      <v-list subheader>
-        <v-subheader>Philippine Science High School</v-subheader>
-        <v-list-tile v-for="set in pshsSets"
-                     :key="set" @click="save(set)"
-                     :disabled="set === currentSet">
-          <v-list-tile-content>
-            <v-list-tile-title v-text="set"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-      <v-divider></v-divider>
-      <v-list subheader>
-        <v-subheader>Custom</v-subheader>
-        <v-list-tile v-for="set in customSets"
-                     :key="set" @click="save(set)"
-                     :disabled="set === currentSet">
-          <v-list-tile-content>
-            <v-list-tile-title v-text="set"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
+      <v-card-text>
+        <v-list subheader>
+          <v-subheader>Philippine Science High School</v-subheader>
+          <v-list-tile v-for="set in pshsSets"
+                       :key="set" @click="save(set)"
+                       :disabled="set === currentSet">
+            <v-list-tile-content>
+              <v-list-tile-title v-text="set"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list subheader>
+          <v-subheader>Custom</v-subheader>
+          <v-list-tile v-for="set in customSets"
+                       :key="set" @click="save(set)"
+                       :disabled="set === currentSet">
+            <v-list-tile-content>
+              <v-list-tile-title v-text="set"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn flat @click="dialog = false">Cancel</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
