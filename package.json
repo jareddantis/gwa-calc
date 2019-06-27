@@ -6,6 +6,7 @@
   "version": "0.1.0",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:dist": "ws --spa -d dist --key ssl/localhost.key --cert ssl/localhost.crt --rewrite '/gwa-calc/(.*) -> /$1' -z --http2",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
