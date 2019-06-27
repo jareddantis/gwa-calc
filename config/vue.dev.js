@@ -16,8 +16,12 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.(css|styl)$/,
-          use: ['vue-style-loader'],
+          test: /\.(js|ts|tsx)$/,
+          loader: 'babel-loader',
+        },
+        {
+          test: /\.styl$/,
+          loader: 'stylus-loader',
         },
       ],
     },
