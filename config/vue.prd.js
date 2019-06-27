@@ -1,4 +1,4 @@
-const { DefinePlugin } = require('webpack');
+const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
@@ -8,6 +8,10 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 module.exports = {
   configureWebpack: {
+    output: {
+      filename: '[name].[contenthash:8].js',
+    },
+
     optimization: {
       minimizer: [
         new OptimizeCSSPlugin(),
@@ -16,12 +20,18 @@ module.exports = {
       runtimeChunk: 'single',
       splitChunks: {
         chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0,
         cacheGroups: {
-          vendors: {
-            name: 'vendor',
+          vendor: {
             test: /[\\/]node_modules[\\/]/,
             chunks: 'all',
             enforce: true,
+            name(module) {
+              // from https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              return `npm.${packageName.replace('@', '')}`;
+            },
           },
           styles: {
             name: 'styles',
@@ -98,6 +108,7 @@ module.exports = {
         generateStatsFile: true
       }),
       new PreloadWebpackPlugin(),
+      new HashedModuleIdsPlugin(),
     ],
 
     resolve: {
