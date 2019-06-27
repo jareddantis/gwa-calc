@@ -1,8 +1,7 @@
 <template>
   <v-app :dark="isDarkMode">
     <div id="app">
-      <transition name="zoom" mode="out-in"
-                  @after-leave="scrollToTop">
+      <transition name="zoom" @after-leave="scrollToTop">
         <keep-alive>
           <router-view :key="$route.fullPath"/>
         </keep-alive>
@@ -36,9 +35,9 @@
   .zoom-enter-active, .zoom-leave-active
     will-change: transform, opacity
   .zoom-enter-active
-    transition: all 150ms 300ms $ease-out
+    transition: all 100ms 200ms $ease-out
   .zoom-leave-active
-    transition: all 150ms $ease-in
+    transition: all 100ms $ease-in
 </style>
 
 <script lang="ts">
