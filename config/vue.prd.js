@@ -1,3 +1,4 @@
+const path = require('path');
 const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
@@ -47,9 +48,8 @@ module.exports = {
       rules: [
         {
           test: /\.vue$/,
-          include: /src/,
-          exclude: /node_modules/,
           loader: 'vue-loader',
+          include: [ path.resolve( __dirname, 'src') ]
         },
         {
           test: /\.(js|ts|tsx)$/,
