@@ -37,11 +37,11 @@ import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VSelect, VSp
   computed: mapState(['isDarkMode']),
 })
 export default class GradePickerDialog extends Vue {
+  @Prop({ required: true }) public readonly transmute: boolean | undefined
   public isDarkMode!: boolean
   public readonly possibleGrades = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 4, 5]
   public subjectName: string = ''
   public subjectId: number = 0
-  public transmute: boolean = false
   public value: string = '1.00'
   public dialog: boolean = false
 
@@ -59,11 +59,12 @@ export default class GradePickerDialog extends Vue {
     this.$bus.$on('show-grade-picker-dialog', (payload: any) => {
       const { id, name, transmute, grade } = payload
 
-      this.transmute = transmute
-      this.subjectName = name
-      this.subjectId = id
-      this.value = grade.toFixed(2)
-      this.dialog = true
+      if (this.transmute === transmute) {
+        this.subjectName = name
+        this.subjectId = id
+        this.value = grade.toFixed(2)
+        this.dialog = true
+      }
     })
   }
 

@@ -68,6 +68,10 @@
       </v-card>
     </div>
 
+<!--    Dialogs -->
+    <set-manager-dialog/>
+    <set-creator-dialog/>
+
 <!--    Edit subject confirmation -->
     <v-dialog class="confirm-dialog" v-model="showEditConfirmDialog">
       <v-card>

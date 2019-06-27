@@ -16,7 +16,7 @@
           </v-list-tile>
         </v-list>
         <v-divider></v-divider>
-        <v-list subheader>
+        <v-list subheader v-if="customSets.length > 0">
           <v-subheader>Custom</v-subheader>
           <v-list-tile v-for="set in customSets"
                        :key="set" @click="save(set)"
@@ -26,6 +26,7 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
+        <span v-else class="body-1">You can create custom subject sets in Settings.</span>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -54,8 +55,6 @@ export default class SetPickerDialog extends Vue {
   public currentSet!: string
   public dialog: boolean = false
 
-  private readonly placeholder: string = 'Define new custom set...'
-
   @Watch('dialog')
   public onDialogToggle(newVal: boolean, oldVal: boolean) {
     const rootEl = this.$root.$el as HTMLElement
@@ -71,11 +70,7 @@ export default class SetPickerDialog extends Vue {
   }
 
   public save(set: string) {
-    if (set !== this.placeholder) {
-      this.$store.dispatch('updateCurrentSet', set)
-    } else {
-      this.$bus.$emit('create-new-set', true)
-    }
+    this.$store.dispatch('updateCurrentSet', set)
     this.dialog = false
   }
 
@@ -84,13 +79,7 @@ export default class SetPickerDialog extends Vue {
   }
 
   get customSets(): string[] {
-    const sets = this.$store.getters.customSets
-
-    if (sets.length < 5) {
-      return [this.placeholder].concat(sets)
-    } else {
-      return sets
-    }
+    return this.$store.getters.customSets
   }
 }
 </script>

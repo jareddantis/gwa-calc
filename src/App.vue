@@ -8,12 +8,6 @@
       </transition>
       <navbar/>
     </div>
-
-<!--    Dialogs -->
-    <grade-picker-dialog/>
-    <set-manager-dialog/>
-    <set-picker-dialog/>
-    <set-creator-dialog/>
   </v-app>
 </template>
 
@@ -45,16 +39,10 @@ import Vue from 'vue'
 import { VApp } from 'vuetify/lib'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import GradePickerDialog from '@/components/GradePickerDialog.vue'
 import Navbar from '@/components/Navbar.vue'
-import SetCreatorDialog from '@/components/SetCreatorDialog.vue'
-import SetManagerDialog from '@/components/SetManagerDialog.vue'
-import SetPickerDialog from '@/components/SetPickerDialog.vue'
 
 @Component({
-  components: {
-    GradePickerDialog, Navbar, SetCreatorDialog, SetPickerDialog,
-    SetManagerDialog, VApp },
+  components: { Navbar, VApp },
   computed: mapState(['isDarkMode']),
 })
 export default class App extends Vue {

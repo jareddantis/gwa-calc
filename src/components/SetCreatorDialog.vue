@@ -64,7 +64,6 @@ export default class SetCreatorDialog extends Vue {
   public ids: string[] = []
   public initialName: string = ''
   public name: string = ''
-  public showPickerAfter: boolean = false
   public subjects: any[] = []
   public updating: boolean = false
 
@@ -95,10 +94,9 @@ export default class SetCreatorDialog extends Vue {
   }
 
   public created() {
-    this.$bus.$on('create-new-set', (showPickerAfter: boolean) => {
+    this.$bus.$on('create-new-set', () => {
       this.resetState()
       this.addSubject()
-      this.showPickerAfter = showPickerAfter
       this.updating = false
       this.dialog = true
     })
@@ -106,7 +104,6 @@ export default class SetCreatorDialog extends Vue {
       this.resetState()
       this.populate(set)
       this.name = set
-      this.showPickerAfter = false
       this.updating = true
       this.dialog = true
     })
@@ -195,10 +192,6 @@ export default class SetCreatorDialog extends Vue {
     // Dismiss and reset dialog
     this.dialog = false
     this.resetState()
-    if (this.showPickerAfter) {
-      // Show set picker again if invoked from there
-      this.$bus.$emit('show-set-picker-dialog')
-    }
   }
 
   get subjectNames(): string[] {

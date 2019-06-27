@@ -28,6 +28,10 @@
         </transition-group>
       </div>
 
+<!--      Dialogs -->
+      <grade-picker-dialog :transmute="false"/>
+      <set-picker-dialog/>
+
 <!--      Snackbar -->
       <v-snackbar v-model="clearedGrades"
                   :top="true" :timeout="3000">Cleared grades</v-snackbar>
