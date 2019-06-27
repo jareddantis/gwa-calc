@@ -124,9 +124,13 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
   VSnackbar, VSpacer, VSwitch } from 'vuetify/lib'
+import SetCreatorDialog from '@/components/SetCreatorDialog.vue'
+import SetManagerDialog from '@/components/SetManagerDialog.vue'
 
 @Component({
   components: {
+    SetCreatorDialog, SetManagerDialog,
+    // Vuetify
     VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
     VSnackbar, VSpacer, VSwitch,
   },
