@@ -4,6 +4,7 @@
       <v-card-title>
         <span class="title">Subject sets</span>
       </v-card-title>
+
       <v-card-text>
         <v-list subheader>
           <v-subheader>Philippine Science High School</v-subheader>
@@ -15,7 +16,9 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
+
         <v-divider></v-divider>
+
         <v-list subheader v-if="customSets.length > 0">
           <v-subheader>Custom</v-subheader>
           <v-list-tile v-for="set in customSets"
@@ -26,8 +29,18 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-        <span v-else class="body-1">You can create custom subject sets in Settings.</span>
+        <v-list subheader v-else>
+          <v-subheader>Custom</v-subheader>
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                <span class="body-1">You can create custom subject sets in Settings.</span>
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
       </v-card-text>
+
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn flat @click="dialog = false">Cancel</v-btn>
@@ -42,12 +55,12 @@ import { mapState } from 'vuex'
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 import { Component, Watch } from 'vue-property-decorator'
 import { VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
-  VListTileAction,  VListTileContent, VListTileTitle, VSubheader } from 'vuetify/lib'
+  VListTileAction,  VListTileContent, VListTileTitle, VSpacer, VSubheader } from 'vuetify/lib'
 
 @Component({
   components: {
     VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
-    VListTileAction, VListTileContent, VListTileTitle, VSubheader,
+    VListTileAction, VListTileContent, VListTileTitle, VSpacer, VSubheader,
   },
   computed: mapState(['currentSet']),
 })
