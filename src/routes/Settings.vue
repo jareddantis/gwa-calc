@@ -35,7 +35,7 @@
           <div class="setting">
             <div class="left">
               <span class="subheading">GWA Calc build {{ appVersion }}</span>
-              <span class="caption">&copy; 2019 Jared Dantis. All rights reserved.</span>
+              <span class="caption">&copy; 2019 Jared Dantis. Licensed under AGPLv3.</span>
             </div>
             <div class="right">
               <img :src="require('../assets/jared-dantis.svg')"
