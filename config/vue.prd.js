@@ -1,18 +1,22 @@
 const path = require('path');
 const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
-const PrerenderSPAPlugin = require('prerender-spa-plugin');
+
+const publicPath = '/gwa-calc';
 
 module.exports = {
   configureWebpack: {
-    devtool: '#source-map',
+    devtool: '#cheap-source-map',
 
     output: {
+      path: path.resolve(__dirname, '../dist'),
       filename: '[name].[contenthash:8].js',
     },
 
@@ -108,16 +112,59 @@ module.exports = {
         },
       }),
 
+      // Generate index.html
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: path.resolve(__dirname, '../src/index.html'),
+        title: 'GWA Calc',
+        meta: {
+          'viewport': 'width=device-width, initial-scale=1, shrink-to-fit=no',
+          'charset': 'utf-8',
+
+          // SEO
+          'author': 'Jared Dantis',
+          'description': 'The quick, responsive general weighted average calculator.',
+          'application-name': 'GWA Calc',
+
+          // Twitter card
+          'twitter:card': 'summary',
+          'twitter:site': '@jareddantis',
+          'twitter:title': 'GWA Calc',
+          'twitter:description': 'The quick, responsive general weighted average calculator.',
+          'twitter:image': `${publicPath}/favicon/android-chrome-512x512.png`,
+
+          // PWA
+          'msapplication-TileColor': '#37474F',
+          'msapplication-config': `${publicPath}/favicon/browserconfig.xml`,
+          'theme-color': '#37474F',
+          'apple-mobile-web-app-title': 'GWA Calc',
+          'apple-mobile-web-app-capable': 'yes',
+          'apple-mobile-web-app-status-bar-style': 'default',
+        },
+      }),
+
+      // JavaScript loading
+      new ScriptExtHtmlWebpackPlugin({
+        sync: [ /vue/ ],
+        defaultAttribute: 'async',
+      }),
+
       // Pre-render HTML
       new PrerenderSPAPlugin({
-        staticDir: path.join(__dirname, 'dist'),
+        staticDir: path.join(__dirname, '../dist'),
+        renderer: new PrerenderSPAPlugin.PuppeteerRenderer(),
         routes: [ '/', '/transmute', '/settings' ],
         minify: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
           decodeEntities: true,
           keepClosingSlash: true,
-          sortAttributes: true
+          sortAttributes: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          useShortDoctype: true,
         },
       }),
 
@@ -126,7 +173,6 @@ module.exports = {
         openAnalyzer: false,
         generateStatsFile: true
       }),
-      new PreloadWebpackPlugin(),
       new HashedModuleIdsPlugin(),
     ],
 
@@ -138,8 +184,8 @@ module.exports = {
   },
 
   parallel: true,
-  productionSourceMap: false,
-  publicPath: '/gwa-calc/',
+  productionSourceMap: true,
+  publicPath,
 
   pwa: {
     workboxPluginMode: 'InjectManifest',

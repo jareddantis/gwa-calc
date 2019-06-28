@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Resource prioritization for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Material+Icons|Roboto+Mono&display=swap" as="style">
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Material+Icons|Roboto+Mono&display=swap">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#e65100">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+
+    <!-- Chrome PWA -->
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- iOS PWA -->
+    <link href="./favicon/iPadProIcon.png" sizes="167x167" rel="apple-touch-icon">
+    <link href="./favicon/iPhoneSmallIcon.png" sizes="120x120" rel="apple-touch-icon">
+    <link href="./favicon/iPhoneLargeIcon.png" sizes="180x180" rel="apple-touch-icon">
+    <link href="./favicon/iPadIcon.png" sizes="152x152" rel="apple-touch-icon">
+    <link rel="apple-touch-startup-image" href="./splash/iPhoneSE.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./splash/iPhone.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./splash/iPhonePlus.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./splash/iPhoneX.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./splash/iPad.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./splash/iPadProSmall.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./splash/iPadProBig.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+
+    <!-- GitHub Pages SPA deploy -->
+    <script type="text/javascript">
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>This page requires JavaScript to work. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+  </body>
+</html>
