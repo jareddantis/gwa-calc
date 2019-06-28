@@ -6,6 +6,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
@@ -153,6 +154,9 @@ module.exports = {
         ],
         defaultAttribute: 'defer',
       }),
+
+      // Internalized CSS
+      new StyleExtHtmlWebpackPlugin(),
 
       // Pre-render HTML
       new PrerenderSPAPlugin({
