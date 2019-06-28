@@ -4,6 +4,9 @@ branches:
     - master
 node_js:
   - "node"
+cache:
+  directories:
+    - "$HOME/.npm"
 script:
   - npm run build
 deploy:
