@@ -10,6 +10,8 @@ const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 module.exports = {
   configureWebpack: {
+    devtool: '#source-map',
+
     output: {
       filename: '[name].[contenthash:8].js',
     },
@@ -17,7 +19,10 @@ module.exports = {
     optimization: {
       minimizer: [
         new OptimizeCSSPlugin(),
-        new TerserPlugin({ parallel: true }),
+        new TerserPlugin({
+          parallel: true,
+          sourceMap: true,
+        }),
       ],
       runtimeChunk: 'single',
       splitChunks: {
