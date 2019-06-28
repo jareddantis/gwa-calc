@@ -6,6 +6,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 module.exports = {
   configureWebpack: {
@@ -99,6 +100,19 @@ module.exports = {
             if (day < 10) { day = '0' + day }
             return year.toString() + month + day
           })(),
+        },
+      }),
+
+      // Pre-render HTML
+      new PrerenderSPAPlugin({
+        staticDir: path.join(__dirname, 'dist'),
+        routes: [ '/', '/transmute', '/settings' ],
+        minify: {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          decodeEntities: true,
+          keepClosingSlash: true,
+          sortAttributes: true
         },
       }),
 
