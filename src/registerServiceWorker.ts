@@ -9,15 +9,15 @@ if (process.env.NODE_ENV === 'production') {
       console.log('[sw] Installed service worker')
     })
 
-    wb.addEventListener('waiting', async (event) => {
+    wb.addEventListener('waiting', (event) => {
       // @ts-ignore
       wb.messageSW({
         type: 'SKIP_WAITING',
       })
+    })
 
-      wb.addEventListener('controlling', (event) => {
-        window.location.reload()
-      })
+    wb.addEventListener('controlling', (event) => {
+      window.location.reload()
     })
 
     wb.register()
