@@ -80,7 +80,3 @@ export default class GradePickerDialog extends Vue {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
