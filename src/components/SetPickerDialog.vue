@@ -5,7 +5,7 @@
         <span class="title">Subject sets</span>
       </v-card-title>
 
-      <v-card-text>
+      <div class="set-list">
         <v-list subheader>
           <v-subheader>Philippine Science High School</v-subheader>
           <v-list-tile v-for="set in pshsSets"
@@ -39,7 +39,7 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-      </v-card-text>
+      </div>
 
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -48,6 +48,11 @@
     </v-card>
   </v-dialog>
 </template>
+
+<style scoped lang="stylus">
+  .set-list
+    overflow-y: scroll
+</style>
 
 <script lang="ts">
 import Vue from 'vue'
