@@ -1,15 +1,17 @@
 # gwa-calc
 
-[![Build Status](https://travis-ci.com/jareddantis/gwa-calc.svg?branch=master)](https://travis-ci.com/jareddantis/gwa-calc) [![dependencies](https://david-dm.org/jareddantis/gwa-calc/status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc?type=dev) [![Greenkeeper](https://badges.greenkeeper.io/jareddantis/gwa-calc.svg?style=flat)](https://greenkeeper.io)
+[![Build Status](https://travis-ci.com/jareddantis/gwa-calc.svg?branch=master)](https://travis-ci.com/jareddantis/gwa-calc) [![dependencies](https://david-dm.org/jareddantis/gwa-calc/status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc?type=dev) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
 
 A quick, responsive general weighted average calculator for the modern web. Built with Vue.js and Typescript, by a student, for students.
 
 ## Features
 
 * GWA calculation and grade transmutation for Philippine Science High School students
-* Support for up to 5 sets of 20 custom subjects (for students from other universities)
 * Progressive Web App (can be installed offline)
 * Night mode
+* **Coming soon:** Support for custom subjects (for students from other universities)
+    * In the meantime, you can use the old [GWA Calculator.](https://illustra.github.io/gwa)
+    * This newer calculator will include support for multiple sets of custom subjects, which will be useful for calculating averages per  undergraduate year, for instance.
 
 ## Building
 
