@@ -7,11 +7,9 @@ A quick, responsive general weighted average calculator for the modern web. Buil
 ## Features
 
 * GWA calculation and grade transmutation for Philippine Science High School students
+* Support for up to 5 sets of 20 custom subjects (for students from other universities)
 * Progressive Web App (can be installed offline)
 * Night mode
-* **Coming soon:** Support for custom subjects (for students from other universities)
-    * In the meantime, you can use the old [GWA Calculator.](https://illustra.github.io/gwa)
-    * This newer calculator will include support for multiple sets of custom subjects, which will be useful for calculating averages per  undergraduate year, for instance.
 
 ## Building
 
@@ -31,7 +29,7 @@ You are now ready to make your changes to the files inside `src/`. Preview your 
 ```bash
 npm run serve
 ```
- 
+
 When you're done, test and build the calculator:
 
 ```bash
