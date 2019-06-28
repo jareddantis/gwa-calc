@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="isDarkMode">
-    <div id="app">
-      <transition name="zoom" @after-leave="window.scrollTo(0, 0)">
+    <div id="app" ref="approot">
+      <transition name="zoom" @after-leave="$refs.approot.$el.scrollTo(0, 0)">
         <keep-alive>
           <router-view :key="$route.fullPath"/>
         </keep-alive>
