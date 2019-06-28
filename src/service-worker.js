@@ -9,6 +9,13 @@
 // Debug logs
 workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
 
+// Skip waiting
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
+});
+
 // Precache
 workbox.precaching.precacheAndRoute(self.__precacheManifest);
 
@@ -60,10 +67,4 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
     /^https:\/\/fonts\.gstatic\.com/,
     newCfStrategy('google-fonts-webfonts')
-);
-
-// Cache files from CDNJS and JSDelivr
-workbox.routing.registerRoute(
-    /^https:\/\/(?:cdnjs|cdn)\.(?:cloudflare|jsdelivr)\.(?:com|net)/,
-    newCfStrategy('cdn-resources')
 );
