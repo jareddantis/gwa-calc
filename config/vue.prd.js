@@ -146,7 +146,12 @@ module.exports = {
       // JavaScript loading
       new ScriptExtHtmlWebpackPlugin({
         sync: [ /vue/ ],
-        defaultAttribute: 'async',
+        async: [
+          /calc/,
+          /transmute/,
+          /settings/,
+        ],
+        defaultAttribute: 'defer',
       }),
 
       // Pre-render HTML
