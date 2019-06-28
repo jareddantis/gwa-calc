@@ -2,12 +2,13 @@ language: node_js
 branches:
   only:
     - master
-    - /^greenkeeper/.*$/
+    - /^greenkeeper\/.*$/
 node_js:
   - "node"
 cache:
   directories:
     - "$HOME/.npm"
+install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
 script:
   - npm run build
 deploy:
