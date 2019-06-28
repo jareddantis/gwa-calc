@@ -10,8 +10,6 @@ const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
-const publicPath = '/gwa-calc';
-
 module.exports = {
   configureWebpack: {
     devtool: '#cheap-source-map',
@@ -132,11 +130,11 @@ module.exports = {
           'twitter:site': '@jareddantis',
           'twitter:title': 'GWA Calc',
           'twitter:description': 'The quick, responsive general weighted average calculator.',
-          'twitter:image': `${publicPath}/favicon/android-chrome-512x512.png`,
+          'twitter:image': '/favicon/android-chrome-512x512.png',
 
           // PWA
           'msapplication-TileColor': '#37474F',
-          'msapplication-config': `${publicPath}/favicon/browserconfig.xml`,
+          'msapplication-config': '/favicon/browserconfig.xml',
           'theme-color': '#37474F',
           'apple-mobile-web-app-title': 'GWA Calc',
           'apple-mobile-web-app-capable': 'yes',
@@ -194,7 +192,7 @@ module.exports = {
 
   parallel: true,
   productionSourceMap: true,
-  publicPath,
+  publicPath: '/',
 
   pwa: {
     workboxPluginMode: 'InjectManifest',

@@ -1,5 +1,5 @@
 {
-    "name": "GWA Calculator",
+    "name": "GWA Calc",
     "short_name": "GWA Calc",
     "icons": [
         {
@@ -15,7 +15,7 @@
     ],
     "theme_color": "#37474f",
     "background_color": "#37474f",
-    "start_url": "/gwa-calc/",
-    "scope": "/gwa-calc/",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone"
 }
