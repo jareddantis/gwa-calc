@@ -39,8 +39,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
-import { Component, Watch } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListTile,
   VListTileAction,  VListTileContent, VListTileTitle, VSpacer } from 'vuetify/lib'
 
@@ -53,16 +52,6 @@ import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListTile
 export default class SetManagerDialog extends Vue {
   public dialog: boolean = false
   public placeholder: string = 'You haven\'t defined any custom subjects.'
-
-  @Watch('dialog')
-  public onDialogToggle(newVal: boolean, oldVal: boolean) {
-    const rootEl = this.$root.$el as HTMLElement
-    if (newVal) {
-      disableBodyScroll(rootEl)
-    } else {
-      enableBodyScroll(rootEl)
-    }
-  }
 
   public created() {
     this.$bus.$on('show-set-manager-dialog', () => this.dialog = true)
@@ -80,6 +69,3 @@ export default class SetManagerDialog extends Vue {
 }
 </script>
 
-<style scoped lang="stylus">
-
-</style>

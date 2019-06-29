@@ -72,6 +72,10 @@ div.fragment
   height: 100%
   margin-bottom: $navbar-height
 
+// Don't propagate scroll on dialog overscroll
+.v-dialog
+  overscroll-behavior: contain
+
 // Don't cut off text in Vuetify dialogs
 .v-list__tile__title
   white-space: unset
