@@ -8,6 +8,7 @@ A quick, responsive general weighted average calculator for the modern web. Buil
 
 * GWA calculation and grade transmutation for Philippine Science High School students
 * Support for up to 5 sets of 20 custom subjects (for students from other universities)
+* Share subject sets and calculate with your friends through in-app QR codes
 * Progressive Web App (can be installed offline)
 * Night mode
 
