@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="isDarkMode">
-    <div id="app" ref="approot">
-      <transition name="zoom" @after-leave="$refs.approot.$el.scrollTo(0, 0)">
+    <div id="app">
+      <transition name="zoom" @after-leave="scrollToTop">
         <keep-alive>
           <router-view :key="$route.fullPath"/>
         </keep-alive>
@@ -47,5 +47,10 @@ import Navbar from '@/components/Navbar.vue'
 })
 export default class App extends Vue {
   public isDarkMode!: boolean
+
+  public scrollToTop() {
+    const appRoot = document.getElementById('app') as HTMLDivElement
+    appRoot.scrollTop = 0
+  }
 }
 </script>
