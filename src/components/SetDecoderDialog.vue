@@ -49,7 +49,7 @@ import Vue from 'vue'
 import QRScanner from 'qr-scanner'
 import { decompressFromBase64 } from 'lz-string'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile, VListTileAction,
+import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
   VListTileContent, VListTileTitle, VSnackbar, VSpacer, VToolbar, VToolbarTitle } from 'vuetify/lib'
 
 // @ts-ignore
@@ -57,7 +57,7 @@ import QRScannerWorker from 'qr-scanner/qr-scanner-worker.min.js'
 
 @Component({
   components: {
-    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile, VListTileAction,
+    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
     VListTileContent, VListTileTitle, VSnackbar, VSpacer, VToolbar, VToolbarTitle,
   },
 })

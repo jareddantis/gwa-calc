@@ -52,13 +52,13 @@ import Vue from 'vue'
 import QRCode from 'qrcode'
 import { compressToBase64 } from 'lz-string'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VList, VListTile,
-  VListTileAction,  VListTileContent, VListTileTitle, VSpacer } from 'vuetify/lib'
+import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
+  VListTileContent, VListTileTitle, VProgressCircular, VSpacer } from 'vuetify/lib'
 
 @Component({
   components: {
-    VBtn, VCard, VCardActions, VCardTitle, VDialog, VList, VListTile,
-    VListTileAction, VListTileContent, VListTileTitle, VSpacer,
+    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
+    VListTileContent, VListTileTitle, VProgressCircular, VSpacer,
   },
 })
 export default class SetEncoderDialog extends Vue {
