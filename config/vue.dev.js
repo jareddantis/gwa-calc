@@ -1,4 +1,6 @@
 const fs = require('fs');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 module.exports = {
@@ -18,6 +20,11 @@ module.exports = {
         {
           test: /\.(js|ts|tsx)$/,
           loader: 'babel-loader',
+          exclude: [ path.resolve(__dirname, '../node_modules/qr-scanner/qr-scanner-worker.min.js') ],
+        },
+        {
+          test: /qr-scanner-worker\.min\.js$/,
+          loader: 'file-loader',
         },
         {
           test: /\.styl$/,
@@ -28,6 +35,11 @@ module.exports = {
 
     plugins: [
       new VuetifyLoaderPlugin(),
+
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, '../src/index.html'),
+        title: 'GWA Calc',
+      }),
     ],
 
     resolve: {

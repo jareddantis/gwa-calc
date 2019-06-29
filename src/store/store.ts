@@ -53,6 +53,19 @@ export default new Vuex.Store({
       return Subjects.has(set) ? Subjects.get(set) : state.customSets[set]
     },
     allCustomSets: (state) => state.customSets,
+    customSet: (state) => (set: string) => {
+      if (state.customSets.hasOwnProperty(set)) {
+        return {
+          name: set,
+          subjects: state.customSets[set],
+        }
+      } else {
+        return {
+          name: set,
+          subjects: [],
+        }
+      }
+    },
     customSets: (state) => Array.from(Object.keys(state.customSets)),
     grades: (state) => state.grades,
     transmuteGrades: (state) => state.transmuteGrades,

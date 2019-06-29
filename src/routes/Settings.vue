@@ -16,15 +16,18 @@
       </v-card>
       <v-card>
         <v-card-text>
-          <span class="overline">Data</span>
+          <span class="overline">Custom subjects</span>
 
-          <div class="setting" @click="$bus.$emit('show-set-manager-dialog')">
-            <span class="subheading">Manage custom subject sets</span>
+          <div class="setting" @click="$bus.$emit('show-set-decoder-dialog')">
+            <span class="subheading">Scan subject set code</span>
           </div>
 
-          <div class="setting" @click="showClearDialog = true">
-            <span class="subheading text"
-                  :class="isDarkMode ? 'pink--text' : 'red--text'">Delete all data and reset</span>
+          <div class="setting" @click="$bus.$emit('show-set-encoder-dialog')">
+            <span class="subheading">Share subject set</span>
+          </div>
+
+          <div class="setting" @click="$bus.$emit('show-set-manager-dialog')">
+            <span class="subheading">Manage subject sets</span>
           </div>
         </v-card-text>
       </v-card>
@@ -48,6 +51,11 @@
                target="_blank" rel="noopener"
                class="text--primary subheading">Report a bug or send feedback</a>
           </div>
+
+          <div class="setting" @click="showClearDialog = true">
+            <span class="subheading text"
+                  :class="isDarkMode ? 'pink--text' : 'red--text'">Delete all data and reset</span>
+          </div>
         </v-card-text>
       </v-card>
       <v-card class="donate">
@@ -69,11 +77,13 @@
     </div>
 
 <!--    Dialogs -->
-    <set-manager-dialog/>
     <set-creator-dialog/>
+    <set-decoder-dialog/>
+    <set-encoder-dialog/>
+    <set-manager-dialog/>
 
 <!--    Edit subject confirmation -->
-    <v-dialog class="confirm-dialog" v-model="showEditConfirmDialog">
+    <v-dialog class="confirm-dialog" v-model="showEditConfirmDialog" max-width="400px">
       <v-card>
         <v-card-title>
           <span class="title">Edit {{ setToEdit }}?</span>
@@ -95,7 +105,7 @@
 <!--    Clear data -->
     <v-snackbar v-model="deleteSuccessful" color="success"
                 :top="true" :timeout="3000">Deleted {{ garbage }}</v-snackbar>
-    <v-dialog class="confirm-dialog" v-model="showClearDialog">
+    <v-dialog class="confirm-dialog" v-model="showClearDialog" max-width="400px">
       <v-card>
         <v-card-title>
           <span class="title">Delete {{ garbage }}?</span>
@@ -124,12 +134,9 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
   VSnackbar, VSpacer, VSwitch } from 'vuetify/lib'
-import SetCreatorDialog from '@/components/SetCreatorDialog.vue'
-import SetManagerDialog from '@/components/SetManagerDialog.vue'
 
 @Component({
   components: {
-    SetCreatorDialog, SetManagerDialog,
     // Vuetify
     VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
     VSnackbar, VSpacer, VSwitch,
@@ -156,13 +163,13 @@ export default class Settings extends Vue {
   }
 
   public clearHandler() {
-    this.resetState()
-
     if (this.isClearingSet) {
       this.$store.dispatch('deleteSet', this.garbage).then(() => this.deleteSuccessful = true)
     } else {
       this.$store.dispatch('clearAllData').then(() => this.deleteSuccessful = true)
     }
+
+    this.resetState()
   }
 
   public editConfirmedHandler() {

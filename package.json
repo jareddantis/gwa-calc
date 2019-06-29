@@ -13,9 +13,11 @@
     "analyze": "webpack-bundle-analyzer -O dist/stats.json"
   },
   "dependencies": {
-    "body-scroll-lock": "^2.6.1",
     "core-js": "^2.6.5",
     "localforage": "^1.7.3",
+    "lz-string": "^1.4.4",
+    "qr-scanner": "^1.1.1",
+    "qrcode": "^1.3.3",
     "register-service-worker": "^1.6.2",
     "sortablejs": "^1.10.0-rc2",
     "vue": "^2.6.10",
@@ -31,6 +33,8 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/body-scroll-lock": "^2.6.0",
     "@types/jest": "^23.1.4",
+    "@types/lz-string": "^1.3.33",
+    "@types/qrcode": "^1.3.3",
     "@types/sortablejs": "^1.7.2",
     "@types/workbox-window": "^4.3.0",
     "@vue/cli-plugin-babel": "^3.8.0",
