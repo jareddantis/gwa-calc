@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :scrollable="true">
+  <v-dialog v-model="dialog" scrollable max-width="600px">
     <v-card>
       <v-card-title>
         <span class="title">Manage custom subject sets</span>

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :scrollable="true">
+  <v-dialog v-model="dialog" :scrollable="true" max-width="600px">
     <v-card>
       <v-card-title>
         <span class="title">{{ updating ? 'Edit subject set'
@@ -50,7 +50,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import Sortable from 'sortablejs'
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 import { Component, Watch } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
   VIcon, VSpacer, VTextField } from 'vuetify/lib'
@@ -81,16 +80,6 @@ export default class SetCreatorDialog extends Vue {
         || 'Subject already exists'
     },
     units: (value: any) => !isNaN(value) || 'Invalid number',
-  }
-
-  @Watch('dialog')
-  public onDialogToggle(newVal: boolean, oldVal: boolean) {
-    const rootEl = this.$root.$el as HTMLElement
-    if (newVal) {
-      disableBodyScroll(rootEl)
-    } else {
-      enableBodyScroll(rootEl)
-    }
   }
 
   public created() {

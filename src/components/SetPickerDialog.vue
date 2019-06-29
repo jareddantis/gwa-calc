@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :scrollable="true">
+  <v-dialog v-model="dialog" scrollable max-width="600px">
     <v-card>
       <v-card-title>
         <span class="title">Subject sets</span>
@@ -48,11 +48,6 @@
     </v-card>
   </v-dialog>
 </template>
-
-<style scoped lang="stylus">
-  .set-list
-    overflow-y: scroll
-</style>
 
 <script lang="ts">
 import Vue from 'vue'
