@@ -35,7 +35,11 @@
     </v-dialog>
 
     <!-- Set already exists! -->
-    <v-snackbar v-model="importError" color="danger"
+    <v-snackbar v-model="importSuccess" color="green"
+                :top="true" :timeout="3000">Imported successfully</v-snackbar>
+
+    <!-- Set already exists! -->
+    <v-snackbar v-model="importError" color="red"
                 :top="true" :timeout="3000">{{ importErrorText }}</v-snackbar>
   </div>
 </template>
@@ -61,6 +65,7 @@ export default class SetDecoderDialog extends Vue {
   public confirmDialog: boolean = false
   public importError: boolean = false
   public importErrorText: string = ''
+  public importSuccess: boolean = false
   public importedSet: { [key: string]: any } = {}
   public dialog: boolean = false
   public scannedName: string = ''
@@ -75,22 +80,26 @@ export default class SetDecoderDialog extends Vue {
   public begin() {
     const vidEl = document.getElementById('scanner') as HTMLVideoElement
 
-    this.dialog = true
     this.scanner = new QRScanner(vidEl, (result: string) => this.onScanned(result))
-    this.scanner!.start()
+    this.scanner.start()
+      .then(() => this.dialog = true)
+      .catch((err: any) => this.onError(err))
   }
 
-  public end() {
-    this.reset()
-    this.scanner!.stop()
-    this.scanner!.destroy()
+  public end(isDueToError: boolean) {
+    this.reset(isDueToError)
     this.dialog = false
+
+    if (this.scanner !== null) {
+      this.scanner!.stop()
+      this.scanner!.destroy()
+    }
   }
 
   public onError(text: string) {
     this.importErrorText = text
     this.importError = true
-    this.end()
+    this.end(true)
   }
 
   public onScanned(result: string) {
@@ -140,8 +149,11 @@ export default class SetDecoderDialog extends Vue {
     }
   }
 
-  public reset() {
-    this.importErrorText = ''
+  public reset(isDueToError: boolean) {
+    if (!isDueToError) {
+      this.importErrorText = ''
+    }
+
     this.importedSet = {}
     this.scannedName = ''
     this.scannedPreview = ''
@@ -149,9 +161,9 @@ export default class SetDecoderDialog extends Vue {
   }
 
   public cancel() {
-    this.reset()
+    this.reset(false)
     this.confirmDialog = false
-    this.scanner!.start()
+    this.scanner!.start().catch((err: any) => this.onError(err))
   }
 
   public save() {
@@ -160,8 +172,10 @@ export default class SetDecoderDialog extends Vue {
     // Check if there is no set with the same name
     const { name, subjects } = this.importedSet
     if (this.$store.getters.customSets.indexOf(name)) {
-      this.$store.dispatch('saveSet', { name, subjects })
-      this.end()
+      this.$store.dispatch('saveSet', { name, subjects }).then(() => {
+        this.importSuccess = true
+        this.end(false)
+      })
     } else {
       this.onError(`Set '${name}' already exists`)
     }
