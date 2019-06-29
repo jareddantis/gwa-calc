@@ -46,13 +46,15 @@
               <span class="caption">&copy; 2019 Jared Dantis. Licensed under AGPLv3.</span>
             </div>
             <div class="right">
-              <img :src="require('../assets/jared-dantis.svg')"
-                   alt="Jared Dantis" :class="isDarkMode ? 'invert' : ''">
+              <a href="https://jared.gq" target="_blank" rel="noopener">
+                <img :src="require('../assets/jared-dantis.svg')"
+                     alt="Jared Dantis" :class="isDarkMode ? 'invert' : ''">
+              </a>
             </div>
           </div>
 
           <div class="setting">
-            <a href="http://server.jared.gq/feedback/?subject=GWACalc-Vue"
+            <a :href="`mailto:jareddantis@gmail.com?subject=GWACalc-Vue${appVersion || 'debug'}`"
                target="_blank" rel="noopener"
                class="text--primary subheading">Report a bug or send feedback</a>
           </div>
