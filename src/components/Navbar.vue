@@ -1,14 +1,14 @@
 <template>
   <div class="navbar" :dark="isDarkMode">
-    <router-link to="/" class="tab">
+    <router-link to="/" class="tab" v-ripple>
       <v-icon>functions</v-icon>
       <span>Calculator</span>
     </router-link>
-    <router-link to="/transmute" class="tab">
+    <router-link to="/transmute" class="tab" v-ripple>
       <v-icon>merge_type</v-icon>
       <span>Transmutation</span>
     </router-link>
-    <router-link to="/settings" class="tab">
+    <router-link to="/settings" class="tab" v-ripple>
       <v-icon>settings</v-icon>
       <span>Settings</span>
     </router-link>
