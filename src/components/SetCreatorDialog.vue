@@ -83,6 +83,8 @@ export default class SetCreatorDialog extends Vue {
   }
 
   public created() {
+    this.resetState()
+
     this.$bus.$on('create-new-set', () => {
       this.resetState()
       this.addSubject()
@@ -129,10 +131,8 @@ export default class SetCreatorDialog extends Vue {
     this.initialName = ''
 
     // Empty subjects in case dialog is shown again
-    for (const subject of this.subjects) {
-      this.subjects.pop()
-      this.ids.pop()
-    }
+    this.subjects = []
+    this.ids = []
   }
 
   public addSubject() {
