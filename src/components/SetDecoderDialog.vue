@@ -93,6 +93,7 @@ export default class SetDecoderDialog extends Vue {
     if (this.scanner !== null) {
       this.scanner!.stop()
       this.scanner!.destroy()
+      this.scanner = null
     }
   }
 
@@ -157,7 +158,6 @@ export default class SetDecoderDialog extends Vue {
     this.importedSet = {}
     this.scannedName = ''
     this.scannedPreview = ''
-    this.scanner = null
   }
 
   public cancel() {
