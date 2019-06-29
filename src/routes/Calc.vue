@@ -48,13 +48,9 @@ import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
 import { Subject } from '@/store/subjects'
 import { VIcon, VSnackbar } from 'vuetify/lib'
-import GradePickerDialog from '@/components/GradePickerDialog.vue'
-import SetPickerDialog from '@/components/SetPickerDialog.vue'
-import SubjectCard from '@/components/SubjectCard.vue'
 
 @Component({
   components: {
-    GradePickerDialog, SetPickerDialog, SubjectCard,
     // Vuetify
     VIcon, VSnackbar,
   },
