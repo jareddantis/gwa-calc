@@ -20,6 +20,7 @@ function getInitialState(): { [key: string]: any } {
     grades: new Array(9).fill(1),
     transmuteGrades: new Array(2).fill(1),
     isDarkMode: false,
+    isHiddenPshs: false,
   }
 }
 
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     updateCurrentSet: (state, set) => state.currentSet = set,
     updateDarkMode: (state, mode) => state.isDarkMode = mode,
     updateGrade: (state, { id, grade }) => Vue.set(state.grades, id, grade),
+    updateHiddenPshs: (state, isHidden) => state.isHiddenPshs = isHidden,
     updateTransmuteGrade: (state, { id, grade }) => Vue.set(state.transmuteGrades, id, grade),
   },
   getters: {
@@ -69,6 +71,7 @@ export default new Vuex.Store({
     customSets: (state) => Array.from(Object.keys(state.customSets)),
     grades: (state) => state.grades,
     transmuteGrades: (state) => state.transmuteGrades,
+    hiddenPshs: (state) => state.isHiddenPshs,
     isDarkMode: (state) => state.isDarkMode,
     pshsSets: () => setNames,
   },

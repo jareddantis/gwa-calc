@@ -4,7 +4,7 @@
       <v-icon>functions</v-icon>
       <span>Calculator</span>
     </router-link>
-    <router-link to="/transmute" class="tab" v-ripple>
+    <router-link to="/transmute" class="tab" v-ripple v-show="!isHiddenPshs">
       <v-icon>merge_type</v-icon>
       <span>Transmutation</span>
     </router-link>
@@ -27,9 +27,10 @@ import { VIcon } from 'vuetify/lib'
 
 @Component({
   components: { VIcon },
-  computed: mapState(['isDarkMode']),
+  computed: mapState(['isDarkMode', 'isHiddenPshs']),
 })
 export default class Navbar extends Vue {
   public isDarkMode!: boolean
+  public isHiddenPshs!: boolean
 }
 </script>

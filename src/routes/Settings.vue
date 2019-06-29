@@ -12,6 +12,11 @@
             <span class="subheading" @click="isDarkMode = !isDarkMode">Enable dark mode</span>
             <v-switch :hide-details="true" color="orange" v-model="isDarkMode"></v-switch>
           </div>
+
+          <div class="setting">
+            <span class="subheading" @click="hiddenPshs = !hiddenPshs">Hide PSHS-specific features</span>
+            <v-switch :hide-details="true" color="orange" v-model="hiddenPshs"></v-switch>
+          </div>
         </v-card-text>
       </v-card>
       <v-card>
@@ -192,6 +197,12 @@ export default class Settings extends Vue {
   }
   set isDarkMode(mode: boolean) {
     this.$store.commit('updateDarkMode', mode)
+  }
+  get hiddenPshs(): boolean {
+    return this.$store.getters.hiddenPshs
+  }
+  set hiddenPshs(isHidden: boolean) {
+    this.$store.commit('updateHiddenPshs', isHidden)
   }
 }
 </script>

@@ -9,6 +9,10 @@
                     :subject="'Previous quarter'"/>
       <subject-card :subject-id="1"
                     :subject="'Current tentative'"/>
+
+      <p class="body-1 grey--text">Grade transmutations are performed according to<br>
+        <a href="http://irc.pshs.edu.ph/downloads/2017-student-handbook.pdf#page=28"
+           target="_blank" rel="noopener" class="grey--text">the PSHS System Student Handbook.</a></p>
     </div>
 
     <grade-picker-dialog :transmute="true"/>

@@ -6,7 +6,7 @@
       </v-card-title>
 
       <div class="set-list">
-        <v-list subheader>
+        <v-list subheader v-show="!isHiddenPshs">
           <v-subheader>Philippine Science High School</v-subheader>
           <v-list-tile v-for="set in pshsSets"
                        :key="set" @click="save(set)"
@@ -17,10 +17,10 @@
           </v-list-tile>
         </v-list>
 
-        <v-divider></v-divider>
+        <v-divider v-show="!isHiddenPshs"></v-divider>
 
-        <v-list subheader v-if="customSets.length > 0">
-          <v-subheader>Custom</v-subheader>
+        <v-list :subheader="!isHiddenPshs" v-if="customSets.length > 0">
+          <v-subheader v-show="!isHiddenPshs">Custom subjects</v-subheader>
           <v-list-tile v-for="set in customSets"
                        :key="set" @click="save(set)"
                        :disabled="set === currentSet">
@@ -30,7 +30,7 @@
           </v-list-tile>
         </v-list>
         <v-list subheader v-else>
-          <v-subheader>Custom</v-subheader>
+          <v-subheader>Custom subjects</v-subheader>
           <v-list-tile>
             <v-list-tile-content>
               <v-list-tile-title>
@@ -61,10 +61,11 @@ import { VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
     VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
     VListTileAction, VListTileContent, VListTileTitle, VSpacer, VSubheader,
   },
-  computed: mapState(['currentSet']),
+  computed: mapState(['currentSet', 'isHiddenPshs']),
 })
 export default class SetPickerDialog extends Vue {
   public currentSet!: string
+  public isHiddenPshs!: boolean
   public dialog: boolean = false
 
   public created() {
