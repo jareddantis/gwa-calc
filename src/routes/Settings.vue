@@ -97,7 +97,7 @@
         </v-card-title>
 
         <v-card-text>
-          <p class="body-1 red--text">This will clear your grades for this subject set.</p>
+          <p class="body-1 red--text">Editing the subjects will clear your grades for this subject set.</p>
           <p class="body-1">It's recommended that you back up your currently entered grades first (e.g. through screenshots) before continuing.</p>
         </v-card-text>
 
