@@ -3,7 +3,7 @@
     <!--  Scan dialog -->
     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition">
       <v-card>
-        <v-toolbar dark color="orange">
+        <v-toolbar fixed dark color="orange">
           <v-btn icon dark @click="end">
             <v-icon>close</v-icon>
           </v-btn>
@@ -11,6 +11,7 @@
         </v-toolbar>
 
         <video id="scanner"></video>
+        <p class="hint body-1">Position the code inside the viewfinder</p>
       </v-card>
     </v-dialog>
 
@@ -181,9 +182,17 @@ export default class SetDecoderDialog extends Vue {
 </script>
 
 <style scoped lang="stylus">
+  p.hint
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+
   #scanner
-    max-width: 100%
-    max-height: 100%
-    width: 100%
+    display: block
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%) !important
     height: 100%
 </style>
