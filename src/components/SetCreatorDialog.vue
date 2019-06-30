@@ -148,6 +148,18 @@ export default class SetCreatorDialog extends Vue {
   public addSubject() {
     this.subjects.push({ name: '', units: '' })
     this.ids.push(Date.now().toString())
+
+    // Scroll to bottom after row has been added
+    if (this.subjects.length > 1) {
+      Vue.nextTick(() => {
+        const setBody = document.querySelector('.set-body') as HTMLDivElement
+        setBody.scrollTop = setBody.scrollHeight
+
+        // Focus on subject name field
+        const newNameField = setBody.querySelector('div.subject:last-child .subject-name input') as HTMLInputElement
+        newNameField.focus()
+      })
+    }
   }
 
   public removeSubject(index: number) {
