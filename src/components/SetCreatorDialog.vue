@@ -79,7 +79,17 @@ export default class SetCreatorDialog extends Vue {
       return this.subjectNames.filter((name) => name === value).length < 2
         || 'Subject already exists'
     },
-    units: (value: any) => !isNaN(value) || 'Invalid number',
+    units: (value: any) => {
+      if (isNaN(value)) {
+        return 'Invalid number'
+      } else {
+        if (value > 20 || value <= 0) {
+          return '0 < x <= 20'
+        }
+      }
+
+      return true
+    },
   }
 
   public created() {
