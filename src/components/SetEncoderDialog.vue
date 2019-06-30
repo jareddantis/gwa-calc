@@ -25,7 +25,7 @@
     </v-dialog>
 
 <!--    QR code -->
-    <v-dialog v-model="qrDialog" max-width="480px">
+    <v-dialog v-model="qrDialog" max-width="480px" persistent>
       <v-card>
         <v-card-text v-if="isGenerating">
           <v-progress-circular color="orange" indeterminate></v-progress-circular>

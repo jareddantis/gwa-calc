@@ -1,7 +1,8 @@
 <template>
   <div class="dialog-root">
     <!--  Scan dialog -->
-    <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition">
+    <v-dialog v-model="dialog" persistent fullscreen
+              transition="dialog-bottom-transition">
       <v-card>
         <v-toolbar fixed dark color="orange">
           <v-btn icon dark @click="end">
@@ -11,12 +12,12 @@
         </v-toolbar>
 
         <video id="scanner"></video>
-        <p class="hint body-1">Position the code inside the viewfinder</p>
+        <p class="hint">Position the code inside the viewfinder</p>
       </v-card>
     </v-dialog>
 
     <!--  Import confirm dialog -->
-    <v-dialog v-model="confirmDialog">
+    <v-dialog v-model="confirmDialog" persistent>
       <v-card>
         <v-card-title>
           <span class="title">Scan successful</span>
@@ -192,6 +193,7 @@ export default class SetDecoderDialog extends Vue {
     background: linear-gradient(0, rgba(0, 0, 0, 0.6), transparent)
     margin-bottom: 0
     padding: 2rem 0 1rem
+    color: white
 
   #scanner
     display: block

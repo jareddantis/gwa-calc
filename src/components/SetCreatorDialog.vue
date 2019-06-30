@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :scrollable="true" max-width="600px">
+  <v-dialog v-model="dialog" :scrollable="true" max-width="600px" persistent>
     <v-card>
       <v-card-title>
         <span class="title">{{ updating ? 'Edit subject set'
