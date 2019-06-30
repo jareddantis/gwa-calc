@@ -111,7 +111,7 @@
 
 <!--    Clear data -->
     <v-snackbar v-model="deleteSuccessful" color="success"
-                :top="true" :timeout="3000">Deleted {{ garbage }}</v-snackbar>
+                :top="true" :timeout="3000">Deleted</v-snackbar>
     <v-dialog class="confirm-dialog" v-model="showClearDialog" max-width="400px">
       <v-card>
         <v-card-title>
@@ -171,12 +171,14 @@ export default class Settings extends Vue {
 
   public clearHandler() {
     if (this.isClearingSet) {
-      this.$store.dispatch('deleteSet', this.garbage).then(() => this.deleteSuccessful = true)
+      this.$store.dispatch('deleteSet', this.garbage)
+        .then(() => this.deleteSuccessful = true)
+        .then(() => this.resetState())
     } else {
-      this.$store.dispatch('clearAllData').then(() => this.deleteSuccessful = true)
+      this.$store.dispatch('clearAllData')
+        .then(() => this.deleteSuccessful = true)
+        .then(() => this.resetState())
     }
-
-    this.resetState()
   }
 
   public editConfirmedHandler() {
