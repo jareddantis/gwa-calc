@@ -53,12 +53,12 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
-  VListTileAction,  VListTileContent, VListTileTitle, VSpacer, VSubheader } from 'vuetify/lib'
+import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
+  VListTileAction, VListTileContent, VListTileTitle, VSpacer, VSubheader } from 'vuetify/lib'
 
 @Component({
   components: {
-    VBtn, VCard, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
+    VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
     VListTileAction, VListTileContent, VListTileTitle, VSpacer, VSubheader,
   },
   computed: mapState(['currentSet', 'isHiddenPshs']),
