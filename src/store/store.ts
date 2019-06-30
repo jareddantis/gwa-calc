@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 import localforage from 'localforage'
-import Subjects, { setNames } from './subjects'
+import Subjects, { setNames, compareSets } from './subjects'
 
 Vue.use(Vuex)
 
@@ -86,9 +86,10 @@ export default new Vuex.Store({
         commit('deleteSet', set)
       }
     },
-    editSet({ state, dispatch }, { oldName, newName, subjects }) {
+    editSet({ state, commit, dispatch }, { oldName, newName, subjects }) {
       const oldSets = state.customSets as SubjectSets
       const newSets: SubjectSets = {}
+      let subjectsHaveChanged = false
 
       Object.keys(oldSets).map((name: string) => {
         if (name === oldName) {
@@ -96,6 +97,9 @@ export default new Vuex.Store({
           newSets[newName] = subjects.map((subject: any) => {
             return { name: subject.name, units: parseFloat(subject.units) }
           })
+
+          // Check if new subjects are different
+          subjectsHaveChanged = compareSets(oldSets[oldName], newSets[newName])
         } else {
           // Push old set
           newSets[name] = oldSets[name]
@@ -103,13 +107,22 @@ export default new Vuex.Store({
       })
 
       // Save new sets
+      for (const set of Object.keys(oldSets)) {
+        Vue.delete(state.customSets, set)
+      }
       for (const set of Object.keys(newSets)) {
         Vue.set(state.customSets, set, newSets[set])
       }
 
       // Switch to new set if current set is the old one
       if (state.currentSet === oldName) {
-        dispatch('updateCurrentSet', newName)
+        if (subjectsHaveChanged) {
+          // New subjects, clear grades!
+          dispatch('updateCurrentSet', newName)
+        } else {
+          // Same subjects, no need to clear grades
+          commit('updateCurrentSet', newName)
+        }
       }
     },
     saveSet({ state, commit, dispatch }, { name, subjects }) {

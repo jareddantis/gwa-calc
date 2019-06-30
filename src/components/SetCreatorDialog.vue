@@ -166,11 +166,11 @@ export default class SetCreatorDialog extends Vue {
 
     // Save set if valid
     const { name, subjects } = this
-    if (this.initialName === '' || name === this.initialName) {
-      // New set or old set with new subjects
+    if (this.initialName === '') {
+      // New set
       this.$store.dispatch('saveSet', { name, subjects })
     } else {
-      // Old set with new name (possibly also new subjects)
+      // Old set, possibly with new name and/or subjects
       this.$store.dispatch('editSet', {
         oldName: this.initialName,
         newName: name,

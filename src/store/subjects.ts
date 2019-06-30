@@ -1,13 +1,26 @@
-/**
- * List of all the subjects per PSHS grade level,
- * along with the corresponding grade units.
- *
- * @file subjects.ts
- * @author Jared Dantis (@jareddantis)
- * @license GPLv2
- */
-
 export interface Subject { name: string, units: number }
+
+export function compareSets(oldSet: Subject[], newSet: Subject[]): boolean {
+  // Check if length is different
+  if (oldSet.length !== newSet.length) {
+    return true
+  }
+
+  // Length is the same! Check if subjects are different
+  for (const { name, units } of oldSet) {
+    const matches = newSet.filter((subject) => {
+      return subject.name === name && subject.units === units
+    })
+
+    if (matches.length === 0) {
+      // New set lacks old subject
+      return true
+    }
+  }
+
+  // Subject sets are assumed to be equal
+  return false
+}
 
 const sets = [
   {
