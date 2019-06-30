@@ -125,7 +125,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat @click="resetState">Cancel</v-btn>
-          <v-btn flat @click="clearHandler">Clear</v-btn>
+          <v-btn flat @click="clearHandler">Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
