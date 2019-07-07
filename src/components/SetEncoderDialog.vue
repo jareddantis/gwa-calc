@@ -25,12 +25,10 @@
     </v-dialog>
 
 <!--    QR code -->
-    <v-dialog v-model="qrDialog" max-width="480px" persistent>
+    <v-dialog v-model="qrDialog" max-width="480px" persistent scrollable>
       <v-card>
         <v-card-text v-if="isGenerating">
           <v-progress-circular color="orange" indeterminate></v-progress-circular>
-          <v-spacer></v-spacer>
-          <span class="body-1">Generating QR code</span>
         </v-card-text>
 
         <v-card-text v-else>
@@ -39,26 +37,33 @@
         </v-card-text>
 
         <v-card-actions v-show="!isGenerating">
+          <v-btn flat @click="share" v-show="canShare">Share</v-btn>
+          <v-btn flat @click="saveToDisk">Save</v-btn>
           <v-spacer></v-spacer>
           <v-btn flat @click="reset">Done</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+<!--    Web Share API error -->
+    <v-snackbar v-model="shareFailed" color="red"
+                :top="true" :timeout="3000">Error creating share request</v-snackbar>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import QRCode from 'qrcode'
+import { saveAs as saveToFile } from 'file-saver'
 import { compressToBase64 } from 'lz-string'
 import { Component } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
-  VListTileContent, VListTileTitle, VProgressCircular, VSpacer } from 'vuetify/lib'
+  VListTileContent, VListTileTitle, VProgressCircular, VSnackbar, VSpacer } from 'vuetify/lib'
 
 @Component({
   components: {
     VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
-    VListTileContent, VListTileTitle, VProgressCircular, VSpacer,
+    VListTileContent, VListTileTitle, VProgressCircular, VSnackbar, VSpacer,
   },
 })
 export default class SetEncoderDialog extends Vue {
@@ -69,6 +74,8 @@ export default class SetEncoderDialog extends Vue {
   public generationFailed: boolean = false
   public isGenerating: boolean = false
   public qrDialog: boolean = false
+  public shareError: string = ''
+  public shareFailed: boolean = false
 
   public created() {
     this.$bus.$on('show-set-encoder-dialog', () => {
@@ -84,7 +91,51 @@ export default class SetEncoderDialog extends Vue {
     this.generationFailed = false
     this.isGenerating = false
     this.qrDialog = false
+    this.shareError = ''
     this.dialog = false
+  }
+
+  public async createQRFile(): Promise<File> {
+    const blob: any = await (await fetch(this.generatedQR)).blob()
+    blob.lastModifiedDate = new Date()
+    blob.type = 'image/png'
+    blob.name = `${this.encodedSet.replace(/ /g, '')}.png`
+
+    return new Promise((resolve) => {
+      resolve(blob)
+    })
+  }
+
+  public async share() {
+    this.isGenerating = true
+
+    const data = {
+      files: [ await this.createQRFile() ],
+      title: this.encodedSet,
+      text: `Calculate your average for ${this.encodedSet}`,
+      url: 'https://calc.jared.gq',
+    }
+
+    if (navigator.canShare(data)) {
+      navigator.share(data)
+        .then(() => this.isGenerating = false)
+        .catch((err) => {
+          this.shareError = err
+          this.shareFailed = true
+          this.isGenerating = false
+        })
+    } else {
+      this.shareError = 'Browser does not support file sharing'
+      this.shareFailed = true
+      this.isGenerating = false
+    }
+  }
+
+  public async saveToDisk() {
+    this.isGenerating = true
+    const file = await this.createQRFile()
+    saveToFile(file, file.name)
+    this.isGenerating = false
   }
 
   public async encode(set: string) {
@@ -95,14 +146,9 @@ export default class SetEncoderDialog extends Vue {
     // Get subjects
     const subjectSet = this.$store.getters.customSet(set)
     if (subjectSet.subjects.length) {
-      // Stringify and compress subjects
-      const subjectSetCompressed = compressToBase64(JSON.stringify(subjectSet))
-      const qrCanvas = document.getElementById('qr-canvas') as HTMLCanvasElement
-
-      // Create QR code
       try {
-        const dataUrl = await QRCode.toDataURL(subjectSetCompressed)
-        this.generatedQR = dataUrl
+        // Create QR code
+        this.generatedQR = await QRCode.toDataURL(compressToBase64(JSON.stringify(subjectSet)))
         this.isGenerating = false
         this.encodedSet = set
       } catch (err) {
@@ -113,6 +159,10 @@ export default class SetEncoderDialog extends Vue {
       this.generationError = `No subjects exist for ${set}.`
       this.generationFailed = true
     }
+  }
+
+  get canShare(): boolean {
+    return navigator.share !== undefined && navigator.canShare !== undefined
   }
 
   get sets(): string[] {
