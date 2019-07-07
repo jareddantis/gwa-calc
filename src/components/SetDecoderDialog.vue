@@ -93,17 +93,6 @@ export default class SetDecoderDialog extends Vue {
       .catch((err: any) => this.onError(err))
   }
 
-  private beginTimer() {
-    // Quit scanner after 5 minutes of inactivity
-    this.exitTimer = window.setTimeout(() => {
-      this.end(false)
-    }, 300000)
-  }
-
-  private endTimer() {
-    window.clearTimeout(this.exitTimer)
-  }
-
   public end(isDueToError: boolean) {
     this.reset(isDueToError)
     this.dialog = false
@@ -206,6 +195,17 @@ export default class SetDecoderDialog extends Vue {
     } else {
       this.onError(`Set '${name}' already exists`)
     }
+  }
+
+  private beginTimer() {
+    // Quit scanner after 5 minutes of inactivity
+    this.exitTimer = window.setTimeout(() => {
+      this.end(false)
+    }, 300000)
+  }
+
+  private endTimer() {
+    window.clearTimeout(this.exitTimer)
   }
 }
 </script>
