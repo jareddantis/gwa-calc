@@ -28,7 +28,8 @@
     <v-dialog v-model="qrDialog" max-width="480px" persistent scrollable>
       <v-card>
         <v-card-text v-if="isGenerating">
-          <v-progress-circular color="orange" indeterminate></v-progress-circular>
+          <v-progress-circular color="orange" indeterminate
+                               :size="70" :width="7"></v-progress-circular>
         </v-card-text>
 
         <v-card-text v-else>
@@ -96,19 +97,19 @@ export default class SetEncoderDialog extends Vue {
   }
 
   public async createQRFile(): Promise<File> {
-    const blob: any = await (await fetch(this.generatedQR)).blob()
-    blob.lastModifiedDate = new Date()
-    blob.type = 'image/png'
-    blob.name = `${this.encodedSet.replace(/ /g, '')}.png`
+    this.isGenerating = true
+    const blob = await (await fetch(this.generatedQR)).blob()
+    const file = new File([blob], `${this.encodedSet.replace(/ /g, '')}.png`, {
+      type: 'image/png',
+    })
 
     return new Promise((resolve) => {
-      resolve(blob)
+      this.isGenerating = false
+      resolve(file)
     })
   }
 
   public async share() {
-    this.isGenerating = true
-
     const data = {
       files: [ await this.createQRFile() ],
       title: this.encodedSet,
@@ -118,24 +119,19 @@ export default class SetEncoderDialog extends Vue {
 
     if (navigator.canShare(data)) {
       navigator.share(data)
-        .then(() => this.isGenerating = false)
         .catch((err) => {
           this.shareError = err
           this.shareFailed = true
-          this.isGenerating = false
         })
     } else {
       this.shareError = 'Browser does not support file sharing'
       this.shareFailed = true
-      this.isGenerating = false
     }
   }
 
   public async saveToDisk() {
-    this.isGenerating = true
     const file = await this.createQRFile()
     saveToFile(file, file.name)
-    this.isGenerating = false
   }
 
   public async encode(set: string) {
@@ -179,4 +175,7 @@ export default class SetEncoderDialog extends Vue {
 
   p.body-1
     text-align: center
+
+  div.v-progress-circular
+    width: 100% !important
 </style>
