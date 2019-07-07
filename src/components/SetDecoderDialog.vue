@@ -26,6 +26,7 @@
         <v-card-text>
           <p>Import <strong>{{ scannedName }}?</strong></p>
           <p>Subjects include <strong>{{ scannedPreview }}</strong></p>
+          <p>You may edit the subjects after importing.</p>
         </v-card-text>
 
         <v-card-actions>
