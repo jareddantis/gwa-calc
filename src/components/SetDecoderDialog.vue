@@ -138,6 +138,11 @@ export default class SetDecoderDialog extends Vue {
             this.scannedPreview = `${subjectsPreview[0]}, ${subjectsPreview[1]}, and ${subjectsPreview[2]}.`
         }
 
+        // Vibrate device, if supported
+        if (window.navigator.vibrate !== undefined) {
+          window.navigator.vibrate(200)
+        }
+
         this.importedSet = data
         this.scannedName = `${data.name} (${totalUnits} total units)`
         this.confirmDialog = true
