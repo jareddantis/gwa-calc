@@ -1,8 +1,9 @@
-# gwa-calc
+# [gwa-calc](https://calc.jared.gq/)
 
 [![Build Status](https://travis-ci.com/jareddantis/gwa-calc.svg?branch=master)](https://travis-ci.com/jareddantis/gwa-calc) [![dependencies](https://david-dm.org/jareddantis/gwa-calc/status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc?type=dev) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
 
-A quick, responsive general weighted average calculator for the modern web. Built with Vue.js and Typescript, by a student, for students.
+A quick, responsive general weighted average calculator for the modern web.
+Built with Vue.js and Typescript, by a student, for students.
 
 ## Features
 
@@ -50,6 +51,7 @@ If you have a suggestion for the calculator, you can either
 ## Credits
 
 - [@eligrey/FileSaver.js](https://github.com/eligrey/FileSaver.js/)
+- [@FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
 - [@google/material-design-icons,](https://material.io) [/workbox](https://github.com/googlechrome/workbox)
 - [@localForage](https://github.com/localForage/localForage)
 - [@nimiq/qr-scanner](https://github.com/nimiq/qr-scanner)
