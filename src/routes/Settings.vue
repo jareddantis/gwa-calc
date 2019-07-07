@@ -78,12 +78,14 @@
           <div class="setting">
             <a href="//paypal.me/jareddantis"
                target="_blank" rel="noopener"
-               class="text--primary subheading">PayPal</a>
+               class="text--primary subheading">PayPal <img :src="require('../assets/paypal.svg')"
+                                                            :class="isDarkMode ? 'invert' : ''"></a>
           </div>
           <div class="setting">
             <a href="//ko-fi.com/dantis"
                target="_blank" rel="noopener"
-               class="text--primary subheading">Ko-fi</a>
+               class="text--primary subheading">Ko-fi <img :src="require('../assets/coffee.svg')"
+                                                           :class="isDarkMode ? 'invert' : ''"></a>
           </div>
         </v-card-text>
       </v-card>
