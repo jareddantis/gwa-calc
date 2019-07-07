@@ -143,6 +143,7 @@ export default class SetDecoderDialog extends Vue {
           window.navigator.vibrate(200)
         }
 
+        this.scanner!.stop()
         this.importedSet = data
         this.scannedName = `${data.name} (${totalUnits} total units)`
         this.confirmDialog = true
@@ -166,8 +167,11 @@ export default class SetDecoderDialog extends Vue {
   }
 
   public cancel() {
-    this.reset(false)
-    this.confirmDialog = false
+    // Restart preview
+    this.scanner!.start().then(() => {
+      this.reset(false)
+      this.confirmDialog = false
+    })
   }
 
   public save() {
