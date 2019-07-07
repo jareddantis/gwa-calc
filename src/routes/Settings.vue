@@ -42,7 +42,7 @@
 
           <div class="setting">
             <div class="left">
-              <span class="subheading">GWA Calc build {{ appVersion }}</span>
+              <span class="subheading">GWA Calc {{ appVersion ? `build ${appVersion}` : 'debug build' }}</span>
               <span class="caption">&copy; 2019 Jared Dantis. Licensed under AGPLv3.</span>
             </div>
             <div class="right">
