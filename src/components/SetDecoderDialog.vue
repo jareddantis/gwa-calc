@@ -73,6 +73,7 @@ export default class SetDecoderDialog extends Vue {
   public dialog: boolean = false
   public scannedName: string = ''
   public scannedPreview: string = ''
+  private exitTimer: number = 0
   private scanner: QRScanner | null = null
 
   public created() {
@@ -85,13 +86,28 @@ export default class SetDecoderDialog extends Vue {
 
     this.scanner = new QRScanner(vidEl, (result: string) => this.onScanned(result))
     this.scanner.start()
-      .then(() => this.dialog = true)
+      .then(() => {
+        this.dialog = true
+        this.beginTimer()
+      })
       .catch((err: any) => this.onError(err))
+  }
+
+  private beginTimer() {
+    // Quit scanner after 5 minutes of inactivity
+    this.exitTimer = window.setTimeout(() => {
+      this.end(false)
+    }, 300000)
+  }
+
+  private endTimer() {
+    window.clearTimeout(this.exitTimer)
   }
 
   public end(isDueToError: boolean) {
     this.reset(isDueToError)
     this.dialog = false
+    this.endTimer()
 
     if (this.scanner !== null) {
       this.scanner!.stop()
@@ -144,6 +160,7 @@ export default class SetDecoderDialog extends Vue {
           window.navigator.vibrate(200)
         }
 
+        this.endTimer()
         this.scanner!.stop()
         this.importedSet = data
         this.scannedName = `${data.name} (${totalUnits} total units)`
@@ -172,6 +189,7 @@ export default class SetDecoderDialog extends Vue {
     this.scanner!.start().then(() => {
       this.reset(false)
       this.confirmDialog = false
+      this.beginTimer()
     })
   }
 
