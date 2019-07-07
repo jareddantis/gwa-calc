@@ -54,6 +54,12 @@
           </div>
 
           <div class="setting">
+            <a href="https://github.com/jareddantis/gwa-calc"
+               target="_blank" rel="noopener"
+               class="text--primary subheading">View on GitHub</a>
+          </div>
+
+          <div class="setting">
             <a :href="`mailto:jareddantis@gmail.com?subject=GWACalc-Vue${appVersion || 'debug'}`"
                target="_blank" rel="noopener"
                class="text--primary subheading">Report a bug or send feedback</a>
