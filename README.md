@@ -10,7 +10,6 @@ A quick, responsive general weighted average calculator for the modern web. Buil
 * Support for up to 5 sets of 20 custom subjects (for students from other universities)
 * Share subject sets and calculate with your friends through in-app QR codes
 * Progressive Web App (can be installed offline)
-* Night mode
 
 ## Building
 
@@ -50,9 +49,15 @@ If you have a suggestion for the calculator, you can either
 
 ## Credits
 
-- Google for the [Material Design](https://material.io) spec and icons
-- [Vue.js](https://vuejs.org/)
-- [Vuetify](https://vuetifyjs.com)
+- [@eligrey/FileSaver.js](https://github.com/eligrey/FileSaver.js/)
+- [@google/material-design-icons,](https://material.io) [/workbox](https://github.com/googlechrome/workbox)
+- [@localForage](https://github.com/localForage/localForage)
+- [@nimiq/qr-scanner](https://github.com/nimiq/qr-scanner)
+- [@pieroxy/lz-string](https://github.com/pieroxy/lz-string)
+- [@soldair/node-qrcode](https://github.com/soldair/node-qrcode)
+- [@SortableJS](https://github.com/SortableJS/Sortable)
+- [@vuejs](https://vuejs.org/)
+- [@vuetifyjs](https://vuetifyjs.com)
 
 ## License
 
