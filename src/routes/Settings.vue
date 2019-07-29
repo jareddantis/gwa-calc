@@ -209,7 +209,6 @@ export default class Settings extends Vue {
   }
   set isDarkMode(mode: boolean) {
     this.$store.commit('updateDarkMode', mode)
-    this.$vuetify.theme.dark = mode
   }
   get hiddenPshs(): boolean {
     return this.$store.getters.hiddenPshs

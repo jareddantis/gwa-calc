@@ -38,7 +38,7 @@
 import Vue from 'vue'
 import { VApp } from 'vuetify/lib'
 import { mapState } from 'vuex'
-import { Component } from 'vue-property-decorator'
+import { Component, Watch } from 'vue-property-decorator'
 import Navbar from '@/components/Navbar.vue'
 
 @Component({
@@ -48,13 +48,14 @@ import Navbar from '@/components/Navbar.vue'
 export default class App extends Vue {
   public isDarkMode!: boolean
 
-  public mounted() {
-    this.$vuetify.theme.dark = this.isDarkMode
-  }
-
   public scrollToTop() {
     const appRoot = document.getElementById('app') as HTMLDivElement
     appRoot.scrollTop = 0
+  }
+
+  @Watch('isDarkMode', { immediate: true })
+  private updateVuetifyTheme(theme: boolean) {
+    this.$vuetify.theme.dark = theme
   }
 }
 </script>
