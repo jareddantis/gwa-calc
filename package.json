@@ -54,6 +54,7 @@
     "html-minifier": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
+    "lint-staged": "^9.2.1",
     "material-shadows": "^3.0.1",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
@@ -77,5 +78,18 @@
     "vuetify-loader": "^1.3.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^3.7.2"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }
