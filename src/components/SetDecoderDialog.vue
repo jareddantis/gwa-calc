@@ -2,7 +2,7 @@
   <div class="dialog-root">
     <!--  Scan dialog -->
     <v-dialog v-model="dialog" persistent fullscreen
-              transition="dialog-bottom-transition">
+              eager transition="dialog-bottom-transition">
       <v-card>
         <v-toolbar fixed dark color="orange">
           <v-btn icon dark @click="end">
