@@ -9,12 +9,12 @@
 
         <div class="set-list" v-if="sets.length > 0">
           <v-list>
-            <v-list-tile v-for="set in sets"
+            <v-list-item v-for="set in sets"
                          :key="set" @click="encode(set)">
-              <v-list-tile-content>
-                <v-list-tile-title v-text="set"></v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+              <v-list-item-content>
+                <v-list-item-title v-text="set"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
         </div>
 
@@ -38,10 +38,10 @@
         </v-card-text>
 
         <v-card-actions v-show="!isGenerating">
-          <v-btn flat @click="share" v-show="canShare">Share</v-btn>
-          <v-btn flat @click="saveToDisk">Save</v-btn>
+          <v-btn text @click="share" v-show="canShare">Share</v-btn>
+          <v-btn text @click="saveToDisk">Save</v-btn>
           <v-spacer></v-spacer>
-          <v-btn flat @click="reset">Done</v-btn>
+          <v-btn text @click="reset">Done</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -58,13 +58,13 @@ import QRCode from 'qrcode'
 import { saveAs as saveToFile } from 'file-saver'
 import { compressToBase64 } from 'lz-string'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
-  VListTileContent, VListTileTitle, VProgressCircular, VSnackbar, VSpacer } from 'vuetify/lib'
+import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListItem,
+  VListItemContent, VListItemTitle, VProgressCircular, VSnackbar, VSpacer } from 'vuetify/lib'
 
 @Component({
   components: {
-    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListTile,
-    VListTileContent, VListTileTitle, VProgressCircular, VSnackbar, VSpacer,
+    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListItem,
+    VListItemContent, VListItemTitle, VProgressCircular, VSnackbar, VSpacer,
   },
 })
 export default class SetEncoderDialog extends Vue {

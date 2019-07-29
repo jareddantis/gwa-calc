@@ -45,7 +45,7 @@ module.exports = {
           },
           styles: {
             name: 'styles',
-            test: /\.(css|styl)$/,
+            test: /\.(css|styl|s[ac]ss)$/,
             chunks: 'all',
             enforce: true,
           },

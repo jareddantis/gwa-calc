@@ -38,10 +38,10 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn :disabled="subjects.length >= 20" flat @click="addSubject">Add row</v-btn>
+        <v-btn :disabled="subjects.length >= 20" text @click="addSubject">Add row</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat @click="dialog = false">Cancel</v-btn>
-        <v-btn flat @click="save">Save</v-btn>
+        <v-btn text @click="dialog = false">Cancel</v-btn>
+        <v-btn text @click="save">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

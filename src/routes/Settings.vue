@@ -9,12 +9,12 @@
           <span class="overline">Appearance</span>
 
           <div class="setting">
-            <span class="subheading" @click="isDarkMode = !isDarkMode">Enable dark mode</span>
+            <span class="body-1 text--primary" @click="isDarkMode = !isDarkMode">Enable dark mode</span>
             <v-switch :hide-details="true" color="orange" v-model="isDarkMode"></v-switch>
           </div>
 
           <div class="setting">
-            <span class="subheading" @click="hiddenPshs = !hiddenPshs">Hide PSHS-specific features</span>
+            <span class="body-1 text--primary" @click="hiddenPshs = !hiddenPshs">Hide PSHS-specific features</span>
             <v-switch :hide-details="true" color="orange" v-model="hiddenPshs"></v-switch>
           </div>
         </v-card-text>
@@ -24,15 +24,15 @@
           <span class="overline">Custom subjects</span>
 
           <div class="setting" @click="$bus.$emit('show-set-decoder-dialog')">
-            <span class="subheading">Scan subject set code</span>
+            <span class="body-1 text--primary">Scan subject set code</span>
           </div>
 
           <div class="setting" @click="$bus.$emit('show-set-encoder-dialog')">
-            <span class="subheading">Share subject set</span>
+            <span class="body-1 text--primary">Share subject set</span>
           </div>
 
           <div class="setting" @click="$bus.$emit('show-set-manager-dialog')">
-            <span class="subheading">Manage subject sets</span>
+            <span class="body-1 text--primary">Manage subject sets</span>
           </div>
         </v-card-text>
       </v-card>
@@ -42,7 +42,7 @@
 
           <div class="setting">
             <div class="left">
-              <span class="subheading">GWA Calc {{ appVersion ? `build ${appVersion}` : 'debug build' }}</span>
+              <span class="body-1 text--primary">GWA Calc {{ appVersion ? `build ${appVersion}` : 'debug build' }}</span>
               <span class="caption">&copy; 2019 Jared Dantis. Licensed under AGPLv3.</span>
             </div>
             <div class="right">
@@ -56,17 +56,17 @@
           <div class="setting">
             <a href="https://github.com/jareddantis/gwa-calc"
                target="_blank" rel="noopener"
-               class="text--primary subheading">View on GitHub</a>
+               class="text--primary body-1 text--primary">View on GitHub</a>
           </div>
 
           <div class="setting">
             <a :href="`mailto:jareddantis@gmail.com?subject=GWACalc-Vue${appVersion || 'debug'}`"
                target="_blank" rel="noopener"
-               class="text--primary subheading">Report a bug or send feedback</a>
+               class="text--primary body-1 text--primary">Report a bug or send feedback</a>
           </div>
 
           <div class="setting" @click="showClearDialog = true">
-            <span class="subheading text"
+            <span class="body-1 text--primary text"
                   :class="isDarkMode ? 'pink--text' : 'red--text'">Delete all data and reset</span>
           </div>
         </v-card-text>
@@ -78,13 +78,13 @@
           <div class="setting">
             <a href="//paypal.me/jareddantis"
                target="_blank" rel="noopener"
-               class="text--primary subheading">PayPal <img :src="require('../assets/paypal.svg')"
+               class="text--primary body-1 text--primary">PayPal <img :src="require('../assets/paypal.svg')"
                                                             :class="isDarkMode ? 'invert' : ''"></a>
           </div>
           <div class="setting">
             <a href="//ko-fi.com/dantis"
                target="_blank" rel="noopener"
-               class="text--primary subheading">Ko-fi <img :src="require('../assets/coffee.svg')"
+               class="text--primary body-1 text--primary">Ko-fi <img :src="require('../assets/coffee.svg')"
                                                            :class="isDarkMode ? 'invert' : ''"></a>
           </div>
         </v-card-text>
@@ -111,8 +111,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat @click="showEditConfirmDialog = false">Cancel</v-btn>
-          <v-btn flat @click="editConfirmedHandler">Edit</v-btn>
+          <v-btn text @click="showEditConfirmDialog = false">Cancel</v-btn>
+          <v-btn text @click="editConfirmedHandler">Edit</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -132,8 +132,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat @click="resetState">Cancel</v-btn>
-          <v-btn flat @click="clearHandler">Delete</v-btn>
+          <v-btn text @click="resetState">Cancel</v-btn>
+          <v-btn text @click="clearHandler">Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -209,6 +209,7 @@ export default class Settings extends Vue {
   }
   set isDarkMode(mode: boolean) {
     this.$store.commit('updateDarkMode', mode)
+    this.$vuetify.theme.dark = mode
   }
   get hiddenPshs(): boolean {
     return this.$store.getters.hiddenPshs

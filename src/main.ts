@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
+import EventBus from './eventbus'
 import router from './routes'
 import store from './store/store'
-import EventBus from './eventbus'
+import vuetify from './components'
 import './registerServiceWorker'
-import './components'
 
 // Custom filters for grades and averages
 Vue.filter('asGrade', (value?: number) => {
@@ -30,5 +30,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  vuetify,
   render: (h) => h(App),
 }).$mount('#app')

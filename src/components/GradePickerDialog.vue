@@ -16,8 +16,8 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn flat @click="dialog = false">Close</v-btn>
-        <v-btn flat @click="onValueSave">Save</v-btn>
+        <v-btn text @click="dialog = false">Close</v-btn>
+        <v-btn text @click="onValueSave">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -26,7 +26,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { Component, Prop, Watch } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VSelect, VSpacer } from 'vuetify/lib'
 
 @Component({

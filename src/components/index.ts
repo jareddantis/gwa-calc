@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import { Ripple } from 'vuetify/es5/directives'
-import 'vuetify/src/stylus/app.styl'
+import { Ripple } from 'vuetify/lib/directives'
 import '../styles/global.styl'
 
 // Custom components
@@ -15,4 +14,5 @@ Vue.component('set-picker-dialog', () => import('./SetPickerDialog.vue'))
 Vue.component('grade-picker-dialog', () => import('./GradePickerDialog.vue'))
 
 // Material Design elements
-Vue.use(Vuetify, { directives: { Ripple } })
+Vue.use(Vuetify)
+export default new Vuetify({ directives: { Ripple } })

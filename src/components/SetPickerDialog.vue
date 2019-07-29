@@ -8,42 +8,42 @@
       <div class="set-list">
         <v-list subheader v-show="!isHiddenPshs">
           <v-subheader>Philippine Science High School</v-subheader>
-          <v-list-tile v-for="set in pshsSets"
+          <v-list-item v-for="set in pshsSets"
                        :key="set" @click="save(set)"
                        :disabled="set === currentSet">
-            <v-list-tile-content>
-              <v-list-tile-title v-text="set"></v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+            <v-list-item-content>
+              <v-list-item-title v-text="set"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <v-divider v-show="!isHiddenPshs"></v-divider>
 
         <v-list :subheader="!isHiddenPshs" v-if="customSets.length > 0">
           <v-subheader v-show="!isHiddenPshs">Custom subjects</v-subheader>
-          <v-list-tile v-for="set in customSets"
+          <v-list-item v-for="set in customSets"
                        :key="set" @click="save(set)"
                        :disabled="set === currentSet">
-            <v-list-tile-content>
-              <v-list-tile-title v-text="set"></v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+            <v-list-item-content>
+              <v-list-item-title v-text="set"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
         <v-list subheader v-else>
           <v-subheader>Custom subjects</v-subheader>
-          <v-list-tile>
-            <v-list-tile-content>
-              <v-list-tile-title>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>
                 <span class="body-1">You can create custom subject sets in Settings.</span>
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
       </div>
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn flat @click="dialog = false">Cancel</v-btn>
+        <v-btn text @click="dialog = false">Cancel</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -53,13 +53,13 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
-  VListTileAction, VListTileContent, VListTileTitle, VSpacer, VSubheader } from 'vuetify/lib'
+import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListItem,
+  VListItemAction, VListItemContent, VListItemTitle, VSpacer, VSubheader } from 'vuetify/lib'
 
 @Component({
   components: {
-    VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListTile,
-    VListTileAction, VListTileContent, VListTileTitle, VSpacer, VSubheader,
+    VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListItem,
+    VListItemAction, VListItemContent, VListItemTitle, VSpacer, VSubheader,
   },
   computed: mapState(['currentSet', 'isHiddenPshs']),
 })

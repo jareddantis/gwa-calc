@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="isDarkMode">
+  <v-app>
     <div id="app">
       <transition name="zoom" @after-leave="scrollToTop">
         <keep-alive>
@@ -47,6 +47,10 @@ import Navbar from '@/components/Navbar.vue'
 })
 export default class App extends Vue {
   public isDarkMode!: boolean
+
+  public mounted() {
+    this.$vuetify.theme.dark = this.isDarkMode
+  }
 
   public scrollToTop() {
     const appRoot = document.getElementById('app') as HTMLDivElement

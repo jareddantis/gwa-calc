@@ -7,31 +7,31 @@
 
       <v-card-text>
         <v-list>
-          <v-list-tile v-for="set in customSets" :key="set">
-            <v-list-tile-content>
-              <v-list-tile-title v-text="set"></v-list-tile-title>
-            </v-list-tile-content>
+          <v-list-item v-for="set in customSets" :key="set">
+            <v-list-item-content>
+              <v-list-item-title v-text="set"></v-list-item-title>
+            </v-list-item-content>
 
-            <v-list-tile-action v-if="set !== placeholder">
+            <v-list-item-action v-if="set !== placeholder">
               <v-btn icon ripple @click.stop="$bus.$emit('confirm-edit-custom-set', set)">
                 <v-icon color="grey lighten-1">edit</v-icon>
               </v-btn>
-            </v-list-tile-action>
+            </v-list-item-action>
 
-            <v-list-tile-action v-if="set !== placeholder">
+            <v-list-item-action v-if="set !== placeholder">
               <v-btn icon ripple @click.stop="$bus.$emit('delete-custom-set', set)">
                 <v-icon color="grey lighten-1">delete</v-icon>
               </v-btn>
-            </v-list-tile-action>
-          </v-list-tile>
+            </v-list-item-action>
+          </v-list-item>
         </v-list>
       </v-card-text>
 
       <v-card-actions>
         <v-btn v-if="customSets.length < 5"
-               flat @click="$bus.$emit('create-new-set', false)">New</v-btn>
+               text @click="$bus.$emit('create-new-set', false)">New</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat @click="dialog = false">Done</v-btn>
+        <v-btn text @click="dialog = false">Done</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -40,13 +40,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListTile,
-  VListTileAction,  VListTileContent, VListTileTitle, VSpacer } from 'vuetify/lib'
+import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListItem,
+  VListItemAction,  VListItemContent, VListItemTitle, VSpacer } from 'vuetify/lib'
 
 @Component({
   components: {
-    VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListTile,
-    VListTileAction, VListTileContent, VListTileTitle, VSpacer,
+    VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListItem,
+    VListItemAction, VListItemContent, VListItemTitle, VSpacer,
   },
 })
 export default class SetManagerDialog extends Vue {
