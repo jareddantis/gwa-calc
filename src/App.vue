@@ -16,6 +16,8 @@
 
   #app
     width: 100vw
+    will-change: background
+    transition: background 200ms linear
 
   // Router view transition
   .zoom-enter-to, .zoom-leave
