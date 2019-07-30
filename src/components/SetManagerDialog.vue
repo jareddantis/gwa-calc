@@ -13,13 +13,13 @@
             </v-list-item-content>
 
             <v-list-item-action v-if="set !== placeholder">
-              <v-btn icon ripple @click.stop="$bus.$emit('confirm-edit-custom-set', set)">
+              <v-btn icon small @click.stop="$bus.$emit('confirm-edit-custom-set', set)">
                 <v-icon color="grey lighten-1">edit</v-icon>
               </v-btn>
             </v-list-item-action>
 
             <v-list-item-action v-if="set !== placeholder">
-              <v-btn icon ripple @click.stop="$bus.$emit('delete-custom-set', set)">
+              <v-btn icon small @click.stop="$bus.$emit('delete-custom-set', set)">
                 <v-icon color="grey lighten-1">delete</v-icon>
               </v-btn>
             </v-list-item-action>
