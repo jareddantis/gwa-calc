@@ -56,11 +56,6 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.vue$/,
-          loader: 'vue-loader',
-          include: [ path.resolve( __dirname, 'src') ],
-        },
-        {
           test: /\.(js|ts|tsx)$/,
           loader: 'babel-loader',
           exclude: [ path.resolve(__dirname, '../node_modules/qr-scanner/qr-scanner-worker.min.js') ],
