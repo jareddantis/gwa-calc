@@ -2,7 +2,7 @@
   <v-card class="subject" :dark="isDarkMode" :class="inTransmuteMode ? 'full-width' : ''">
     <div class="subject-content" :dark="isDarkMode">
       <div class="label">
-        <p class="body-2">
+        <p class="body-2 font-weight-medium">
           {{ subject }} <span v-if="units" class="units">&bull; {{ units }} unit{{ units !== 1.0 ? 's' : '' }}</span>
         </p>
       </div>
@@ -10,15 +10,18 @@
         <h2 class="monospaced">{{ grade | asGrade }}</h2>
       </div>
       <div class="controls">
-        <div class="button edit" @click="onEditClicked" v-ripple>
-          <v-icon>edit</v-icon>
-        </div>
-        <div class="button minus" @click="$store.dispatch('decrement', { id: subjectId, inTransmuteMode })" v-ripple>
-          <v-icon>remove</v-icon>
-        </div>
-        <div class="button plus" @click="$store.dispatch('increment', { id: subjectId, inTransmuteMode })" v-ripple>
-          <v-icon>add</v-icon>
-        </div>
+        <v-btn class="edit" fab small :color="buttonColor" :dark="isDarkMode"
+               @click="onEditClicked">
+          <v-icon color="black">edit</v-icon>
+        </v-btn>
+        <v-btn class="minus" fab small :color="buttonColor" :dark="isDarkMode"
+               @click="$store.dispatch('decrement', { id: subjectId, inTransmuteMode })">
+          <v-icon color="black">remove</v-icon>
+        </v-btn>
+        <v-btn class="plus" fab small :color="buttonColor" :dark="isDarkMode"
+               @click="$store.dispatch('increment', { id: subjectId, inTransmuteMode })">
+          <v-icon color="black">add</v-icon>
+        </v-btn>
       </div>
     </div>
   </v-card>
@@ -63,6 +66,9 @@ export default class SubjectCard extends Vue {
     })
   }
 
+  get buttonColor(): string {
+    return this.isDarkMode ? 'orange darken-3' : 'orange lighten-4'
+  }
   get grade(): number {
     return (this.inTransmuteMode ? this.$store.getters.transmuteGrades
                                  : this.$store.getters.grades)[this.subjectId!]

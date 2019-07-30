@@ -28,7 +28,6 @@ $col-right = b(col-right)
   .label
     grid-column: col-left / span 2
     grid-row: row-meta
-    font-weight: 500
 
     span.units
       color: gray
@@ -49,26 +48,9 @@ $col-right = b(col-right)
     align-items: flex-end
     justify-content: flex-end
 
-    .button
-      width: 2.5rem
-      height: 2.5rem
+    .edit, .minus, .plus
       margin-left: 1rem
-      cursor: pointer
-      display: flex
-      align-items: center
-      justify-content: center
-      border-radius: 50%
-      background: $orange['lighten-4']
-
-      i
-        color: $orange['darken-4']
 
     .edit
       opacity: 0
       transition: opacity 150ms linear
-
-.subject-content[dark=true] .button
-  background: $orange['darken-3']
-
-  i
-    color: #303030
