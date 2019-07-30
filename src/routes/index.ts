@@ -23,4 +23,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "settings" */ './Settings.vue'),
     },
   ],
+  scrollBehavior(to: any, from: any, savedPosition: any) {
+    return { x: 0, y: 0 }
+  },
 })
