@@ -5,7 +5,7 @@
               eager transition="dialog-bottom-transition">
       <v-card>
         <v-app-bar absolute dark color="orange">
-          <v-btn icon dark @click="end">
+          <v-btn icon dark @click="end(false)">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Scan code</v-toolbar-title>
@@ -71,6 +71,7 @@ export default class SetDecoderDialog extends Vue {
 
   public created() {
     this.$bus.$on('show-set-decoder-dialog', () => this.begin())
+    this.$bus.$on('router-transition', () => this.end(false))
     QRScanner.WORKER_PATH = QRScannerWorker
   }
 
