@@ -14,7 +14,7 @@
           </div>
 
           <div class="setting">
-            <span class="body-1 text--primary" @click="hiddenPshs = !hiddenPshs">Hide PSHS-specific features</span>
+            <span class="body-1 text--primary" @click="hiddenPshs = !hiddenPshs">Hide PSHS features</span>
             <v-switch :hide-details="true" color="orange" v-model="hiddenPshs"></v-switch>
           </div>
         </v-card-text>
