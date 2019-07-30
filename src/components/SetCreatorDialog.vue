@@ -21,14 +21,14 @@
               <v-icon>drag_indicator</v-icon>
             </div>
             <div class="subject-name">
-              <v-text-field label="Subject name" color="orange" outline
+              <v-text-field label="Subject name" color="orange" outlined
                             :rules="[rules.subjectName, rules.required]"
                             v-model="subject.name" counter="20"
                             maxlength="20" ref="subjectname"></v-text-field>
             </div>
             <div class="subject-units">
               <v-text-field label="Units" color="orange"
-                            outline :rules="[rules.units, rules.required]"
+                            outlined :rules="[rules.units, rules.required]"
                             v-model="subject.units" ref="subjectunits"></v-text-field>
             </div>
             <div class="subject-delete" @click="removeSubject(index)">

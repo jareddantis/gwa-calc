@@ -9,9 +9,9 @@
 <!--        Show grades with 2 decimal places-->
         <v-select :items="possibleGrades.map((grade) => grade.toFixed(2))"
                   :dark="isDarkMode" color="orange"
-                  :value="value"
+                  :value="value" class="grade-selector"
                   @change="onValueChange"
-                  label="Grade" outline></v-select>
+                  label="Grade" outlined></v-select>
       </v-card-text>
 
       <v-card-actions>
@@ -22,6 +22,11 @@
     </v-card>
   </v-dialog>
 </template>
+
+<style lang="stylus" scoped>
+  .grade-selector
+    padding-top: 1rem
+</style>
 
 <script lang="ts">
 import Vue from 'vue'
