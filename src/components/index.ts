@@ -4,7 +4,6 @@ import { Ripple } from 'vuetify/lib/directives'
 import '../styles/global.styl'
 
 // Custom components
-Vue.component('navbar', () => import('./Navbar.vue'))
 Vue.component('subject-card', () => import('./SubjectCard.vue'))
 Vue.component('set-creator-dialog', () => import('./SetCreatorDialog.vue'))
 Vue.component('set-decoder-dialog', () => import('./SetDecoderDialog.vue'))
