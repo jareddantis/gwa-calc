@@ -4,12 +4,12 @@
     <v-dialog v-model="dialog" persistent fullscreen
               eager transition="dialog-bottom-transition">
       <v-card>
-        <v-toolbar fixed dark color="orange">
+        <v-app-bar absolute dark color="orange">
           <v-btn icon dark @click="end">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Scan code</v-toolbar-title>
-        </v-toolbar>
+        </v-app-bar>
 
         <video id="scanner"></video>
         <p class="hint">Position the code inside the viewfinder</p>
