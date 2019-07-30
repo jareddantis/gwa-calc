@@ -53,14 +53,8 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListItem,
-  VListItemAction, VListItemContent, VListItemTitle, VSpacer, VSubheader } from 'vuetify/lib'
 
 @Component({
-  components: {
-    VBtn, VCard, VCardActions, VCardTitle, VDialog, VDivider, VIcon, VList, VListItem,
-    VListItemAction, VListItemContent, VListItemTitle, VSpacer, VSubheader,
-  },
   computed: mapState(['currentSet', 'isHiddenPshs']),
 })
 export default class SetPickerDialog extends Vue {

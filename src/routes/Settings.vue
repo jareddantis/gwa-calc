@@ -147,16 +147,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
-  VSnackbar, VSpacer, VSwitch } from 'vuetify/lib'
 
-@Component({
-  components: {
-    // Vuetify
-    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
-    VSnackbar, VSpacer, VSwitch,
-  },
-})
+@Component
 export default class Settings extends Vue {
   public deleteSuccessful: boolean = false
   public garbage: string = 'all data'

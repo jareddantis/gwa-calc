@@ -51,14 +51,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import Sortable from 'sortablejs'
-import { Component, Watch } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
-  VIcon, VSpacer, VTextField } from 'vuetify/lib'
+import { Component } from 'vue-property-decorator'
 
-@Component({
-  components: { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog,
-    VIcon, VTextField, VSpacer },
-})
+@Component
 export default class SetCreatorDialog extends Vue {
   public dialog: boolean = false
   public ids: string[] = []

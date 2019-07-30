@@ -58,15 +58,8 @@ import QRCode from 'qrcode'
 import { saveAs as saveToFile } from 'file-saver'
 import { compressToBase64 } from 'lz-string'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListItem,
-  VListItemContent, VListItemTitle, VProgressCircular, VSnackbar, VSpacer } from 'vuetify/lib'
 
-@Component({
-  components: {
-    VBtn, VCard, VCardActions, VCardText, VCardTitle, VDialog, VList, VListItem,
-    VListItemContent, VListItemTitle, VProgressCircular, VSnackbar, VSpacer,
-  },
-})
+@Component
 export default class SetEncoderDialog extends Vue {
   public dialog: boolean = false
   public encodedSet: string = ''

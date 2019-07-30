@@ -47,13 +47,8 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component } from 'vue-property-decorator'
 import { Subject } from '@/store/subjects'
-import { VIcon, VSnackbar } from 'vuetify/lib'
 
 @Component({
-  components: {
-    // Vuetify
-    VIcon, VSnackbar,
-  },
   computed: mapState(['currentSet', 'isDarkMode']),
 })
 export default class Calculator extends Vue {

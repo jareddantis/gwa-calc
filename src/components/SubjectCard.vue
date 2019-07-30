@@ -32,10 +32,8 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Component, Prop } from 'vue-property-decorator'
-import { VCard, VIcon } from 'vuetify/lib'
 
 @Component({
-  components: { VCard, VIcon },
   computed: mapState(['isDarkMode']),
 })
 export default class SubjectCard extends Vue {

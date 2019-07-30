@@ -40,15 +40,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import { VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListItem,
-  VListItemAction,  VListItemContent, VListItemTitle, VSpacer } from 'vuetify/lib'
 
-@Component({
-  components: {
-    VBtn, VCard, VCardActions, VCardTitle, VDialog, VIcon, VList, VListItem,
-    VListItemAction, VListItemContent, VListItemTitle, VSpacer,
-  },
-})
+@Component
 export default class SetManagerDialog extends Vue {
   public dialog: boolean = false
   public placeholder: string = 'You haven\'t defined any custom subjects.'
