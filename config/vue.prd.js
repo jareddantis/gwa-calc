@@ -7,12 +7,9 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 module.exports = {
   configureWebpack: {
-    devtool: '#cheap-source-map',
-
     output: {
       path: path.resolve(__dirname, '../dist'),
       filename: '[name].[contenthash:8].js',
@@ -21,10 +18,7 @@ module.exports = {
     optimization: {
       minimizer: [
         new OptimizeCSSPlugin(),
-        new TerserPlugin({
-          parallel: true,
-          sourceMap: true,
-        }),
+        new TerserPlugin({ parallel: true }),
       ],
       runtimeChunk: 'single',
       splitChunks: {
@@ -44,7 +38,7 @@ module.exports = {
           },
           styles: {
             name: 'styles',
-            test: /\.(css|styl|s[ac]ss)$/,
+            test: /\.(c|s[ac])ss$/,
             chunks: 'all',
             enforce: true,
           },
@@ -64,37 +58,17 @@ module.exports = {
           loader: 'file-loader',
         },
         {
-          test: /\.styl$/,
-          loader: 'stylus-loader',
-        },
-        {
           test: /\.css$/,
           use: [
             MiniCSSExtractPlugin.loader,
             'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  require('autoprefixer')(),
-                  require('cssnano')({
-                    preset: ['default', {
-                      discardComments: {
-                        removeAll: true,
-                      },
-                    }],
-                  }),
-                ]
-              }
-            }
+            'postcss-loader',
           ]
         }
       ],
     },
 
     plugins: [
-      new VuetifyLoaderPlugin(),
-
       // Build date in app
       new DefinePlugin({
         'process.env': {
@@ -171,7 +145,6 @@ module.exports = {
   },
 
   parallel: true,
-  productionSourceMap: true,
   publicPath: '/',
 
   pwa: {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import { Ripple } from 'vuetify/lib/directives'
-import '../styles/global.styl'
+import '../styles/global.scss'
 
 // Custom components
 Vue.component('subject-card', () => import('./SubjectCard.vue'))

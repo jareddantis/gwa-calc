@@ -19,8 +19,8 @@
   </div>
 </template>
 
-<style scoped lang="stylus">
-  @import '../styles/routes/Transmute'
+<style lang="scss" scoped>
+@import '../styles/routes/Transmute';
 </style>
 
 <script lang="ts">

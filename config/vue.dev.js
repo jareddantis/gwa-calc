@@ -26,10 +26,6 @@ module.exports = {
           test: /qr-scanner-worker\.min\.js$/,
           loader: 'file-loader',
         },
-        {
-          test: /\.styl$/,
-          loader: 'stylus-loader',
-        },
       ],
     },
 

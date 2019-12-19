@@ -140,8 +140,8 @@
   </div>
 </template>
 
-<style scoped lang="stylus">
-  @import '../styles/routes/Settings'
+<style lang="scss" scoped>
+@import '../styles/routes/Settings';
 </style>
 
 <script lang="ts">

@@ -38,8 +38,8 @@
     </div>
 </template>
 
-<style scoped lang="stylus">
-  @import '../styles/routes/Calc'
+<style lang="scss" scoped>
+@import '../styles/routes/Calc';
 </style>
 
 <script lang="ts">
