@@ -4,7 +4,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
-const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -155,25 +154,6 @@ module.exports = {
 
       // Internalized CSS
       new StyleExtHtmlWebpackPlugin(),
-
-      // Pre-render HTML
-      new PrerenderSPAPlugin({
-        staticDir: path.join(__dirname, '../dist'),
-        renderer: new PrerenderSPAPlugin.PuppeteerRenderer(),
-        routes: [ '/', '/transmute', '/settings' ],
-        minify: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          decodeEntities: true,
-          keepClosingSlash: true,
-          sortAttributes: true,
-          removeComments: true,
-          removeRedundantAttributes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          useShortDoctype: true,
-        },
-      }),
 
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
