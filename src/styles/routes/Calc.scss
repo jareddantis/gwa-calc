@@ -1,77 +1,47 @@
 @import '../global';
 
+$col-menu: b(col-menu);
+$col-avg: b(col-avg);
+$col-clear: b(col-clear);
+
 .calculator {
-  max-width: 960px;
-  margin: 0 auto $navbar-height;
+  //max-width: 960px;
+  //margin: 0 auto;
 }
 
 .head {
   width: 100%;
   height: $header-height;
+  background: linear-gradient(to bottom, rgba(250, 250, 250, 1) 75%, rgba(250, 250, 250, 0) 100%);
   padding: 0 1.5rem;
   position: sticky;
   z-index: 9;
   top: 0;
   left: 0;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: $col-menu 1fr $col-avg 1fr $col-clear 1fr;
+  grid-template-rows: 1fr;
   align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to bottom, rgba(250, 250, 250, 1) 75%, rgba(250, 250, 250, 0) 100%);
 
   & > div {
     flex: 1 1 0;
   }
 
   .left {
+    grid-column: $col-menu;
+  }
+
+  .center {
+    grid-column: $col-avg;
     h1 {
+      text-align: center;
       font-size: 2.5rem;
     }
   }
 
   .right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    .button {
-      border-radius: 1.5rem;
-      padding: 0.5rem 1rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      transition: box-shadow 100ms $ease;
-
-      &:hover {
-        @include z-depth(4);
-      }
-
-      &.clear {
-        background: map-get($orange, 'lighten-4');
-        @include z-depth(2);
-      }
-
-      &.set-picker {
-        margin-left: auto;
-        margin-right: 1rem;
-      }
-
-      span {
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 1rem;
-        color: rgba(0, 0, 0, 0.87);
-        letter-spacing: 1.25px;
-        margin-left: 0.5rem;
-        max-width: 8rem;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-    }
+    grid-column: $col-clear;
+    text-align: right;
   }
 }
 
@@ -91,8 +61,7 @@
 }
 .calculator[dark=true] {
   .head {
-    background: 
-                linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%, 
+    background: linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%,
                 rgba(48, 48, 48, 1) 75%, rgba(48, 48, 48, 0) 100%);
 
     .right {
@@ -113,20 +82,13 @@
   }
 }
 
-
 @media screen and (max-width: 960px) {
   .head {
+    height: 5rem;
     padding: 0 2.5rem;
 
-    .right .button {
-      padding: 0.5rem;
-
-      span {
-        display: none;
-      }
-      i {
-        font-size: 24px;
-      }
+    .center h1 {
+      font-size: 2rem;
     }
   }
 

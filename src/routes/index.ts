@@ -12,16 +12,6 @@ export default new Router({
       name: 'calc',
       component: () => import(/* webpackChunkName: "calc" */ './Calc.vue'),
     },
-    {
-      path: '/transmute',
-      name: 'transmute',
-      component: () => import(/* webpackChunkName: "transmute" */ './Transmute.vue'),
-    },
-    {
-      path: '/settings',
-      name: 'settings',
-      component: () => import(/* webpackChunkName: "settings" */ './Settings.vue'),
-    },
   ],
   scrollBehavior(to: any, from: any, savedPosition: any) {
     return { x: 0, y: 0 }

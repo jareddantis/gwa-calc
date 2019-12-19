@@ -3,17 +3,18 @@
 <!--      Header -->
       <div class="head">
         <div class="left">
+          <v-btn text icon>
+            <v-icon>menu</v-icon>
+          </v-btn>
+        </div>
+        <div class="center">
           <h1 class="monospaced">{{ average | asAverage }}</h1>
         </div>
         <div class="right">
-          <div class="button set-picker" @click="$bus.$emit('show-set-picker-dialog', currentSet.name)" v-ripple>
-            <v-icon>school</v-icon>
-            <span>{{ currentSet }}</span>
-          </div>
-          <div class="button clear" @click="onClearClicked" v-ripple>
+          <v-btn text icon @click="onClearClicked">
             <v-icon>delete</v-icon>
-            <span>clear</span>
-          </div>
+          </v-btn>
+<!--          <div class="button set-picker" @click="$bus.$emit('show-set-picker-dialog', currentSet.name)" v-ripple>-->
         </div>
       </div>
 
@@ -33,8 +34,7 @@
       <set-picker-dialog/>
 
 <!--      Snackbar -->
-      <v-snackbar v-model="clearedGrades"
-                  :top="true" :timeout="3000">Cleared grades</v-snackbar>
+      <v-snackbar v-model="clearedGrades" :timeout="3000">Cleared grades</v-snackbar>
     </div>
 </template>
 
