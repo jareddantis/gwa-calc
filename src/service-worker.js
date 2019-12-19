@@ -3,11 +3,8 @@
     @description Custom logic for the service worker.
                  Handles Google Font and JS lib caching.
     @author Jared Dantis (@jareddantis)
-    @license GPLv2
+    @license AGPLv3
 */
-
-// Debug logs
-workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
 
 // Skip waiting
 self.addEventListener('message', (event) => {
