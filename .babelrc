@@ -1,7 +1,0 @@
-{
-  "presets": [
-    ["@vue/app", { "useBuiltIns": "entry" }],
-    "@babel/env",
-    "@babel/typescript"
-  ]
-}
