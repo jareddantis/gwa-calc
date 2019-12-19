@@ -23,9 +23,10 @@
   </v-dialog>
 </template>
 
-<style lang="stylus" scoped>
-  .grade-selector
-    padding-top: 1rem
+<style lang="scss" scoped>
+.grade-selector {
+  padding-top: 1rem;
+}
 </style>
 
 <script lang="ts">

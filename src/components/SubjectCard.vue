@@ -27,8 +27,8 @@
   </v-card>
 </template>
 
-<style scoped lang="stylus">
-  @import '../styles/components/SubjectCard'
+<style lang="scss" scoped>
+@import '../styles/components/SubjectCard';
 </style>
 
 <script lang="ts">

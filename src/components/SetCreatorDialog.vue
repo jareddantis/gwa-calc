@@ -213,6 +213,6 @@ export default class SetCreatorDialog extends Vue {
 }
 </script>
 
-<style scoped lang="stylus">
-  @import '../styles/components/SetCreatorDialog'
+<style lang="scss" scoped>
+@import '../styles/components/SetCreatorDialog';
 </style>

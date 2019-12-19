@@ -160,15 +160,18 @@ export default class SetEncoderDialog extends Vue {
 }
 </script>
 
-<style scoped lang="stylus">
-  #qr-canvas
-    display: block
-    max-width: 100%
-    margin: 1.5rem auto
+<style lang="scss" scoped>
+#qr-canvas {
+  display: block;
+  max-width: 100%;
+  margin: 1.5rem auto;
+}
 
-  p.body-1
-    text-align: center
+p.body-1 {
+  text-align: center;
+}
 
-  div.v-progress-circular
-    width: 100% !important
+div.v-progress-circular {
+  width: 100% !important;
+}
 </style>

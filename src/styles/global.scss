@@ -1,0 +1,78 @@
+@import '~material-shadows/material-shadows';
+
+$header-height: 7rem;
+$navbar-height: 4rem;
+
+
+$ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+$ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+
+@mixin mdi-18() {
+  font-size: 18px;
+}
+
+
+
+
+@function b($val) {
+  @return unquote('[') + $val + unquote(']');
+}
+
+
+$orange: (
+  'base': #ff9800,
+  'lighten-5': #fff3e0,
+  'lighten-4': #ffe0b2,
+  'lighten-3': #ffcc80,
+  'lighten-2': #ffb74d,
+  'lighten-1': #ffa726,
+  'darken-1': #fb8c00,
+  'darken-2': #f57c00,
+  'darken-3': #ef6c00,
+  'darken-4': #e65100,
+  'accent-1': #ffd180,
+  'accent-2': #ffab40,
+  'accent-3': #ff9100,
+  'accent-4': #ff6d00
+);
+body {
+  overscroll-behavior-y: contain;
+}
+h1, h2, h3, p, td, span, input, select, option, li {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica', 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+
+  &.monospaced {
+    font-weight: 400;
+    font-family: 'Roboto Mono', 'Menlo', 'Ubuntu Mono', 'Courier New', Courier, 'Lucida Console', 'Consolas', monospace;
+  }
+}
+.button {
+
+  touch-action: manipulation;
+
+
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  user-select: none;
+}
+div.fragment {
+  width: 100%;
+  height: 100%;
+  margin-bottom: $navbar-height;
+}
+.v-dialog {
+  overscroll-behavior: contain;
+}
+.v-list__tile__title {
+  white-space: unset;
+  text-overflow: initial;
+  height: auto;
+}
+.v-dialog .set-list {
+  overflow-y: scroll;
+}

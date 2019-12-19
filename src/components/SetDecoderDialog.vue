@@ -204,24 +204,26 @@ export default class SetDecoderDialog extends Vue {
 }
 </script>
 
-<style scoped lang="stylus">
-  p.hint
-    position: absolute
-    width: 100%
-    bottom: 0
-    left: 50%
-    transform: translateX(-50%)
-    text-align: center
-    background: linear-gradient(0, rgba(0, 0, 0, 0.6), transparent)
-    margin-bottom: 0
-    padding: 2rem 0 1rem
-    color: white
+<style lang="scss" scoped>
+p.hint {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: linear-gradient(0, rgba(0, 0, 0, 0.6), transparent);
+  margin-bottom: 0;
+  padding: 2rem 0 1rem;
+  color: white;
+}
 
-  #scanner
-    display: block
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%) !important
-    height: 100%
+#scanner {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  height: 100%;
+}
 </style>
