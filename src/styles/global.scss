@@ -34,13 +34,11 @@ h1, h2, h3, p, td, span, input, select, option, li {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility !important;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-
-  &.monospaced {
-    font-weight: 400;
-    font-family: 'Roboto Mono', 'Menlo', 'Ubuntu Mono', 'Courier New', Courier, 'Lucida Console', 'Consolas', monospace;
-  }
 }
-
+.monospaced {
+  font-weight: 400;
+  font-family: 'Roboto Mono', 'Menlo', 'Ubuntu Mono', 'Courier New', Courier, 'Lucida Console', 'Consolas', monospace;
+}
 a {
   text-decoration: none;
 }

@@ -69,7 +69,7 @@
         </v-list-item>
         <v-list-item @click="showDonate">
           <v-list-item-icon><v-icon>monetization_on</v-icon></v-list-item-icon>
-          <v-list-item-content><v-list-item-title class="body-2">Donate to me &hearts;</v-list-item-title></v-list-item-content>
+          <v-list-item-content><v-list-item-title class="body-2">Donate to me</v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list-item-group>
     </v-list>

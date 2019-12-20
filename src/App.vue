@@ -117,11 +117,14 @@ export default class App extends Vue {
   @Watch('isDarkMode', { immediate: true })
   private updateVuetifyTheme(theme: boolean) {
     const barColor = document.querySelector('meta[name=theme-color]') as HTMLMetaElement
-    if (theme) {
-      barColor.content = '#212121'
-    } else {
-      barColor.content = '#e65100'
+    if (barColor !== null) {
+      if (theme) {
+        barColor.content = '#212121'
+      } else {
+        barColor.content = '#e65100'
+      }
     }
+
     this.$vuetify.theme.dark = theme
   }
 }
