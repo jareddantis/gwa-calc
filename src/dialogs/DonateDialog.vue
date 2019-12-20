@@ -68,7 +68,7 @@ export default class DonateDialog extends Vue {
   public paymayaQR: boolean = false
   public visible: boolean = false
   public cards = [
-    { title: 'paypal', src: 'https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_200x51.png' },
+    { title: 'paypal', src: require('../assets/paypal.png') },
     { title: 'ko-fi', src: require('../assets/Ko-fi_Logo_RGB.png') },
     { title: 'paymaya', src: require('../assets/paymaya.png') },
   ]
