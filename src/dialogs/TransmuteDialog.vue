@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog-root">
+  <div>
     <v-dialog v-model="visible" eager persistent fullscreen transition="dialog-bottom-transition">
       <v-card>
         <v-app-bar absolute :color="isDarkMode ? 'gray' : 'white'" :elevation="0">
@@ -8,7 +8,7 @@
           </v-btn>
         </v-app-bar>
 
-        <v-list class="content">
+        <v-list subheader class="content">
           <v-list-item>
             <div class="final-grade elevation-2">
               <h1 class="monospaced">{{ finalGrade | asGrade }}</h1>

@@ -4,7 +4,10 @@
     <v-img :src="isDarkMode ? darkWaves : lightWaves" aspect-ratio="1.5">
       <div :class="`header ml-4 ${isDarkMode ? '' : 'black--text'}`">
         <h3 class="subtitle-2">GWA Calc {{ appVersion ? `build ${appVersion}` : 'debug build' }}</h3>
-        <p class="caption">&copy; 2015-2020 Jared Dantis<br>Licensed under AGPLv3</p>
+        <p class="caption mb-0">&copy; 2015-2020 <a href="https://jared.gq" class="text--primary"
+                                                    target="_blank" rel="noopener">Jared Dantis</a></p>
+        <p class="caption"><a href="https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md"
+                              target="_blank" class="text--primary" rel="noopener">Licensed under AGPLv3</a></p>
       </div>
     </v-img>
     <v-list nav rounded flat dense>
@@ -37,11 +40,9 @@
         </v-list-item>
         <v-list-item @click="$store.commit('updateDarkMode', !isDarkMode)">
           <v-list-item-icon><v-icon>brightness_3</v-icon></v-list-item-icon>
-          <v-list-item-content><v-list-item-title class="body-2">Toggle dark mode</v-list-item-title></v-list-item-content>
-        </v-list-item>
-        <v-list-item @click="$store.commit('updateHiddenPshs', !isHiddenPshs)">
-          <v-list-item-icon><v-icon>school</v-icon></v-list-item-icon>
-          <v-list-item-content><v-list-item-title class="body-2">Toggle PSHS features</v-list-item-title></v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title class="body-2">{{ isDarkMode ? 'Disable' : 'Enable' }} dark mode</v-list-item-title>
+          </v-list-item-content>
         </v-list-item>
         <v-list-item @click="$bus.$emit('delete-all-data')">
           <v-list-item-icon><v-icon>delete_forever</v-icon></v-list-item-icon>
@@ -50,14 +51,25 @@
       </v-list-item-group>
 
       <v-divider class="my-6"/>
+      <v-subheader class="overline mt-4">Application</v-subheader>
       <v-list-item-group>
-        <v-list-item>
-          <v-list-item-icon><v-icon>monetization_on</v-icon></v-list-item-icon>
-          <v-list-item-content><v-list-item-title class="body-2">Donate</v-list-item-title></v-list-item-content>
+        <v-list-item @click="$store.commit('updateHiddenPshs', !isHiddenPshs)">
+          <v-list-item-icon><v-icon>school</v-icon></v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title class="body-2">{{ isHiddenPshs ? 'Show' : 'Hide ' }} PSHS features</v-list-item-title>
+          </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="sendFeedback">
+        <v-list-item @click="openLink(`mailto:jareddantis@gmail.com?subject=GWACalc-Vue-${this.appVersion || 'debug'}`)">
           <v-list-item-icon><v-icon>comment</v-icon></v-list-item-icon>
           <v-list-item-content><v-list-item-title class="body-2">Send feedback</v-list-item-title></v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="openLink('https://github.com/jareddantis/gwa-calc')">
+          <v-list-item-icon><v-icon>open_in_new</v-icon></v-list-item-icon>
+          <v-list-item-content><v-list-item-title class="body-2">View on GitHub</v-list-item-title></v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="showDonate">
+          <v-list-item-icon><v-icon>monetization_on</v-icon></v-list-item-icon>
+          <v-list-item-content><v-list-item-title class="body-2">Donate to me &hearts;</v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -92,9 +104,13 @@ export default class Drawer extends Vue {
     this.visible = false
   }
 
-  public sendFeedback() {
-    const link = `mailto:jareddantis@gmail.com?subject=GWACalc-Vue-${this.appVersion || 'debug'}`
+  public openLink(link: string) {
     window.open(link, '_blank', 'noopener')
+    this.visible = false
+  }
+
+  public showDonate() {
+    this.$bus.$emit('show-donate-dialog')
     this.visible = false
   }
 

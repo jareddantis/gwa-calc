@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 // Dialogs
+Vue.component('donate-dialog', () => import('./DonateDialog.vue'))
 Vue.component('grade-picker-dialog', () => import('./GradePickerDialog.vue'))
 Vue.component('set-creator-dialog', () => import('./SetCreatorDialog.vue'))
 Vue.component('set-decoder-dialog', () => import('./SetDecoderDialog.vue'))

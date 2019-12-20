@@ -41,6 +41,10 @@ h1, h2, h3, p, td, span, input, select, option, li {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .button {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -60,4 +64,11 @@ h1, h2, h3, p, td, span, input, select, option, li {
   white-space: unset;
   text-overflow: initial;
   height: auto;
+}
+
+svg.theme--light {
+  fill: rgba(0,0,0,.54);
+}
+svg.theme--dark {
+  fill: #ffffff;
 }

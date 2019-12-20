@@ -71,7 +71,6 @@ export default new Vuex.Store({
     customSets: (state) => Array.from(Object.keys(state.customSets)),
     grades: (state) => state.grades,
     transmuteGrades: (state) => state.transmuteGrades,
-    hiddenPshs: (state) => state.isHiddenPshs,
     isDarkMode: (state) => state.isDarkMode,
     pshsSets: () => setNames,
   },

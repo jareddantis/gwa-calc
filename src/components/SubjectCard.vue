@@ -6,7 +6,7 @@
           {{ subject }} <span v-if="units" class="units">&bull; {{ units }} unit{{ units !== 1.0 ? 's' : '' }}</span>
         </p>
       </div>
-      <div class="value" @click="onEditClicked">
+      <div class="value" v-ripple @click="onEditClicked">
         <h2 class="monospaced">{{ grade | asGrade }}</h2>
         <v-icon>arrow_drop_down</v-icon>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog-root">
+  <div>
     <!--  Scan dialog -->
     <v-dialog v-model="dialog" persistent fullscreen
               eager transition="dialog-bottom-transition">

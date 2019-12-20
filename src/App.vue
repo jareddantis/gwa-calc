@@ -4,6 +4,7 @@
       <router-view :key="$route.fullPath"/>
 
       <!-- Dialogs -->
+      <donate-dialog/>
       <set-creator-dialog/>
       <set-decoder-dialog/>
       <set-encoder-dialog/>
