@@ -106,9 +106,9 @@ module.exports = {
           'twitter:image': '/favicon/android-chrome-512x512.png',
 
           // PWA
-          'msapplication-TileColor': '#37474F',
+          'msapplication-TileColor': '#212121',
           'msapplication-config': '/favicon/browserconfig.xml',
-          'theme-color': '#37474F',
+          'theme-color': '#212121',
           'apple-mobile-web-app-title': 'GWA Calc',
           'apple-mobile-web-app-capable': 'yes',
           'apple-mobile-web-app-status-bar-style': 'default',
