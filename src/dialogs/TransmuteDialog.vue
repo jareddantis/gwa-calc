@@ -2,11 +2,11 @@
   <div>
     <v-dialog v-model="visible" eager persistent fullscreen transition="dialog-bottom-transition">
       <v-card>
-        <v-app-bar absolute :color="isDarkMode ? 'gray' : 'white'" :elevation="0">
+        <v-toolbar :color="isDarkMode ? 'gray' : 'white'" :elevation="0">
           <v-btn :dark="isDarkMode" icon @click="visible = false">
             <v-icon>close</v-icon>
           </v-btn>
-        </v-app-bar>
+        </v-toolbar>
 
         <v-list subheader class="content">
           <v-list-item>
