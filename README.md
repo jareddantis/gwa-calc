@@ -1,14 +1,15 @@
 # [gwa-calc](https://calc.jared.gq/)
 
-[![Build Status](https://travis-ci.com/jareddantis/gwa-calc.svg?branch=master)](https://travis-ci.com/jareddantis/gwa-calc) [![dependencies](https://david-dm.org/jareddantis/gwa-calc/status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc?type=dev) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/73b0ee1f-01f1-4660-a201-54e2b5c1efe1/deploy-status)](https://app.netlify.com/sites/gwa-calc/deploys) [![dependencies](https://david-dm.org/jareddantis/gwa-calc/status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc?type=dev) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
 
 A quick, responsive general weighted average calculator for the modern web.
 Built with Vue.js and Typescript, by a student, for students.
 
 ## Features
 
-* GWA calculation and grade transmutation for Philippine Science High School students
-* Support for up to 5 sets of 20 custom subjects (for students from other universities)
+* GWA calculation
+* Support for up to 5 sets of 20 subjects
+* Grade transmutation and preset subjects for Philippine Science High School students
 * Share subject sets and calculate with your friends through in-app QR codes
 * Progressive Web App (can be installed offline)
 
@@ -31,10 +32,10 @@ You are now ready to make your changes to the files inside `src/`. Preview your 
 npm run serve
 ```
 
-When you're done, test and build the calculator:
+When you're done, build the calculator:
 
 ```bash
-npm run test:unit && npm run build
+npm run build
 ```
 
 Then serve the resulting `dist` directory in your [SPA](https://en.wikipedia.org/wiki/Single-page_application) compliant web server of choice.
@@ -65,7 +66,7 @@ If you have a suggestion for the calculator, you can either
 
 ```
 gwa-calc: The quick, responsive GWA calculator for PSHS and college students.
-Copyright (C) 2019 Aurel Jared Dantis
+Copyright (C) 2019-2020 Aurel Jared Dantis
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
