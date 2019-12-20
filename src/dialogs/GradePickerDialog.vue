@@ -11,11 +11,11 @@
                   :dark="isDarkMode" color="orange"
                   :value="value" class="grade-selector"
                   @change="onValueChange"
-                  label="Grade" outlined></v-select>
+                  label="Grade" outlined/>
       </v-card-text>
 
       <v-card-actions>
-        <v-spacer></v-spacer>
+        <v-spacer/>
         <v-btn text @click="dialog = false">Close</v-btn>
         <v-btn text @click="onValueSave">Save</v-btn>
       </v-card-actions>
@@ -24,9 +24,7 @@
 </template>
 
 <style lang="scss" scoped>
-.grade-selector {
-  padding-top: 1rem;
-}
+@import '../styles/dialogs/GradePickerDialog';
 </style>
 
 <script lang="ts">

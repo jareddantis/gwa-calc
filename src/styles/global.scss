@@ -1,13 +1,7 @@
-@import '~material-shadows/material-shadows';
-
 $header-height: 7rem;
 $ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 $ease-out: cubic-bezier(0.19, 1, 0.22, 1);
 $ease: cubic-bezier(0.645, 0.045, 0.355, 1);
-
-@mixin mdi-18() {
-  font-size: 18px;
-}
 
 @function b($val) {
   @return unquote('[') + $val + unquote(']');
@@ -53,9 +47,10 @@ h1, h2, h3, p, td, span, input, select, option, li {
   user-select: none;
 }
 
-div.fragment {
-  width: 100%;
-  height: 100%;
+#app {
+  width: 100vw;
+  will-change: background;
+  transition: background 200ms linear;
 }
 
 .v-dialog {
@@ -65,7 +60,4 @@ div.fragment {
   white-space: unset;
   text-overflow: initial;
   height: auto;
-}
-.v-dialog .set-list {
-  overflow-y: scroll;
 }

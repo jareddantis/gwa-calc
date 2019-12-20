@@ -6,19 +6,16 @@
           {{ subject }} <span v-if="units" class="units">&bull; {{ units }} unit{{ units !== 1.0 ? 's' : '' }}</span>
         </p>
       </div>
-      <div class="value">
+      <div class="value" @click="onEditClicked">
         <h2 class="monospaced">{{ grade | asGrade }}</h2>
+        <v-icon>arrow_drop_down</v-icon>
       </div>
       <div class="controls">
-        <v-btn class="edit" fab small :color="buttonColor" :dark="isDarkMode"
-               @click="onEditClicked">
-          <v-icon color="black">edit</v-icon>
-        </v-btn>
-        <v-btn class="minus" fab small :color="buttonColor" :dark="isDarkMode"
+        <v-btn class="minus elevation-0" fab small :color="buttonColor" :dark="isDarkMode"
                @click="$store.dispatch('decrement', { id: subjectId, inTransmuteMode })">
           <v-icon color="black">remove</v-icon>
         </v-btn>
-        <v-btn class="plus" fab small :color="buttonColor" :dark="isDarkMode"
+        <v-btn class="plus elevation-0" fab small :color="buttonColor" :dark="isDarkMode"
                @click="$store.dispatch('increment', { id: subjectId, inTransmuteMode })">
           <v-icon color="black">add</v-icon>
         </v-btn>
@@ -43,6 +40,7 @@ export default class SubjectCard extends Vue {
   @Prop({ required: true }) public readonly subject: string | undefined
   @Prop({ required: true }) public readonly subjectId: number | undefined
   @Prop({ default: 0 })     public readonly units: number | undefined
+  @Prop({ default: false }) public readonly inTransmuteMode: boolean | undefined
 
   public isDarkMode!: boolean
 
@@ -72,9 +70,6 @@ export default class SubjectCard extends Vue {
   get grade(): number {
     return (this.inTransmuteMode ? this.$store.getters.transmuteGrades
                                  : this.$store.getters.grades)[this.subjectId!]
-  }
-  get inTransmuteMode(): boolean {
-    return this.$route.fullPath.includes('/transmute')
   }
 }
 </script>

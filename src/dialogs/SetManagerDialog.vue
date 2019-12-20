@@ -9,7 +9,7 @@
         <v-list>
           <v-list-item v-for="set in customSets" :key="set">
             <v-list-item-content>
-              <v-list-item-title v-text="set"></v-list-item-title>
+              <v-list-item-title v-text="set"/>
             </v-list-item-content>
 
             <v-list-item-action v-if="set !== placeholder">
@@ -30,7 +30,7 @@
       <v-card-actions>
         <v-btn v-if="customSets.length < 5"
                text @click="$bus.$emit('create-new-set', false)">New</v-btn>
-        <v-spacer></v-spacer>
+        <v-spacer/>
         <v-btn text @click="dialog = false">Done</v-btn>
       </v-card-actions>
     </v-card>

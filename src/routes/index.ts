@@ -13,7 +13,4 @@ export default new Router({
       component: () => import(/* webpackChunkName: "calc" */ './Calc.vue'),
     },
   ],
-  scrollBehavior(to: any, from: any, savedPosition: any) {
-    return { x: 0, y: 0 }
-  },
 })

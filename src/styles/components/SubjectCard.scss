@@ -1,6 +1,5 @@
 @import '../global';
 
-
 $row-meta: b(row-meta);
 $row-grade: b(row-grade);
 $col-left: b(col-left);
@@ -9,10 +8,6 @@ $col-right: b(col-right);
 .subject {
   width: 100%;
   border-radius: 4px;
-  @include z-depth();
-  &:hover .controls .edit {
-    opacity: 1;
-  }
   &.full-width {
     max-width: 100%;
   }
@@ -36,10 +31,14 @@ $col-right: b(col-right);
   .value {
     grid-column: col-left / col-right;
     grid-row: row-grade;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
 
     h2 {
       font-size: 2rem;
       line-height: 2.5rem;
+      margin-right: 0.5rem;
     }
   }
 
@@ -51,13 +50,12 @@ $col-right: b(col-right);
     align-items: flex-end;
     justify-content: flex-end;
 
-    .edit, .minus, .plus {
+    .minus, .plus {
       margin-left: 1rem;
-    }
 
-    .edit {
-      opacity: 0;
-      transition: opacity 150ms linear;
+      &.theme--light i {
+        color: map-get($orange, 'darken-4') !important;
+      }
     }
   }
 }

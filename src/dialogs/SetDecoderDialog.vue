@@ -11,7 +11,7 @@
           <v-toolbar-title>Scan code</v-toolbar-title>
         </v-app-bar>
 
-        <video id="scanner"></video>
+        <video id="scanner"/>
         <p class="hint">Position the code inside the viewfinder</p>
       </v-card>
     </v-dialog>
@@ -30,7 +30,7 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer/>
           <v-btn text @click="cancel">Cancel</v-btn>
           <v-btn text @click="save">Import</v-btn>
         </v-card-actions>
@@ -205,25 +205,5 @@ export default class SetDecoderDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
-p.hint {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  background: linear-gradient(0, rgba(0, 0, 0, 0.6), transparent);
-  margin-bottom: 0;
-  padding: 2rem 0 1rem;
-  color: white;
-}
-
-#scanner {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) !important;
-  height: 100%;
-}
+@import '../styles/dialogs/SetDecoderDialog';
 </style>

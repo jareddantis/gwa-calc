@@ -12,7 +12,7 @@
             <v-list-item v-for="set in sets"
                          :key="set" @click="encode(set)">
               <v-list-item-content>
-                <v-list-item-title v-text="set"></v-list-item-title>
+                <v-list-item-title v-text="set"/>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -29,18 +29,18 @@
       <v-card>
         <v-card-text v-if="isGenerating">
           <v-progress-circular color="orange" indeterminate
-                               :size="70" :width="7"></v-progress-circular>
+                               :size="70" :width="7"/>
         </v-card-text>
 
         <v-card-text v-else>
-          <img id="qr-canvas" :src="generatedQR"/>
+          <img alt="QR code" id="qr-canvas" :src="generatedQR"/>
           <p class="body-1">Tell your friends to scan this code to import <strong>{{ encodedSet }}</strong></p>
         </v-card-text>
 
         <v-card-actions v-show="!isGenerating">
           <v-btn text @click="share" v-show="canShare">Share</v-btn>
           <v-btn text @click="saveToDisk">Save</v-btn>
-          <v-spacer></v-spacer>
+          <v-spacer/>
           <v-btn text @click="reset">Done</v-btn>
         </v-card-actions>
       </v-card>

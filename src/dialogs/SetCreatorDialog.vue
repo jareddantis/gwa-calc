@@ -11,7 +11,7 @@
         <v-text-field ref="setname" label="Subject set name" color="orange"
                       v-model="name" counter="30" maxlength="30"
                       :rules="[rules.setName, rules.required]"
-                      hint="Example: UPD BSCS First Year"></v-text-field>
+                      hint="Example: UPD BSCS First Year"/>
 
         <div class="set-body">
           <div class="subject"
@@ -24,12 +24,12 @@
               <v-text-field label="Subject name" color="orange" outlined
                             :rules="[rules.subjectName, rules.required]"
                             v-model="subject.name" counter="20"
-                            maxlength="20" ref="subjectname"></v-text-field>
+                            maxlength="20" ref="subjectname"/>
             </div>
             <div class="subject-units">
               <v-text-field label="Units" color="orange"
                             outlined :rules="[rules.units, rules.required]"
-                            v-model="subject.units" ref="subjectunits"></v-text-field>
+                            v-model="subject.units" ref="subjectunits"/>
             </div>
             <div class="subject-delete" @click="removeSubject(index)">
               <v-icon>clear</v-icon>
@@ -39,8 +39,8 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn :disabled="subjects.length >= 20" text @click="addSubject">Add row</v-btn>
-        <v-spacer></v-spacer>
+        <v-btn :disabled="subjects.length >= 20" text @click="addSubject">+ subject</v-btn>
+        <v-spacer/>
         <v-btn text @click="dialog = false">Cancel</v-btn>
         <v-btn text @click="save">Save</v-btn>
       </v-card-actions>
@@ -214,5 +214,5 @@ export default class SetCreatorDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/components/SetCreatorDialog';
+@import '../styles/dialogs/SetCreatorDialog';
 </style>

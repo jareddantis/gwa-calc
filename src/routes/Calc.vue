@@ -3,7 +3,7 @@
 <!--      Header -->
       <div class="head">
         <div class="left">
-          <v-btn text icon>
+          <v-btn text icon @click="$bus.$emit('open-drawer')">
             <v-icon>menu</v-icon>
           </v-btn>
         </div>
@@ -14,7 +14,6 @@
           <v-btn text icon @click="onClearClicked">
             <v-icon>delete</v-icon>
           </v-btn>
-<!--          <div class="button set-picker" @click="$bus.$emit('show-set-picker-dialog', currentSet.name)" v-ripple>-->
         </div>
       </div>
 
@@ -31,10 +30,9 @@
 
 <!--      Dialogs -->
       <grade-picker-dialog :transmute="false"/>
-      <set-picker-dialog/>
 
 <!--      Snackbar -->
-      <v-snackbar v-model="clearedGrades" :timeout="3000">Cleared grades</v-snackbar>
+      <v-snackbar v-model="clearedGrades" left :timeout="3000">Cleared grades</v-snackbar>
     </div>
 </template>
 
