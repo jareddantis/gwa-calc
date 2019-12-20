@@ -11,6 +11,7 @@ interface SubjectSets { [key: string]: any[] }
 const vuexLocal = new VuexPersist({
   key: 'gwa-calc',
   storage: localforage,
+  asyncStorage: true,
 })
 
 function getInitialState(): { [key: string]: any } {

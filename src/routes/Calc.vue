@@ -21,7 +21,7 @@
       <div class="body">
         <transition-group name="list" tag="div">
           <subject-card v-for="(subject, i) in currentSubjects"
-                        :key="subject.name"
+                        :key="subject.name" :in-transmute-mode="false"
                         :subject-id="i"
                         :subject="subject.name"
                         :units="subject.units"/>
