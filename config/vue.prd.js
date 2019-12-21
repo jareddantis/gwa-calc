@@ -1,4 +1,4 @@
-const glob = require('glob-all');
+const glob = require('glob');
 const path = require('path');
 const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -92,10 +92,7 @@ module.exports = {
 
       // PurgeCSS
       new PurgecssPlugin({
-        paths: glob.sync([
-          path.join(__dirname, '../src/**/*.vue'),
-          path.join(__dirname, '../node_modules/vuetify/src/**/*.ts'),
-        ]).filter((f) => !/\/$/.test(f)),
+        paths: glob.sync(path.join(__dirname, '../node_modules/vuetify/src/**/*.ts')).filter((f) => !/\/$/.test(f)),
         whitelist: ['html', 'body'],
       }),
 
