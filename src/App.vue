@@ -57,7 +57,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import './styles/global';
+@import './styles/App';
 </style>
 
 <script lang="ts">

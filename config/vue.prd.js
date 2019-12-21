@@ -3,6 +3,7 @@ const path = require('path');
 const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
@@ -136,6 +137,11 @@ module.exports = {
           /settings/,
         ],
         defaultAttribute: 'defer',
+      }),
+
+      // Inline Vuetify CSS
+      new HTMLInlineCSSWebpackPlugin({
+        filter: (filename) => filename.includes('vuetify'),
       }),
 
       // CSS preloading

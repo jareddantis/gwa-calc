@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import { Ripple } from 'vuetify/lib/directives'
-import '../styles/global.scss'
 
 // Custom components
 Vue.component('grade-picker-dialog', () => import(/* webpackChunkName: "grade-picker" */ './dialogs/GradePickerDialog.vue'))

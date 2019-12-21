@@ -5,6 +5,7 @@ import router from './routes'
 import store from './store/store'
 import vuetify from './components'
 import './registerServiceWorker'
+import './styles/global.scss'
 
 // Custom filters for grades and averages
 Vue.filter('asGrade', (value?: number) => {

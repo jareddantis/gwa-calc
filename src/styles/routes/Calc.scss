@@ -1,5 +1,8 @@
 @import '../global';
 
+$ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+$ease: cubic-bezier(0.645, 0.045, 0.355, 1);
 $col-menu: b(col-menu);
 $col-avg: b(col-avg);
 $col-clear: b(col-clear);
@@ -11,7 +14,7 @@ $col-clear: b(col-clear);
 
 .head {
   width: 100%;
-  height: $header-height;
+  height: 7rem;
   background: linear-gradient(to bottom, rgba(250, 250, 250, 1) 75%, rgba(250, 250, 250, 0) 100%);
   padding: 0 1.5rem;
   position: sticky;
@@ -59,27 +62,9 @@ $col-clear: b(col-clear);
     grid-gap: 1.5rem;
   }
 }
-.calculator[dark=true] {
-  .head {
-    background: linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%,
-                rgba(48, 48, 48, 1) 75%, rgba(48, 48, 48, 0) 100%);
-
-    .right {
-      .button.set-picker {
-        i, span {
-          color: #EEEEEE;
-        }
-      }
-
-      .button.clear {
-        background: map-get($orange, 'darken-3');
-
-        i, span {
-          color: #303030;
-        }
-      }
-    }
-  }
+.calculator[dark=true] .head {
+  background: linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%,
+              rgba(48, 48, 48, 1) 75%, rgba(48, 48, 48, 0) 100%);
 }
 
 @media screen and (max-width: 960px) {
