@@ -1,0 +1,8 @@
+div.method {
+  width: 100%;
+  height: 100%;
+}
+div.container--fluid { max-width: 720px }
+div.method, div.qr-code { background-color: #ffffff }
+.theme--dark div.v-card__text { color: #ffffff }
+.v-image.invert { filter: invert(1) }

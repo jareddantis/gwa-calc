@@ -98,14 +98,7 @@
 </template>
 
 <style lang="scss" scoped>
-  div.method {
-    width: 100%;
-    height: 100%;
-  }
-  div.container--fluid { max-width: 720px }
-  div.method, div.qr-code { background-color: #ffffff }
-  .theme--dark div.v-card__text { color: #ffffff }
-  .v-image.invert { filter: invert(1) }
+@import '../../styles/components/dialogs/DonateDialog.scss';
 </style>
 
 <script lang="ts">
@@ -180,7 +173,7 @@ export default class DonateDialog extends Vue {
         this.qrDialog = true
         break
       default:
-        this.qrSrc = require(`../assets/${method}.png`)
+        this.qrSrc = require(`../../assets/${method}.png`)
         this.qrDialog = true
     }
   }
