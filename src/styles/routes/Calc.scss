@@ -86,6 +86,7 @@ $col-clear: b(col-clear);
     grid-template-columns: 1fr;
   }
 }
+
 .list-enter-active, .list-leave-active {
   will-change: transform;
 }
