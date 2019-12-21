@@ -50,7 +50,6 @@
         </v-list-item>
       </v-list-item-group>
 
-      <v-divider class="my-6"/>
       <v-subheader class="overline mt-4">Application</v-subheader>
       <v-list-item-group>
         <v-list-item @click="$store.commit('updateHiddenPshs', !isHiddenPshs)">
