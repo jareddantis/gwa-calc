@@ -67,13 +67,13 @@ import { Component, Watch } from 'vue-property-decorator'
 
 @Component({
   components: {
-    DonateDialog: () => import('./DonateDialog.vue'),
-    NavDrawer: () => import('./components/NavDrawer.vue'),
-    SetCreatorDialog: () => import('./SetCreatorDialog.vue'),
-    SetDecoderDialog: () => import('./SetDecoderDialog.vue'),
-    SetEncoderDialog: () => import('./SetEncoderDialog.vue'),
-    SetManagerDialog: () => import('./SetManagerDialog.vue'),
-    TransmuteDialog: () => import('./TransmuteDialog.vue'),
+    DonateDialog: () => import(/* webpackChunkName: "dialogs" */ './components/dialogs/DonateDialog.vue'),
+    NavDrawer: () => import(/* webpackChunkName: "drawer" */ './components/NavDrawer.vue'),
+    SetCreatorDialog: () => import(/* webpackChunkName: "dialogs" */ './components/dialogs/SetCreatorDialog.vue'),
+    SetDecoderDialog: () => import(/* webpackChunkName: "dialogs" */ './components/dialogs/SetDecoderDialog.vue'),
+    SetEncoderDialog: () => import(/* webpackChunkName: "dialogs" */ './components/dialogs/SetEncoderDialog.vue'),
+    SetManagerDialog: () => import(/* webpackChunkName: "dialogs" */ './components/dialogs/SetManagerDialog.vue'),
+    TransmuteDialog: () => import(/* webpackChunkName: "dialogs" */ './components/dialogs/TransmuteDialog.vue'),
   },
   computed: mapState(['isDarkMode']),
 })
