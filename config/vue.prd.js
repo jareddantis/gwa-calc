@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
@@ -84,6 +85,9 @@ module.exports = {
         },
       }),
 
+      new HashedModuleIdsPlugin(),
+      new VuetifyLoaderPlugin(),
+
       // Generate index.html
       new HtmlWebpackPlugin({
         filename: 'index.html',
@@ -126,13 +130,14 @@ module.exports = {
         defaultAttribute: 'defer',
       }),
 
+      // CSS preloading
+      new PreloadWebpackPlugin(),
+
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
         openAnalyzer: false,
         generateStatsFile: true
       }),
-      new HashedModuleIdsPlugin(),
-      new VuetifyLoaderPlugin(),
     ],
 
     resolve: {
