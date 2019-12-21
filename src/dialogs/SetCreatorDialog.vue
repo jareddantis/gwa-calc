@@ -127,7 +127,7 @@ export default class SetCreatorDialog extends Vue {
     this.initialName = set
 
     for (const subject of subjects) {
-      this.subjects.push(subject)
+      this.subjects.push(JSON.parse(JSON.stringify(subject)))
       this.ids.push(Math.random().toString(36).substring(2, 15))
     }
   }
