@@ -42,7 +42,7 @@ Then serve the resulting `dist` directory in your [SPA](https://en.wikipedia.org
 
 ## Contributing
 
-The calculator is automatically built with [Travis](https://travis-ci.com) to make updating and testing easier.
+The calculator is automatically built and deployed with Netlify to make updating and testing easier.
 
 If you have a suggestion for the calculator, you can either
 
