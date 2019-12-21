@@ -1,3 +1,4 @@
+const glob = require('glob-all');
 const path = require('path');
 const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -6,6 +7,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
@@ -87,6 +89,15 @@ module.exports = {
 
       new HashedModuleIdsPlugin(),
       new VuetifyLoaderPlugin(),
+
+      // PurgeCSS
+      new PurgecssPlugin({
+        paths: glob.sync([
+          path.join(__dirname, '../src/**/*.vue'),
+          path.join(__dirname, '../node_modules/vuetify/src/**/*.ts'),
+        ]).filter((f) => !/\/$/.test(f)),
+        whitelist: ['html', 'body'],
+      }),
 
       // Generate index.html
       new HtmlWebpackPlugin({
