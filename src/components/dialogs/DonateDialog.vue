@@ -9,7 +9,7 @@
         </v-toolbar>
 
         <v-img :class="`mx-auto mb-4 ${isDarkMode ? 'invert' : ''}`" width="100"
-               alt="Jared Dantis" :src="require('../assets/jared-dantis.svg')"/>
+               alt="Jared Dantis" :src="require('../../assets/jared-dantis.svg')"/>
         <h2 class="subtitle-1 text-center mb-4">Thanks for supporting what I do! &hearts;</h2>
 
         <v-container fluid>
@@ -124,9 +124,9 @@ export default class DonateDialog extends Vue {
   public qrSrc: string = ''
   public visible: boolean = false
   public cards = [
-    { title: 'paypal', src: require('../assets/paypal.png') },
-    { title: 'ko-fi', src: require('../assets/Ko-fi_Logo_RGB.png') },
-    { title: 'paymaya', src: require('../assets/paymaya.png') },
+    { title: 'paypal', src: require('../../assets/paypal.png') },
+    { title: 'ko-fi', src: require('../../assets/Ko-fi_Logo_RGB.png') },
+    { title: 'paymaya', src: require('../../assets/paymaya.png') },
   ]
   public wallets = {
     btc: '3MmJbNGepzbia2zARU7P6G1dYMVxvH8tQN',
@@ -176,7 +176,7 @@ export default class DonateDialog extends Vue {
         this.openLink('https://ko-fi.com/dantis')
         break
       case 'paymaya':
-        this.qrSrc = require('../assets/paymaya.svg')
+        this.qrSrc = require('../../assets/paymaya.svg')
         this.qrDialog = true
         break
       default:

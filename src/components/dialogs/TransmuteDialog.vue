@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/dialogs/TransmuteDialog';
+@import '../../styles/components/dialogs/TransmuteDialog';
 </style>
 
 <script lang="ts">

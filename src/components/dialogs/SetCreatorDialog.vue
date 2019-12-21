@@ -214,5 +214,5 @@ export default class SetCreatorDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/dialogs/SetCreatorDialog';
+@import '../../styles/components/dialogs/SetCreatorDialog';
 </style>

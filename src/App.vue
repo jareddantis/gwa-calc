@@ -66,6 +66,15 @@ import { mapState } from 'vuex'
 import { Component, Watch } from 'vue-property-decorator'
 
 @Component({
+  components: {
+    DonateDialog: () => import('./DonateDialog.vue'),
+    NavDrawer: () => import('./components/NavDrawer.vue'),
+    SetCreatorDialog: () => import('./SetCreatorDialog.vue'),
+    SetDecoderDialog: () => import('./SetDecoderDialog.vue'),
+    SetEncoderDialog: () => import('./SetEncoderDialog.vue'),
+    SetManagerDialog: () => import('./SetManagerDialog.vue'),
+    TransmuteDialog: () => import('./TransmuteDialog.vue'),
+  },
   computed: mapState(['isDarkMode']),
 })
 export default class App extends Vue {

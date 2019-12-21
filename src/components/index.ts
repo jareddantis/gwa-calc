@@ -4,7 +4,7 @@ import { Ripple } from 'vuetify/lib/directives'
 import '../styles/global.scss'
 
 // Custom components
-Vue.component('nav-drawer', () => import('./Drawer.vue'))
+Vue.component('grade-picker-dialog', () => import('./GradePickerDialog.vue'))
 Vue.component('subject-card', () => import('./SubjectCard.vue'))
 
 // Material Design elements

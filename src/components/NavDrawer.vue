@@ -76,7 +76,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/components/Drawer';
+@import '../styles/components/NavDrawer';
 </style>
 
 <script lang="ts">
@@ -87,7 +87,7 @@ import { mapState } from 'vuex'
 @Component({
   computed: mapState(['isDarkMode', 'isHiddenPshs']),
 })
-export default class Drawer extends Vue {
+export default class NavDrawer extends Vue {
   public isDarkMode!: boolean
   public isHiddenPshs!: boolean
   public visible: boolean = false

@@ -205,5 +205,5 @@ export default class SetDecoderDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/dialogs/SetDecoderDialog';
+@import '../../styles/components/dialogs/SetDecoderDialog';
 </style>

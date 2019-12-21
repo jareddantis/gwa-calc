@@ -24,7 +24,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/dialogs/GradePickerDialog';
+@import '../../styles/components/dialogs/GradePickerDialog';
 </style>
 
 <script lang="ts">

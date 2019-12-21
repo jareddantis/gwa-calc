@@ -4,7 +4,6 @@ import EventBus from './eventbus'
 import router from './routes'
 import store from './store/store'
 import vuetify from './components'
-import './dialogs'
 import './registerServiceWorker'
 
 // Custom filters for grades and averages
