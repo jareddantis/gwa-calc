@@ -161,17 +161,5 @@ export default class SetEncoderDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
-#qr-canvas {
-  display: block;
-  max-width: 100%;
-  margin: 1.5rem auto;
-}
-
-p.body-1 {
-  text-align: center;
-}
-
-div.v-progress-circular {
-  width: 100% !important;
-}
+@import '../../styles/components/dialogs/SetEncoderDialog';
 </style>
