@@ -5,12 +5,12 @@
 
 [[redirects]]
   from = "https://gwa-calc.netlify.com/*"
-  to = "https://calc.jared.gq/:splat"
+  to = "https://calc.dantis.me/:splat"
   status = 301
 
 [[redirects]]
   from = "http://gwa-calc.netlify.com/*"
-  to = "https://calc.jared.gq/:splat"
+  to = "https://calc.dantis.me/:splat"
   status = 301
 
 [[headers]]

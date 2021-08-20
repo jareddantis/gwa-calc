@@ -1,4 +1,4 @@
-# [gwa-calc](https://calc.jared.gq/)
+# [gwa-calc](https://calc.dantis.me/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/73b0ee1f-01f1-4660-a201-54e2b5c1efe1/deploy-status)](https://app.netlify.com/sites/gwa-calc/deploys) [![dependencies](https://david-dm.org/jareddantis/gwa-calc/status.svg)](https://david-dm.org/jareddantis/gwa-calc) [![devDependencies](https://david-dm.org/jareddantis/gwa-calc/dev-status.svg)](https://david-dm.org/jareddantis/gwa-calc?type=dev) [![GitHub license](https://img.shields.io/github/license/jareddantis/gwa-calc.svg)](https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md)
 
@@ -44,10 +44,7 @@ Then serve the resulting `dist` directory in your [SPA](https://en.wikipedia.org
 
 The calculator is automatically built and deployed with Netlify to make updating and testing easier.
 
-If you have a suggestion for the calculator, you can either
-
-* send me a message about it [here,](http://server.jared.gq/feedback/?subject=GWACalc-vue) or
-* make a pull request on this repository if you have some code to share!
+If you have a suggestion for the calculator, you can open an issue from the tab above or make a pull request on this repository if you have some code to share!
 
 ## Credits
 

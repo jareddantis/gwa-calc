@@ -4,7 +4,7 @@
     <v-img :src="isDarkMode ? darkWaves : lightWaves" aspect-ratio="1.5">
       <div :class="`header ml-4 ${isDarkMode ? '' : 'black--text'}`">
         <h3 class="subtitle-2">GWA Calc {{ appVersion ? `build ${appVersion}` : 'debug build' }}</h3>
-        <p class="caption mb-0">&copy; 2015-2019, 2019-2020 <a href="https://jared.gq" class="text--primary"
+        <p class="caption mb-0">&copy; 2015-2019, 2019-2020 <a href="https://dantis.me" class="text--primary"
                                                     target="_blank" rel="noopener">Jared Dantis</a></p>
         <p class="caption"><a href="https://github.com/jareddantis/gwa-calc/blob/master/LICENSE.md"
                               target="_blank" class="text--primary" rel="noopener">Build licensed under AGPLv3</a></p>

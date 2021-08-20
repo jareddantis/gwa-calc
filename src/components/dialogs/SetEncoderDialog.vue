@@ -107,7 +107,7 @@ export default class SetEncoderDialog extends Vue {
       files: [ await this.createQRFile() ],
       title: this.encodedSet,
       text: `Calculate your average for ${this.encodedSet}`,
-      url: 'https://calc.jared.gq',
+      url: 'https://calc.dantis.me',
     }
 
     if (navigator.canShare(data)) {
